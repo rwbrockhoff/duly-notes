@@ -3,6 +3,8 @@ import './TextEditor.css';
 import Sidebar from '../Sidebar/Sidebar';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
+import {updateUser} from '../../ducks/reducer';
 let defaultPic = "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png";
 
 class TextEditor extends Component {
@@ -10,13 +12,18 @@ class TextEditor extends Component {
     super()
 
     this.state = {
-      user: {picture: defaultPic }
+      user: 
+      {
+        name: 'Log In!',
+        picture: defaultPic 
+      }
     };
   }
  
   componentDidMount(){
     axios.get('/api/user-data').then(res => {
       this.setState({user: res.data.user || null})
+      this.props.updateUser(res.data.user)
     })
   }
 
@@ -48,4 +55,10 @@ class TextEditor extends Component {
     )
   }
 }
-export default TextEditor;
+
+function mapStateToProps(state){
+  return {
+    ...this.props, ...state
+  }
+}
+export default connect(mapStateToProps, {updateUser})(TextEditor)
