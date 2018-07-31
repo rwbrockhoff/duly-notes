@@ -8,6 +8,10 @@ require('dotenv').config();
 
 const app = express();
 app.use(bodyParser.json());
+
+massive(process.env.CONNECTION_STRING).then( db => {
+    app.set('db', db)
+})
 app.use(session({
     secret: process.env.SESSION_SECRET,
     saveUninitialized: false,
