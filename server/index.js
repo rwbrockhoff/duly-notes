@@ -14,7 +14,7 @@ app.use(session({
     resave: false
 }))
 
-app.get('auth/callback', async (req, res) => {
+app.get('/auth/callback', async (req, res) => {
 
     const payload = {
         client_id: process.env.REACT_APP_AUTH0_CLIENT_ID,
@@ -29,12 +29,13 @@ app.get('auth/callback', async (req, res) => {
 
 //----exchange token---//
 
-let receiveUser = await axios.post(`https://${process.env.REACT_APP_AUTH0_DOMAIN}/userinfo/?access_token=${receiveToken.data.access_token}`)
+let receiveUser = await axios.get(`https://${process.env.REACT_APP_AUTH0_DOMAIN}/userinfo?access_token=${receiveToken.data.access_token}`)
 
 //-----user data-----//
 req.session.user = receiveUser.data;
-console.log(receiveUser.data)
-res.redirect('/texteditor');
+
+res.redirect('/#/texteditor');
+
 
 })
 
