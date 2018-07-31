@@ -16,7 +16,10 @@ class TextEditor extends Component {
  
   componentDidMount(){
     axios.get('/api/user-data').then(res => {
-      this.props.updateUser(res.data.user)
+      const {user} = res.data;
+      this.props.updateUser(user)
+    }).catch(error => {
+      console.log('CDM/Axios/GET:', error);
     })
     
     axios.get('/api/auth/checkuser').then( res => {
@@ -25,7 +28,7 @@ class TextEditor extends Component {
         axios.post('/api/auth/register')
       }
       else {
-        console.log('nawh')
+        axios.get('/api/notes')
       }
     })
   }

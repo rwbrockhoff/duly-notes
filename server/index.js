@@ -26,9 +26,7 @@ app.get('/api/auth/checkuser', controller.checkuser)
 
 app.post('/api/auth/register', controller.register)
 
-app.post('/api/auth/login', controller.login)
-
-app.get('/api/notes/:userid', controller.getnotes)
+app.get('/api/notes', controller.getnotes)
 
 
 //-------------------//

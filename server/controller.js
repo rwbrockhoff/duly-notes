@@ -24,20 +24,12 @@ module.exports = {
         })
     },
 
-    login: (req, res, next) => {
-        const dbInstance = req.app.get('db');
-
-        dbInstance.login_user().then( res => {
-            res.sendStatus(200);
-        })
-    }, 
-
     getnotes: (req, res, next) => {
         const dbInstance = req.app.get('db');
 
-        let {userid} = req.params
+        const { sub } = req.session.user;
 
-        dbInstance.get_notes(userid).then( notes => {
+        dbInstance.get_notes(sub).then( notes => {
             res.status(200).send(notes)
         })
     }
