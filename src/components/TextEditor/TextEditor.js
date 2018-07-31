@@ -18,7 +18,8 @@ class TextEditor extends Component {
     axios.get('/api/user-data').then(res => {
       this.props.updateUser(res.data.user)
     })
-    // axios.get('/api/auth/checkuser', {user: res.data.user})
+    const {user} = this.props
+    axios.get('/api/auth/checkuser', {user: user})
   }
 
   logout(){

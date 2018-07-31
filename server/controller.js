@@ -2,10 +2,9 @@ module.exports = {
     checkuser: (req, res, next) => {
         const dbInstance = req.app.get('db');
 
-        const {sub} = req.body
-        console.log(sub)
-
-        dbInstance.check_user().then(userStatus => {
+        const {sub} = req.session.user
+      
+        dbInstance.check_user(sub).then(userStatus => {
             console.log(userStatus);
             res.status(200).send(userStatus)
         })
