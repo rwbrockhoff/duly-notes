@@ -4,7 +4,7 @@ import Sidebar from '../Sidebar/Sidebar';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
-import {updateUser} from '../../ducks/reducer';
+import {updateUser, logoutUser} from '../../ducks/reducer';
 let defaultPic = "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png";
 
 class TextEditor extends Component {
@@ -29,7 +29,7 @@ class TextEditor extends Component {
 
   logout(){
     axios.post('/api/logout').then( () => {
-      this.setState({user: {picture: "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png"}})
+      this.props.logoutUser();
     })
   }
   
@@ -61,4 +61,4 @@ function mapStateToProps(state){
     ...this.props, ...state
   }
 }
-export default connect(mapStateToProps, {updateUser})(TextEditor)
+export default connect(mapStateToProps, {updateUser, logoutUser})(TextEditor)

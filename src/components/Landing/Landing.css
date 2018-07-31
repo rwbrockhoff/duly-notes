@@ -25,7 +25,7 @@ nav {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    
+    align-items: center;
     font-family: Avenir;
     color: #4D76FF;
 }
@@ -75,5 +75,16 @@ div.intro button {
     font-size: 1.2em;
     font-family: Avenir;
     margin-top: -5vh;
+    
+}
+
+
+nav img.landingprofile {
+    width: 2.5vw;
+    height: 2.5vw;
+    border-radius: 1.25vw;
+    align-items: center;
+    margin-right: 2.5vw;
+    margin-left: 1vw;
     
 }

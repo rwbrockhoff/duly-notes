@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import './Landing.css';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import {connect} from 'react-redux';
+let defaultPic = "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png";
 
-export default class Landing extends Component {
+class Landing extends Component {
   
-
   login(){
     let {REACT_APP_AUTH0_DOMAIN,
     REACT_APP_AUTH0_CLIENT_ID
@@ -16,21 +17,23 @@ export default class Landing extends Component {
   window.location = `https://${REACT_APP_AUTH0_DOMAIN}/authorize?client_id=${REACT_APP_AUTH0_CLIENT_ID}&scope=openid%20profile%20email&redirect_url=${url}&response_type=code`
 }
 
-
-
   render() {
-    console.log()
+    let loginUI = this.props.sub ? 
+    <Link to='/texteditor'><img className='landingprofile' src={this.props.picture} alt='profilepic'/></Link>
+    : 
+    <li className='login' onClick={this.login}>login</li>
+
+
     return (
       <div className='landing'>
         
         <div className='headerbar'>
             <div className='logo'>note</div>
             <nav>
-                <Link to='/texteditor'><li>Text Editor</li></Link>
                 <li>features</li>
                 <li>pricing</li>
                 <li>contact</li>
-                <li className='login' onClick={this.login}>login</li>
+                {loginUI}
             </nav>
         </div>
 
@@ -46,3 +49,9 @@ export default class Landing extends Component {
     )
   }
 }
+function mapStateToProps(state){
+  return {
+    ...this.props, ...state
+  }
+}
+export default connect(mapStateToProps)(Landing)
