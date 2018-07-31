@@ -1,4 +1,16 @@
 module.exports = {
+    checkuser: (req, res, next) => {
+        const dbInstance = req.app.get('db');
+
+        const {sub} = req.body
+        console.log(sub)
+
+        dbInstance.check_user().then(userStatus => {
+            console.log(userStatus);
+            res.status(200).send(userStatus)
+        })
+    },
+
     register: (req, res, next) => {
         const dbInstance = req.app.get('db');
 

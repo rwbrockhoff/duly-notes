@@ -5,26 +5,20 @@ import axios from 'axios';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import {updateUser, logoutUser} from '../../ducks/reducer';
-let defaultPic = "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png";
+
 
 class TextEditor extends Component {
   constructor(){
     super()
 
-    this.state = {
-      user: 
-      {
-        name: 'Log In!',
-        picture: defaultPic 
-      }
     };
-  }
+  
  
   componentDidMount(){
     axios.get('/api/user-data').then(res => {
-      this.setState({user: res.data.user || null})
       this.props.updateUser(res.data.user)
     })
+    // axios.get('/api/auth/checkuser', {user: res.data.user})
   }
 
   logout(){
@@ -34,9 +28,9 @@ class TextEditor extends Component {
   }
   
   render() {
-    let image = defaultPic
-    if (this.state.user){
-      image = this.state.user.picture
+    let image = this.props.picture
+    if (this.props.user){
+      image = this.props.picture
     }
 
 
