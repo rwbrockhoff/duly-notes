@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './Landing.css';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
 
 export default class Landing extends Component {
   
@@ -16,7 +17,9 @@ export default class Landing extends Component {
 }
 
 
+
   render() {
+    console.log()
     return (
       <div className='landing'>
         

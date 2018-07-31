@@ -33,8 +33,7 @@ let receiveUser = await axios.get(`https://${process.env.REACT_APP_AUTH0_DOMAIN}
 
 //-----user data-----//
 req.session.user = receiveUser.data;
-console.log(receiveUser.data)
-console.log('uzza', req.session.user)
+
 res.redirect('/#/texteditor').send(req.session.user);
 
 
