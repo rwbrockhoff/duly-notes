@@ -2,6 +2,7 @@ module.exports = {
     register: (req, res, next) => {
         const dbInstance = req.app.get('db');
 
+        
         dbInstance.create_user().then( res => {
             res.sendStatus(200)
         })

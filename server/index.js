@@ -5,6 +5,7 @@ const massive = require('massive');
 const axios = require('axios');
 let sessionId = 45;
 require('dotenv').config();
+const controller = require('./controller');
 
 const app = express();
 app.use(bodyParser.json());
