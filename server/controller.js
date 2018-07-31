@@ -1,8 +1,10 @@
 module.exports = {
     checkuser: (req, res, next) => {
         const dbInstance = req.app.get('db');
+        const {given_name, family_name} = req.session.user;
+        let fullName = given_name + " " + family_name;
 
-        const {sub} = req.session.user
+        const { sub } = req.session.user;
       
         dbInstance.check_user(sub).then(userStatus => {
             console.log(userStatus);
@@ -13,8 +15,12 @@ module.exports = {
     register: (req, res, next) => {
         const dbInstance = req.app.get('db');
 
+        const {given_name, family_name} = req.session.user;
+        let fullName = given_name + " " + family_name;
+
+        const { sub, fullName, email } = req.session.user;
         
-        dbInstance.create_user().then( res => {
+        dbInstance.create_user([sub, fullName, email]).then( res => {
             res.sendStatus(200)
         })
     },

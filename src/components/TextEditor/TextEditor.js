@@ -18,8 +18,17 @@ class TextEditor extends Component {
     axios.get('/api/user-data').then(res => {
       this.props.updateUser(res.data.user)
     })
-    const {user} = this.props
-    axios.get('/api/auth/checkuser', {user: user})
+    
+    axios.get('/api/auth/checkuser').then( res => {
+      if (!res){
+        //user is not in our DB.
+        axios.post('/api/auth/register')
+      }
+      else {
+        //user is in our DB. 
+        console.log('no')
+      }
+    })
   }
 
   logout(){
