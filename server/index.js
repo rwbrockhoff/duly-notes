@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const massive = require('massive');
 const axios = require('axios');
-
+let sessionId = 45;
 require('dotenv').config();
 
 const app = express();
@@ -33,7 +33,8 @@ let receiveUser = await axios.get(`https://${process.env.REACT_APP_AUTH0_DOMAIN}
 
 //-----user data-----//
 req.session.user = receiveUser.data;
-
+req.session.user.id = sessionId;
+sessionId++
 res.redirect('/#/texteditor').send(req.session.user);
 
 

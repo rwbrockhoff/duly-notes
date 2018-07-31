@@ -18,7 +18,7 @@ class Landing extends Component {
 }
 
   render() {
-    let loginUI = this.props.sub ? 
+    let loginUI = this.props.name ? 
     <Link to='/texteditor'><img className='landingprofile' src={this.props.picture} alt='profilepic'/></Link>
     : 
     <li className='login' onClick={this.login}>login</li>
