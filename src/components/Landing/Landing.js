@@ -13,7 +13,7 @@ export default class Landing extends Component {
                 <Link to='/texteditor'><li>Text Editor</li></Link>
                 <li>features</li>
                 <li>pricing</li>
-                <li>contac</li>
+                <li>contact</li>
                 <li className='login'>login</li>
             </nav>
         </div>

@@ -1,0 +1,7 @@
+div.sidebar {
+    width: 20vw;
+    background-color: #E2E2E2;
+    display: flex;
+    justify-content: center;
+    font-family: Avenir;
+}
