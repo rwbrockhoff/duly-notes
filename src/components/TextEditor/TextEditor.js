@@ -20,13 +20,12 @@ class TextEditor extends Component {
     })
     
     axios.get('/api/auth/checkuser').then( res => {
-      if (!res){
+      if (!res.data[0]){
         //user is not in our DB.
         axios.post('/api/auth/register')
       }
       else {
-        //user is in our DB. 
-        console.log('no')
+        console.log('nawh')
       }
     })
   }

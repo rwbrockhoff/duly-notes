@@ -1,8 +1,7 @@
 module.exports = {
     checkuser: (req, res, next) => {
         const dbInstance = req.app.get('db');
-        const {given_name, family_name} = req.session.user;
-        let fullName = given_name + " " + family_name;
+        
 
         const { sub } = req.session.user;
       
@@ -18,7 +17,7 @@ module.exports = {
         const {given_name, family_name} = req.session.user;
         let fullName = given_name + " " + family_name;
 
-        const { sub, fullName, email } = req.session.user;
+        const { sub, email } = req.session.user;
         
         dbInstance.create_user([sub, fullName, email]).then( res => {
             res.sendStatus(200)
