@@ -1,0 +1,79 @@
+div.headerbar {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+div.logo {
+    width: 20vw;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: Avenir;
+    font-size: 2em;
+    font-weight: 700;
+    color: #4D76FF
+    
+}
+nav {
+    width: 80vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    
+    font-family: Avenir;
+    color: #4D76FF;
+}
+
+li {
+    list-style: none;
+    padding: 0px 50px;
+}
+
+li.login {
+    font-weight: 700;
+}
+
+div.intro {
+    width: 100%;
+    height: 90vh;
+    background-color: #4D76FF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+    font-family: Avenir;
+    color: white;
+    
+}
+
+div.intro h1 {
+    font-size: 5em;
+    font-weight: 700;
+    margin-top: -5vh;
+    
+}
+div.intro h5 {
+    font-size: 2.5em;
+    margin-top: -7vh;
+    font-weight: 100;
+    
+}
+div.intro button {
+    width: 15vw;
+    height: 5vh;
+    background-color: #4D76FF;
+    border: 3px solid white;
+    border-radius: 5em;
+    color: white;
+    font-size: 1.2em;
+    font-family: Avenir;
+    margin-top: -5vh;
+    
+}
