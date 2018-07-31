@@ -11,12 +11,24 @@ app.use(bodyParser.json());
 
 massive(process.env.CONNECTION_STRING).then( db => {
     app.set('db', db)
+}).catch( error => {
+    console.log('Massive Error:', error)
 })
 app.use(session({
     secret: process.env.SESSION_SECRET,
     saveUninitialized: false,
     resave: false
 }))
+
+//---DB Requests-----//
+app.post('/api/auth/register', controller.register)
+
+app.post('/api/auth/login', controller.login)
+
+app.get('/api/notes/:userid', controller.getnotes)
+
+
+//-------------------//
 
 app.get('/auth/callback', async (req, res) => {
 
