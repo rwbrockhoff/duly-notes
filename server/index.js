@@ -33,19 +33,26 @@ let receiveUser = await axios.get(`https://${process.env.REACT_APP_AUTH0_DOMAIN}
 
 //-----user data-----//
 req.session.user = receiveUser.data;
-
-res.redirect('/#/texteditor');
+console.log(receiveUser.data)
+console.log('uzza', req.session.user)
+res.redirect('/#/texteditor').send(req.session.user);
 
 
 })
 
 app.post('/api/logout', (req, res) => {
     req.session.destroy();
-    res.send();
+    res.redirect('/#/');
+    res.sendStatus(200);
 })
 
 app.get('/api/user-data', (req, res) => {
-    res.json({user: req.session.user})
+    res.json({user: req.session.user});
+})
+
+app.post('/api/logout', (req, res) => {
+    req.session.destroy();
+    res.send();
 })
 
 
