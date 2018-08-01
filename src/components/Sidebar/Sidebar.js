@@ -3,11 +3,17 @@ import './Sidebar.css';
 import {connect} from 'react-redux';
 import {displayNote} from '../../ducks/reducer';
 import SideNote from '../SideNote/SideNote';
+import add from '../../assets/add.svg';
 let listOutNotes = null;
 
 
 class Sidebar extends Component {
-  
+
+  createNote(){
+    axios.post('/api/post')
+  }
+
+
   render() {
     if (!this.props.notes){
       listOutNotes = null;
@@ -26,7 +32,7 @@ class Sidebar extends Component {
     return (
       <div className='sidebar'>
             <div className="iconbar">
-                <p>Icons</p>
+                <img src={add} alt='new' onClick={() => this.createNote()}/>
             </div>
 
             <div className="noteContainer">

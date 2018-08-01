@@ -32,6 +32,8 @@ app.post('/api/note', controller.updatenote)
 
 app.delete('/api/note/:id', controller.deleteNote)
 
+app.create('/api/note', controller.createnote)
+
 
 //-------------------//
 
