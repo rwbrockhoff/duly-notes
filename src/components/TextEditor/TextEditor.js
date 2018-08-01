@@ -5,6 +5,7 @@ import axios from 'axios';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import {updateUser, logoutUser} from '../../ducks/reducer';
+import trash from '../../assets/trash.svg';
 let note;
 
 class TextEditor extends Component {
@@ -49,14 +50,20 @@ class TextEditor extends Component {
 
   handleKeyDown(e){
     if (e.keyCode === 13){
-      axios.post('/api/note', {title: e.target.value, note_id: this.props.displayNote.note_id}).then( notes => {
-        this.props.updateUser({notes: notes.data})
+      axios.post('/api/note', {title: e.target.value, note_id: this.props.displayNote.note_id}).then( res => {
+        this.props.updateUser({notes: res.data})
         
       })
-
-      
       
     }
+  }
+
+  deleteNote(){
+    
+    let id = this.props.displayNote.note_id
+    axios.delete(`/api/note/${id}`).then( res => {
+      this.props.updateUser({notes: res.data})
+    })
   }
   
   render() {
@@ -65,7 +72,6 @@ class TextEditor extends Component {
       image = this.props.picture
     }
 
-    
     if (this.props.displayNote.content){
       note = this.props.displayNote;
     }
@@ -85,10 +91,8 @@ class TextEditor extends Component {
             onKeyDown={e => this.handleKeyDown(e)}
             defaultValue={this.state.title}/>
 
-            {/* <input type="text" 
-            onKeyDown={e => this.handleKeyDown(e)}
-            contenteditable={this.props.displayNote.title} 
-            value={this.props.displayNote.title}/> */}
+            <img className='trash' src={trash} alt='trash'
+            onClick={() => this.deleteNote()}/>
        
             <Link to ='/'><img className='profilepic' alt="profilepic" src={image}
             onClick={() => this.logout()}/></Link>

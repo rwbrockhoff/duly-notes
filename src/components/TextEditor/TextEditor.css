@@ -25,10 +25,10 @@ textarea {
 }
 
 input {
-    width: 70vw;
+    width: 65vw;
     height: 5vh;
     margin-top: 2vh;
-    margin-left: -4vw;
+    margin-left: -8vw;
     border: none;
     outline: none;
     border-bottom: 1px solid #E2E2E2;
@@ -47,4 +47,12 @@ img.profilepic {
     top: 1.5vh;
     right: 1vw;
 }
+
+img.trash {
+    position: absolute;
+    top: 2vh;
+    right: 13vw;
+    width: 1.5vw;
+}
+
 

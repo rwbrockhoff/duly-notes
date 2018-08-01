@@ -30,6 +30,8 @@ app.get('/api/notes', controller.getnotes)
 
 app.post('/api/note', controller.updatenote)
 
+app.delete('/api/note/:id', controller.deleteNote)
+
 
 //-------------------//
 

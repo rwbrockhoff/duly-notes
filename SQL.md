@@ -39,3 +39,11 @@ where author_id = $1
 
 insert into notes (title, content, author_id, access_date)
 VALUES ('Test', 'Here is a bunch of content for you to handle', 'google-oauth2|103947273324697076686', current_date)
+
+
+delete from notes
+where author_id = $1
+and note_id = $2
+
+select * from notes
+order by timestamp desc;
