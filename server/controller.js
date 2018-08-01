@@ -54,5 +54,12 @@ module.exports = {
         dbInstance.delete_note([sub, id]).then( notes => {
             res.status(200).send(notes)
         })
+    },
+
+    createnote: (req, res, next) => {
+        const dbInstance = req.app.get('db');
+
+        const {title, content} = req.body;
+        console.log('HOLLLLLA', title, content)
     }
 }

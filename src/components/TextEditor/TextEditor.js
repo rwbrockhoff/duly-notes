@@ -59,7 +59,7 @@ class TextEditor extends Component {
 
   handleKeyDown(e){
     if (e.keyCode === 13){
-      axios.post('/api/note', {title: e.target.value, note_id: this.props.displayNote.note_id}).then( res => {
+      axios.put('/api/note', {title: e.target.value, note_id: this.props.displayNote.note_id}).then( res => {
         this.props.updateUser({notes: res.data})
         
       })

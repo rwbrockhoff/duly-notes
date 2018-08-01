@@ -3,6 +3,7 @@ import './Sidebar.css';
 import {connect} from 'react-redux';
 import {displayNote} from '../../ducks/reducer';
 import SideNote from '../SideNote/SideNote';
+import axios from 'axios';
 import add from '../../assets/add.svg';
 let listOutNotes = null;
 
@@ -10,7 +11,8 @@ let listOutNotes = null;
 class Sidebar extends Component {
 
   createNote(){
-    axios.post('/api/post')
+    
+    axios.post('/api/note', {title: 'Title', content: 'Shall we start?'})
   }
 
 

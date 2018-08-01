@@ -28,11 +28,11 @@ app.post('/api/auth/register', controller.register)
 
 app.get('/api/notes', controller.getnotes)
 
-app.post('/api/note', controller.updatenote)
+app.put('/api/note', controller.updatenote)
 
 app.delete('/api/note/:id', controller.deleteNote)
 
-app.create('/api/note', controller.createnote)
+app.post('/api/note', controller.createnote)
 
 
 //-------------------//
