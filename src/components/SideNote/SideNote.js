@@ -9,7 +9,9 @@ class SideNote extends Component {
       
     return (
       <div className='container'
-      onClick={() => this.props.displayNote({displayNote: this.props.note})}
+      onClick={() => 
+        this.props.displayNote({displayNote: this.props.note})
+      }
       >
         <p className='title'> {this.props.note.title}</p>
         <p className='preview'>{this.props.note.content.split("").splice(0, 75)}...</p>

@@ -42,7 +42,7 @@ module.exports = {
         
 
         dbInstance.update_note([title, sub, note_id]).then( notes => {
-            console.log('here are notes', notes)
+            res.status(200).send(notes);
         })
 
     }

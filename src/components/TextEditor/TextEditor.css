@@ -39,6 +39,7 @@ input {
     color: #8B8B8B;
 }
 
+
 img.profilepic {
     width: 2vw;
     border-radius: 2vw;
@@ -46,3 +47,4 @@ img.profilepic {
     top: 1.5vh;
     right: 1vw;
 }
+

@@ -5,7 +5,7 @@ import axios from 'axios';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import {updateUser, logoutUser} from '../../ducks/reducer';
-
+let note;
 
 class TextEditor extends Component {
 
@@ -31,11 +31,7 @@ class TextEditor extends Component {
     })
   }
 
-  componentDidUpdate(){
-    axios.get('/api/notes').then( notes => {
-      this.props.updateUser({notes: notes.data})
-    })
-  }
+ 
 
   logout(){
     axios.post('/api/logout').then( () => {
@@ -45,7 +41,13 @@ class TextEditor extends Component {
 
   handleKeyDown(e){
     if (e.keyCode === 13){
-      axios.post('/api/note', {title: e.target.value, note_id: this.props.displayNote.note_id})
+      axios.post('/api/note', {title: e.target.value, note_id: this.props.displayNote.note_id}).then( notes => {
+        this.props.updateUser({notes: notes.data})
+        
+      })
+
+      
+      
     }
   }
   
@@ -55,9 +57,8 @@ class TextEditor extends Component {
       image = this.props.picture
     }
 
-    let note;
     
-    if (this.props.displayNote){
+    if (this.props.displayNote.content){
       note = this.props.displayNote;
     }
     else {
@@ -71,8 +72,12 @@ class TextEditor extends Component {
         <Sidebar/>
 
          <div className='editor'>
-            <input placeholder='Title' defaultValue={note.title}
-            onKeyDown={e => this.handleKeyDown(e)}/>
+         
+            <input type="text" 
+            onKeyDown={e => this.handleKeyDown(e)}
+            contenteditable={this.props.displayNote.title} 
+            value={this.props.displayNote.title}/>
+        
             <Link to ='/'><img className='profilepic' alt="profilepic" src={image}
             onClick={() => this.logout()}/></Link>
             <textarea placeholder='Begin typing...'
