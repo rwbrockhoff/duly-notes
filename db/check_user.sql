@@ -1,2 +1,2 @@
-select * from users 
-where id = $1
+select id from users 
+where id = $1;

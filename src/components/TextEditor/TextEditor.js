@@ -18,42 +18,46 @@ class TextEditor extends Component {
   }
  
   componentDidMount(){
+    
     axios.get('/api/user-data').then(res => {
+      if (res.data.user){
+
       const {user} = res.data;
       this.props.updateUser(user)
-    }).catch(error => {
+
+      axios.get('/api/notes').then( notes => {
+       
+      if (notes.data[0]){
+      this.props.updateUser({notes: notes.data})
+      this.setState({
+        title: this.props.notes[0].title,
+        content: this.props.notes[0].content
+               })}
+
+        })
+
+
+
+   } 
+
+   else {
+    //user is not in our DB.
+    axios.post('/api/auth/register')
+  }
+  
+  
+  }).catch(error => {
       console.log('CDM/Axios/GET:', error);
     })
-    
-    axios.get('/api/auth/checkuser').then( res => {
-      if (!res.data[0]){
-        //user is not in our DB.
-        axios.post('/api/auth/register')
-      }
-      else {
-        
-            axios.get('/api/notes').then( notes => {
-                console.log('tracky', notes.data[0])
-              if (notes.data[0]){
-              this.props.updateUser({notes: notes.data})
-              this.setState({
-                title: this.props.notes[0].title,
-                content: this.props.notes[0].content
-              })}
-            
-            // else  {
-            // axios.post('/api/note', {title: 'Title', content: 'Shall we start?'}).then( () => {
-            //   this.setState({
-            //     title: this.props.notes[0].title ,
-            //     content: this.props.notes[0].content 
-            //   })})
-            // }
 
-          
-        })
+             
       }
+  
     
-  })}
+
+      
+    
+    
 
   
 

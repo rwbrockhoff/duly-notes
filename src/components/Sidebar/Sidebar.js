@@ -21,13 +21,13 @@ class Sidebar extends Component {
   render() {
     if (!this.props.notes){
       listOutNotes = null;
-      console.log('nothing here, mate');
+      
     }
     else {
 
       listOutNotes = this.props.notes.map((e,i) => {
         return (
-        <SideNote note={e} index={i} />
+        <SideNote key ={i} note={e} index={i} />
         )
     })
         
