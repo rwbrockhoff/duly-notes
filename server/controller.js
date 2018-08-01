@@ -37,8 +37,12 @@ module.exports = {
     updatenote: (req, res, next) => {
         const dbInstance = req.app.get('db');
 
-        dbInstance.update_note().then( notes => {
-            res.status(200).send(notes)
+        const {title, note_id} = req.body;
+        const {sub} = req.session.user;
+        
+
+        dbInstance.update_note([title, sub, note_id]).then( notes => {
+            console.log('here are notes', notes)
         })
 
     }

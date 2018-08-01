@@ -6,8 +6,7 @@ import {displayNote} from '../../ducks/reducer';
 
 class SideNote extends Component {
   render(props) {
-      console.log('note', this.props.note)
-      console.log('index', this.props.index)
+      
     return (
       <div className='container'
       onClick={() => this.props.displayNote({displayNote: this.props.note})}
