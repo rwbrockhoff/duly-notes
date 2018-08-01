@@ -1,5 +1,7 @@
 div.sidebar {
     width: 20vw;
+    height: 100vh;
+    overflow-y: scroll;
     background-color: #f4f4f4;
     display: flex;
     flex-direction: column;
@@ -10,9 +12,18 @@ div.sidebar {
 
 
 div.iconbar {
-    width: 100%;
+    width: 20vw;
     height: 7vh;
+    position: absolute;
+    margin-top: 0;
     display: flex;
     justify-content: center;
-    background-color: blue;
+    background-color: #576593;
+    color: white;
+
+}
+
+div.noteContainer {
+    height: 93vh;
+    margin-top: 7vh;
 }
