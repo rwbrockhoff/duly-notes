@@ -2,11 +2,8 @@ module.exports = {
     checkuser: (req, res, next) => {
         const dbInstance = req.app.get('db');
         
-
-        const { sub } = req.session.user;
-      
         dbInstance.check_user(sub).then(userStatus => {
-            console.log(userStatus);
+    
             res.status(200).send(userStatus)
         })
     },
@@ -23,7 +20,10 @@ module.exports = {
             res.sendStatus(200)
         })
     },
-
+    logout: (req, res, next) => {
+        req.session.destroy()
+        res.sendStatus(200);
+    },
     getnotes: (req, res, next) => {
         const dbInstance = req.app.get('db');
 

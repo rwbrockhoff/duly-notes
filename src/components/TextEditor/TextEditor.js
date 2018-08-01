@@ -33,48 +33,31 @@ class TextEditor extends Component {
         title: this.props.notes[0].title,
         content: this.props.notes[0].content
                })}
-
         })
-
-
-
    } 
 
    else {
     //user is not in our DB.
     axios.post('/api/auth/register')
   }
-  
-  
+
   }).catch(error => {
       console.log('CDM/Axios/GET:', error);
-    })
-
-             
-      }
+    })}
   
-    
-
-      
-    
-    
-
-  
-
   componentWillReceiveProps(nextProps){
     this.setState({
       title: nextProps.displayNote.title,
       content: nextProps.displayNote.content
-    
     })
   }
  
-
   logout(){
     axios.post('/api/logout').then( () => {
       this.props.logoutUser();
     })
   }
+
   deleteNote(){
 
     let id = this.props.displayNote.note_id
@@ -140,10 +123,6 @@ class TextEditor extends Component {
 
          <div className='editor'>
          
-            {/* <input type="text" 
-            onKeyDown={e => this.handleKeyDown(e)}
-            defaultValue={this.state.title}/> */}
-
              <input type="text" 
             onChange={e => this.handleChangeTitle(e)}
             onKeyDown={(e) => this.handleKeyDownTitle(e)}

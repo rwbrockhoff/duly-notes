@@ -26,6 +26,8 @@ app.get('/api/auth/checkuser', controller.checkuser)
 
 app.post('/api/auth/register', controller.register)
 
+app.post('/api/logout', controller.logout)
+
 app.get('/api/notes', controller.getnotes)
 
 app.put('/api/note', controller.updatenote)

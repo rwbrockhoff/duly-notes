@@ -15,7 +15,7 @@ export default function reducer(state=initialState, action){
         return {...state,...action.payload}
 
         case LOGOUT_USER :
-        return {...state, ...initialState}
+        return {...initialState}
 
         case DISPLAY_NOTE :
         return {...state, ...action.payload}
