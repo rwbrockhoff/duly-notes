@@ -8,7 +8,7 @@ export default class SideNote extends Component {
     return (
       <div className='container'>
         <p className='title'> {this.props.note.title}</p>
-        <p className='preview'>{this.props.note.content)}</p>
+        <p className='preview'>{this.props.note.content.split("").splice(0, 75)}...</p>
       </div>
     )
   }
