@@ -4,7 +4,7 @@ import Sidebar from '../Sidebar/Sidebar';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
-import {updateUser, logoutUser} from '../../ducks/reducer';
+import {updateUser, logoutUser, updateDisplay} from '../../ducks/reducer';
 import trash from '../../assets/trash.svg';
 let note;
 
@@ -28,7 +28,9 @@ class TextEditor extends Component {
       axios.get('/api/notes').then( notes => {
        
       if (notes.data[0]){
-      this.props.updateUser({notes: notes.data})
+      this.props.updateUser({notes: notes.data, displayNote: notes.data[0]})
+     
+      // this.props.updateDisplay({displayName: notes.data[0]})
       this.setState({
         title: this.props.notes[0].title,
         content: this.props.notes[0].content
@@ -149,4 +151,4 @@ function mapStateToProps(state){
     ...this.props, ...state
   }
 }
-export default connect(mapStateToProps, {updateUser, logoutUser})(TextEditor)
+export default connect(mapStateToProps, {updateUser, logoutUser, updateDisplay})(TextEditor)

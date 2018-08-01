@@ -7,6 +7,7 @@ const initialState = {
 const UPDATE_USER = 'UPDATE_USER';
 const LOGOUT_USER = 'LOGOUT_USER';
 const DISPLAY_NOTE = 'DISPLAY_NOTE';
+const UPDATE_DISPLAY = 'UPDATE_DISPLAY';
 
 export default function reducer(state=initialState, action){
     switch (action.type){
@@ -20,6 +21,9 @@ export default function reducer(state=initialState, action){
         case DISPLAY_NOTE :
         return {...state, ...action.payload}
         
+        case UPDATE_DISPLAY :
+        return {...state, ...action.payload}
+
         default: 
             return state
     }
@@ -42,6 +46,13 @@ export function logoutUser(){
 export function displayNote(val){
     return {
         type: DISPLAY_NOTE,
+        payload: val
+    }
+}
+
+export function updateDisplay(val){
+    return {
+        type: UPDATE_DISPLAY,
         payload: val
     }
 }
