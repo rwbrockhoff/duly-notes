@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './Sidebar.css';
 import {connect} from 'react-redux';
+import {displayNote} from '../../ducks/reducer';
 import SideNote from '../SideNote/SideNote';
 let listOutNotes = null;
 
@@ -16,7 +17,7 @@ class Sidebar extends Component {
 
       listOutNotes = this.props.notes.map((e,i) => {
         return (
-        <SideNote note={e} index={i}/>
+        <SideNote note={e} index={i} />
         )
     })
         
@@ -44,4 +45,4 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps)(Sidebar)
+export default connect(mapStateToProps, {displayNote})(Sidebar)

@@ -43,6 +43,15 @@ class TextEditor extends Component {
       image = this.props.picture
     }
 
+    let note;
+    
+    if (this.props.displayNote){
+      note = this.props.displayNote;
+    }
+    else {
+      note = '';
+    }
+
 
     return (
       <div className='editorFrame'>
@@ -50,10 +59,11 @@ class TextEditor extends Component {
         <Sidebar/>
 
          <div className='editor'>
-            <input placeholder='Title'/>
+            <input placeholder='Title' value={note.title}/>
             <Link to ='/'><img className='profilepic' alt="profilepic" src={image}
             onClick={() => this.logout()}/></Link>
-            <textarea placeholder='Begin typing...'/>
+            <textarea placeholder='Begin typing...'
+            value={note.content} />
          </div>
       </div>
     )

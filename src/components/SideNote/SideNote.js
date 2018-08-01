@@ -1,15 +1,27 @@
 import React, { Component } from 'react'
 import './SideNote.css';
+import {connect} from 'react-redux';
+import {displayNote} from '../../ducks/reducer';
 
-export default class SideNote extends Component {
+
+class SideNote extends Component {
   render(props) {
       console.log('note', this.props.note)
       console.log('index', this.props.index)
     return (
-      <div className='container'>
+      <div className='container'
+      onClick={() => this.props.displayNote({displayNote: this.props.note})}
+      >
         <p className='title'> {this.props.note.title}</p>
         <p className='preview'>{this.props.note.content.split("").splice(0, 75)}...</p>
       </div>
     )
   }
 }
+function mapStateToProps(state){
+  return {
+    ...this.props, ...state
+  }
+}
+
+export default connect(mapStateToProps, {displayNote})(SideNote)

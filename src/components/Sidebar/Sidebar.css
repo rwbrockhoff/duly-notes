@@ -27,3 +27,8 @@ div.noteContainer {
     height: 93vh;
     margin-top: 7vh;
 }
+
+::-webkit-scrollbar {
+   display: none;
+}
+
