@@ -12,7 +12,8 @@ class TextEditor extends Component {
   constructor(){
     super()
     this.state = {
-      title: ''
+      title: '',
+      content: ''
     }
   }
  
@@ -32,13 +33,21 @@ class TextEditor extends Component {
       else {
         axios.get('/api/notes').then( notes => {
           this.props.updateUser({notes: notes.data})
+          this.setState({
+            title: this.props.notes[0].title,
+            content: this.props.notes[0].content
+          })
         })
       }
     })
   }
 
   componentWillReceiveProps(nextProps){
-    this.setState({title: nextProps.displayNote.title})
+    this.setState({
+      title: nextProps.displayNote.title,
+      content: nextProps.displayNote.content
+    
+    })
   }
  
 
@@ -59,7 +68,7 @@ class TextEditor extends Component {
   }
 
   deleteNote(){
-    
+
     let id = this.props.displayNote.note_id
     axios.delete(`/api/note/${id}`).then( res => {
       this.props.updateUser({notes: res.data})
@@ -97,7 +106,7 @@ class TextEditor extends Component {
             <Link to ='/'><img className='profilepic' alt="profilepic" src={image}
             onClick={() => this.logout()}/></Link>
             <textarea placeholder='Begin typing...'
-            value={note.content} />
+            value={this.state.content} />
          </div>
       </div>
     )
