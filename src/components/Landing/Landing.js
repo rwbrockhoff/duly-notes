@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import './Landing.css';
 import {Link} from 'react-router-dom';
-import axios from 'axios';
 import {connect} from 'react-redux';
-let defaultPic = "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png";
+
 
 class Landing extends Component {
   

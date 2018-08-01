@@ -8,11 +8,7 @@ import {updateUser, logoutUser} from '../../ducks/reducer';
 
 
 class TextEditor extends Component {
-  constructor(){
-    super()
 
-    };
-  
  
   componentDidMount(){
     axios.get('/api/user-data').then(res => {
