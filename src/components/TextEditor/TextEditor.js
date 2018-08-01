@@ -31,6 +31,12 @@ class TextEditor extends Component {
     })
   }
 
+  componentDidUpdate(){
+    axios.get('/api/notes').then( notes => {
+      this.props.updateUser({notes: notes.data})
+    })
+  }
+
   logout(){
     axios.post('/api/logout').then( () => {
       this.props.logoutUser();
