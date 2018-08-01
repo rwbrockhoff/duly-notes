@@ -1,0 +1,27 @@
+div.container {
+    
+    height: 10vh;
+    background-color: grey;
+    border: 1px solid black;
+    padding: 1vh;
+    padding-left: 1.5vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+
+p {
+    font-family: Avenir;
+}
+
+p.title {
+    font-weight: 700;
+    font-size: 1.1em;
+}
+
+p.preview {
+    font-size: .9em;
+    margin-top: -2vh;
+}
