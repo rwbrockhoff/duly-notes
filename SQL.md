@@ -32,3 +32,10 @@ select * from users
 left join notes 
 on users.id = notes.author_id
 where id = 'google-oauth2|103947273324697076686'
+
+
+select * from notes
+where author_id = $1
+
+insert into notes (title, content, author_id, access_date)
+VALUES ('Test', 'Here is a bunch of content for you to handle', 'google-oauth2|103947273324697076686', current_date)

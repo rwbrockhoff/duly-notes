@@ -24,7 +24,9 @@ class TextEditor extends Component {
         axios.post('/api/auth/register')
       }
       else {
-        axios.get('/api/notes')
+        axios.get('/api/notes').then( notes => {
+          this.props.updateUser({notes: notes.data})
+        })
       }
     })
   }
