@@ -28,6 +28,8 @@ app.post('/api/auth/register', controller.register)
 
 app.get('/api/notes', controller.getnotes)
 
+app.post('/api/note', controller.updatenote)
+
 
 //-------------------//
 

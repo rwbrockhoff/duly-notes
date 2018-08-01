@@ -32,5 +32,14 @@ module.exports = {
         dbInstance.get_notes(sub).then( notes => {
             res.status(200).send(notes)
         })
+    },
+
+    updatenote: (req, res, next) => {
+        const dbInstance = req.app.get('db');
+
+        dbInstance.update_note().then( notes => {
+            res.status(200).send(notes)
+        })
+
     }
 }

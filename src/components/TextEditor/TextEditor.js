@@ -36,6 +36,12 @@ class TextEditor extends Component {
       this.props.logoutUser();
     })
   }
+
+  handleKeyDown(e){
+    if (e.keyCode === 13){
+      axios.post('/api/note')
+    }
+  }
   
   render() {
     let image = this.props.picture
@@ -59,7 +65,8 @@ class TextEditor extends Component {
         <Sidebar/>
 
          <div className='editor'>
-            <input placeholder='Title' value={note.title}/>
+            <input placeholder='Title' defaultValue={note.title}
+            onKeyDown={e => this.handleKeyDown(e)}/>
             <Link to ='/'><img className='profilepic' alt="profilepic" src={image}
             onClick={() => this.logout()}/></Link>
             <textarea placeholder='Begin typing...'
