@@ -8,13 +8,7 @@ import {updateUser, logoutUser} from '../../ducks/reducer';
 let note;
 
 class TextEditor extends Component {
-   constructor(props){
-     super(props)
 
-     this.state = {
-       title: 'Florida'
-     }
-   }
  
   componentDidMount(){
     axios.get('/api/user-data').then(res => {
@@ -35,13 +29,8 @@ class TextEditor extends Component {
         })
       }
     })
-    
   }
 
-  componentWillReceiveProps(){
-    this.setState({title: this.props.displayNote.title})
-  }
-  
  
 
   logout(){
@@ -51,11 +40,10 @@ class TextEditor extends Component {
   }
 
   handleKeyDown(e){
-   
     if (e.keyCode === 13){
       axios.post('/api/note', {title: e.target.value, note_id: this.props.displayNote.note_id}).then( notes => {
         this.props.updateUser({notes: notes.data})
-        console.log('made it here ma')
+        
       })
 
       
@@ -64,7 +52,6 @@ class TextEditor extends Component {
   }
   
   render() {
-    
     let image = this.props.picture
     if (this.props.user){
       image = this.props.picture
@@ -88,8 +75,9 @@ class TextEditor extends Component {
          
             <input type="text" 
             onKeyDown={e => this.handleKeyDown(e)}
-            defaultValue={this.state.title}/>
-        
+            contenteditable={this.props.displayNote.title} 
+            value={this.props.displayNote.title}/>
+       
             <Link to ='/'><img className='profilepic' alt="profilepic" src={image}
             onClick={() => this.logout()}/></Link>
             <textarea placeholder='Begin typing...'
