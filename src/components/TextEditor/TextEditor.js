@@ -31,16 +31,31 @@ class TextEditor extends Component {
         axios.post('/api/auth/register')
       }
       else {
-        axios.get('/api/notes').then( notes => {
-          this.props.updateUser({notes: notes.data})
-          this.setState({
-            title: this.props.notes[0].title,
-            content: this.props.notes[0].content
-          })
+        
+            axios.get('/api/notes').then( notes => {
+                console.log('tracky', notes.data[0])
+              if (notes.data[0]){
+              this.props.updateUser({notes: notes.data})
+              this.setState({
+                title: this.props.notes[0].title,
+                content: this.props.notes[0].content
+              })}
+            
+            // else  {
+            // axios.post('/api/note', {title: 'Title', content: 'Shall we start?'}).then( () => {
+            //   this.setState({
+            //     title: this.props.notes[0].title ,
+            //     content: this.props.notes[0].content 
+            //   })})
+            // }
+
+          
         })
       }
-    })
-  }
+    
+  })}
+
+  
 
   componentWillReceiveProps(nextProps){
     this.setState({
@@ -56,23 +71,48 @@ class TextEditor extends Component {
       this.props.logoutUser();
     })
   }
+  deleteNote(){
 
-  handleKeyDown(e){
+    let id = this.props.displayNote.note_id
+    axios.delete(`/api/note/${id}`).then( res => {
+      
+      this.props.updateUser({notes: res.data})
+      if (res.data[0]){
+      this.setState({title: this.props.notes[0].title,
+            content: this.props.notes[0].content })
+      }
+      
+    })
+  }
+
+  handleChangeTitle(e){
+    this.setState({title: e.target.value})
+  }
+
+  handleKeyDownTitle(e){
     if (e.keyCode === 13){
-      axios.put('/api/note', {title: e.target.value, note_id: this.props.displayNote.note_id}).then( res => {
+      const {content} = this.state
+      axios.put('/api/note', {title: e.target.value, content: content, note_id: this.props.displayNote.note_id}).then( res => {
         this.props.updateUser({notes: res.data})
-        
+        this.setState({title: res.data[0].title})
       })
       
     }
   }
 
-  deleteNote(){
+  handleChangeContent(e){
+    this.setState({content: e.target.value})
+  }
 
-    let id = this.props.displayNote.note_id
-    axios.delete(`/api/note/${id}`).then( res => {
-      this.props.updateUser({notes: res.data})
-    })
+  handleKeyDownContent(e){
+    if (e.keyCode === 13){
+      const {title} = this.state
+      axios.put('/api/note', {title: title, content: e.target.value, note_id: this.props.displayNote.note_id}).then( res => {
+        this.props.updateUser({notes: res.data})
+        this.setState({content: res.data[0].content})
+      })
+      
+    }
   }
   
   render() {
@@ -96,16 +136,24 @@ class TextEditor extends Component {
 
          <div className='editor'>
          
-            <input type="text" 
+            {/* <input type="text" 
             onKeyDown={e => this.handleKeyDown(e)}
-            defaultValue={this.state.title}/>
+            defaultValue={this.state.title}/> */}
+
+             <input type="text" 
+            onChange={e => this.handleChangeTitle(e)}
+            onKeyDown={(e) => this.handleKeyDownTitle(e)}
+            value={this.state.title}/>
 
             <img className='trash' src={trash} alt='trash'
             onClick={() => this.deleteNote()}/>
        
             <Link to ='/'><img className='profilepic' alt="profilepic" src={image}
             onClick={() => this.logout()}/></Link>
-            <textarea placeholder='Begin typing...'
+
+            <textarea 
+            onChange={e => this.handleChangeContent(e)}
+            onKeyDown={e => this.handleKeyDownContent(e)}
             value={this.state.content} />
          </div>
       </div>

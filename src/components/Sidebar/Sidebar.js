@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './Sidebar.css';
 import {connect} from 'react-redux';
-import {displayNote} from '../../ducks/reducer';
+import {displayNote, updateUser} from '../../ducks/reducer';
 import SideNote from '../SideNote/SideNote';
 import axios from 'axios';
 import add from '../../assets/add.svg';
@@ -11,8 +11,10 @@ let listOutNotes = null;
 class Sidebar extends Component {
 
   createNote(){
-    
-    axios.post('/api/note', {title: 'Title', content: 'Shall we start?'})
+    axios.post('/api/note', {title: 'Title', content: 'Shall we start?'}).then(res => { 
+      this.props.updateUser({notes: res.data})
+
+    })
   }
 
 
@@ -53,4 +55,4 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps, {displayNote})(Sidebar)
+export default connect(mapStateToProps, {displayNote, updateUser})(Sidebar)

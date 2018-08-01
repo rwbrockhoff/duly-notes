@@ -28,7 +28,7 @@ module.exports = {
         const dbInstance = req.app.get('db');
 
         const { sub } = req.session.user;
-
+        console.log(sub);
         dbInstance.get_notes(sub).then( notes => {
             res.status(200).send(notes)
         })
@@ -36,11 +36,11 @@ module.exports = {
 
     updatenote: (req, res, next) => {
         const dbInstance = req.app.get('db');
-
-        const {title, note_id} = req.body;
+        
+        const {title, content, note_id} = req.body;
         const {sub} = req.session.user;
-       
-        dbInstance.update_note([title, sub, note_id]).then( notes => {
+        
+        dbInstance.update_note([title, content,sub, note_id]).then( notes => {
             res.status(200).send(notes);
         })
     },
@@ -60,6 +60,11 @@ module.exports = {
         const dbInstance = req.app.get('db');
 
         const {title, content} = req.body;
-        console.log('HOLLLLLA', title, content)
+        const {sub} = req.session.user;
+
+
+        dbInstance.create_note([title, content, sub]).then( notes => {
+            res.status(200).send(notes)
+        })
     }
 }
