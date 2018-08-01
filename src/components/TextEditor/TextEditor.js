@@ -8,7 +8,12 @@ import {updateUser, logoutUser} from '../../ducks/reducer';
 let note;
 
 class TextEditor extends Component {
-
+  constructor(){
+    super()
+    this.state = {
+      title: ''
+    }
+  }
  
   componentDidMount(){
     axios.get('/api/user-data').then(res => {
@@ -31,6 +36,9 @@ class TextEditor extends Component {
     })
   }
 
+  componentWillReceiveProps(nextProps){
+    this.setState({title: nextProps.displayNote.title})
+  }
  
 
   logout(){
@@ -75,8 +83,12 @@ class TextEditor extends Component {
          
             <input type="text" 
             onKeyDown={e => this.handleKeyDown(e)}
+            defaultValue={this.state.title}/>
+
+            {/* <input type="text" 
+            onKeyDown={e => this.handleKeyDown(e)}
             contenteditable={this.props.displayNote.title} 
-            value={this.props.displayNote.title}/>
+            value={this.props.displayNote.title}/> */}
        
             <Link to ='/'><img className='profilepic' alt="profilepic" src={image}
             onClick={() => this.logout()}/></Link>
