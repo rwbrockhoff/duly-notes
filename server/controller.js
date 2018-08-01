@@ -13,7 +13,7 @@ module.exports = {
 
     register: (req, res, next) => {
         const dbInstance = req.app.get('db');
-
+        console.log(req.session)
         const {given_name, family_name} = req.session.user;
         let fullName = given_name + " " + family_name;
 
@@ -28,7 +28,7 @@ module.exports = {
         const dbInstance = req.app.get('db');
 
         const { sub } = req.session.user;
-        console.log(sub);
+        
         dbInstance.get_notes(sub).then( notes => {
             res.status(200).send(notes)
         })
