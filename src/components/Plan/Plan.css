@@ -1,6 +1,6 @@
 div {
     font-family: Avenir;
-    color: #4D76FF;
+    
 }
 
 div.Pricing {
@@ -9,4 +9,5 @@ div.Pricing {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #4D76FF;
 }

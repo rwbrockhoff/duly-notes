@@ -10,7 +10,6 @@ module.exports = {
 
     register: (req, res, next) => {
         const dbInstance = req.app.get('db');
-        console.log(req.session)
         const {given_name, family_name} = req.session.user;
         let fullName = given_name + " " + family_name;
 

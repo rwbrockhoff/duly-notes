@@ -6,6 +6,7 @@ const axios = require('axios');
 let sessionId = 45;
 require('dotenv').config();
 const controller = require('./controller');
+const stripeController = require('./stripeController');
 
 const app = express();
 app.use(bodyParser.json());
@@ -79,6 +80,22 @@ app.post('/api/logout', (req, res) => {
     req.session.destroy();
     res.send();
 })
+
+//---------STRIPE----------//
+
+//create customer on register 
+
+app.get('/api/createcustomer', stripeController.createcustomer)
+
+
+
+
+
+
+
+
+
+//--------STRIPE-------------//
 
 
 
