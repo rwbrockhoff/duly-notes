@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import './Landing.css';
-import {Link} from 'react-router-dom';
+import {Link, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
+import LandingFeatures from '../LandingFeatures/LandingFeatures';
 
 
 class Landing extends Component {
@@ -29,20 +30,14 @@ class Landing extends Component {
         <div className='headerbar'>
             <div className='logo'>note</div>
             <nav>
-                <li>features</li>
-                <li>pricing</li>
+                <li>mindset</li>
                 <li>contact</li>
                 {loginUI}
             </nav>
         </div>
-
-        <div className='intro'>
-        <h1> get a better grasp</h1>
-        <h5> on how you take notes</h5>
-        <button>remember more </button>
-
-        </div>
         
+
+      
 
       </div>
     )
