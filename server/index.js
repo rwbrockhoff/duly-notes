@@ -8,7 +8,7 @@ require('dotenv').config();
 const controller = require('./controller');
 
 const stripeController = require('./stripeController');
-const stripe = require('stripe')("sk_test_j3TyYwnk8fC4YEUeBcLh2dBl");
+const stripe = require('stripe')(process.env.STRIPE_KEY)
 
 const app = express();
 
@@ -93,14 +93,26 @@ const headers = {
 //create customer on register 
 
 app.post('/api/createcustomer', (req, res) => {
-    console.log(req.session.user.email)
-    const {email, name} = req.session.user
+    
+    const {email, name, sub} = req.session.user
+    
     const customer = stripe.customers.create({
         description: name, 
         email: email
-        
+       
     })
-})
+    .then( (res) => {
+    const dbInstance = req.app.get('db')
+   
+    dbInstance.add_stripe_cust_id([res.id, sub])
+    
+    .then( user => {
+        console.log(user)
+        res.status(200).send(user);
+    }).catch(error => console.log)
+     
+})})
+
 
 
 
