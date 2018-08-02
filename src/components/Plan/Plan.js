@@ -5,7 +5,7 @@ import axios from 'axios';
 export default class Pricing extends Component {
 
   componentDidMount(){
-    axios.get('/api/createcustomer');
+    axios.post('/api/createcustomer');
   }
 
   render() {

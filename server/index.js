@@ -6,10 +6,14 @@ const axios = require('axios');
 let sessionId = 45;
 require('dotenv').config();
 const controller = require('./controller');
+
 const stripeController = require('./stripeController');
+const stripe = require('stripe')("sk_test_j3TyYwnk8fC4YEUeBcLh2dBl");
 
 const app = express();
+
 app.use(bodyParser.json());
+app.use(bodyParser.raw({ type: '*/*' }));
 
 massive(process.env.CONNECTION_STRING).then( db => {
     app.set('db', db)
@@ -82,10 +86,21 @@ app.post('/api/logout', (req, res) => {
 })
 
 //---------STRIPE----------//
+const headers = {
+    api_key: process.env.STRIPE_KEY,
+  };
 
 //create customer on register 
 
-app.get('/api/createcustomer', stripeController.createcustomer)
+app.post('/api/createcustomer', (req, res) => {
+    console.log(req.session.user.email)
+    const {email, name} = req.session.user
+    const customer = stripe.customers.create({
+        description: name, 
+        email: email
+        
+    })
+})
 
 
 
