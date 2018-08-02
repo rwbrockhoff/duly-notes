@@ -7,7 +7,7 @@ import {HashRouter as Router, Switch, Route} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import store from './ducks/store';
 import TextEditor from './components/TextEditor/TextEditor';
-import Pricing from './components/Pricing/Pricing';
+
 import Plan from './components/Plan/Plan';
 import LandingFeatures from './components/LandingFeatures/LandingFeatures';
 
@@ -19,7 +19,7 @@ ReactDOM.render(
                <div>
                 <App/>
                 <LandingFeatures/>
-                <Pricing/>
+               
                 </div>
             )
             }/>

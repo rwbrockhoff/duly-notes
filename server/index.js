@@ -103,15 +103,85 @@ app.post('/api/createcustomer', (req, res) => {
     })
     .then( (res) => {
     const dbInstance = req.app.get('db')
-   
+  
     dbInstance.add_stripe_cust_id([res.id, sub])
     
     .then( user => {
-        console.log(user)
+        
         res.status(200).send(user);
     }).catch(error => console.log)
      
 })})
+
+app.post('/api/payment', (req, res) => {
+    
+    const amountArray = req.body.amount.toString().split('');
+  const pennies = [];
+  for (var i = 0; i < amountArray.length; i++) {
+    if(amountArray[i] === ".") {
+      if (typeof amountArray[i + 1] === "string") {
+        pennies.push(amountArray[i + 1]);
+      } else {
+        pennies.push("0");
+      }
+      if (typeof amountArray[i + 2] === "string") {
+        pennies.push(amountArray[i + 2]);
+      } else {
+        pennies.push("0");
+      }
+    	break;
+    } else {
+    	pennies.push(amountArray[i])
+    }
+  }
+  const convertedAmt = parseInt(pennies.join(''));
+
+  
+    
+    //req.body.token.card
+//  const ownerInfo = {
+//      name: req.body.token.card.name 
+//  }
+// const {card} = req.body.token
+ 
+// const updateCustomerSource = stripe.createSource({
+//     token: req.body.token.id,
+//     customer: 
+// })
+
+
+  const charge = stripe.charges.create({
+  amount: convertedAmt, // amount in cents, again
+  currency: 'usd',
+  source: req.body.token.id,
+  description: 'Test charge from react app'
+
+
+}, function(err, charge) {
+    if (err) return res.sendStatus(500)
+    return res.sendStatus(200);
+  // if (err && err.type === 'StripeCardError') {
+  //   // The card has been declined
+  // }
+}).then( res => {
+
+    console.log('demm bones', req.body)
+
+
+})
+
+
+
+
+}), 
+
+app.post('/api/linkcustomer', (req, res) => {
+    console.log(req.session)
+    
+})
+
+
+
 
 
 
