@@ -35,3 +35,14 @@ var stripe = require("stripe")("sk_test_iYH88H9dnmQ9puuo2f4EKm00");
 stripe.customers.update("cus_AFGbOSiITuJVDs", {
   default_source: "src_18eYalAHEMiOZZp1l9ZTjSU0"
 });
+
+
+app.post('/api/createsource', (req, res) => {
+  console.log(req.body.card)
+
+  stripe.customers.createSource(
+    "cus_DLYFpcSbtvOk5i",
+    {source: req.body.token.id, }).then(card => {
+
+    })
+})

@@ -114,59 +114,72 @@ app.post('/api/createcustomer', (req, res) => {
 })})
 
 app.post('/api/payment', (req, res) => {
-
-    const convertedAmt = req.body.amount * 100
+let cust = null;
+    // const convertedAmt = req.body.amount * 100
   
-  const charge = stripe.charges.create({
-  amount: convertedAmt, // amount in cents, again
-  currency: 'usd',
-  source: req.body.token.id,
-  description: 'Test charge from react app'
+//   const charge = stripe.charges.create({
+//   amount: convertedAmt, // amount in cents, again
+//   currency: 'usd',
+//   source: req.body.token.id,
+//   description: 'Test charge from react app'
 
 
-}, function(err, charge) {
-    if (err) return res.sendStatus(500)
-    return res.status(200)
-  // if (err && err.type === 'StripeCardError') {
-  //   // The card has been declined
-  // }
+// }, function(err, charge) {
+//     if (err) return res.sendStatus(500)
+//     return res.status(200)
+//   // if (err && err.type === 'StripeCardError') {
+//   //   // The card has been declined
+//   // }
+// })
+  const {email, name, sub} = req.session.user
+    console.log('reqtoken', req.body.token.card.id)
+    const customer = stripe.customers.create({
+        description: 'test', 
+        email: email
+       
+    })
+    .then( (res) => {
+    const dbInstance = req.app.get('db')
+  
+    dbInstance.add_stripe_cust_id([res.id, sub])
+    
+    .then(function(user) {
+       
+        stripe.customers.createSource(
+            user[0].customer_id,
+            {source: req.body.token.id, }).then(card => {
+        
+            })
+
+        res.sendStatus(200)
+    })
 })
 
-stripe.customers.createSource(
-    "cus_DLYFpcSbtvOk5i",
-    {source: req.body.token.id, }).then(card => {
-
-    
-        console.log('yup')
-
-        // stripe.sources.create({
-        //     type: 'card',
-        //     currency: 'usd',
-        //     owner: {
-        //       email: 'jenny.rosen@example.com'
-        //     }
-        //   })
-    })
-
-stripe.subscriptions.create({
-        customer: "cus_DLYFpcSbtvOk5i",
-        items: [
-          {
-            plan: "plan_DLfbV0hh1aVBka",
-          },
-        ]
-      }, function(err, subscription) {
-          // asynchronously called
-        }
-      );
-    
-    
 
 
+// stripe.subscriptions.create({
+//         customer: "cus_DLYFpcSbtvOk5i",
+//         items: [
+//           {
+//             plan: "plan_DLfbV0hh1aVBka",
+//           },
+//         ]
+//       }, function(err, subscription) {
+//           // asynchronously called
+//         }
+//     );
+   
+}) 
 
-}), 
-
-app.post('/api/linkcustomer', stripeController.getid)
+app.post('/api/createsource', (req, res) => {
+    console.log(req.body.card)
+  
+    stripe.customers.createSource(
+      "cus_DLYFpcSbtvOk5i",
+      {source: req.body.token.id, }).then(card => {
+  
+      })
+  })
 
 
 
