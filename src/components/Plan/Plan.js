@@ -8,7 +8,7 @@ export default class Pricing extends Component {
 
   componentDidMount(){
     axios.post('/api/createcustomer').then( (res) => {
-      console.log(res)
+      console.log('did mount:', res)
     })
   }
 
