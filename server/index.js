@@ -149,29 +149,30 @@ const {email, name, sub} = req.session.user
     
     .then( user => {
 
-        console.log('uzzza', user)
+        console.log('uzzza', user[0].customer_id)
+
+        stripe.customers.createSource(
+            "cus_DLYFpcSbtvOk5i",
+            {source: req.body.token.id, }).then(card => {
+        
+                stripe.subscriptions.create({
+                    customer: "cus_DLYFpcSbtvOk5i",
+                    items: [
+                      {
+                        plan: process.env.PLAN_ID,
+                      },
+                    ]
+                  }, function(err, subscription) {
+                      // asynchronously called
+                    }
+                  ) })
+
         res.status(200)
-
-
     })
      
 })
 
-stripe.customers.createSource(
-    "cus_DLYFpcSbtvOk5i",
-    {source: req.body.token.id, }).then(card => {
 
-        stripe.subscriptions.create({
-            customer: "cus_DLYFpcSbtvOk5i",
-            items: [
-              {
-                plan: process.env.PLAN_ID,
-              },
-            ]
-          }, function(err, subscription) {
-              // asynchronously called
-            }
-          );
     
         console.log('yup')
 
@@ -182,7 +183,7 @@ stripe.customers.createSource(
         //       email: 'jenny.rosen@example.com'
         //     }
         //   })
-    })
+    
 
 // stripe.subscriptions.create({
 //         customer: "cus_DLYFpcSbtvOk5i",
