@@ -107,35 +107,71 @@ app.post('/api/createcustomer', (req, res) => {
     dbInstance.add_stripe_cust_id([res.id, sub])
     
     .then( user => {
+
         console.log('uzzza', user)
         res.status(200)
+
+
     })
      
-})})
+})  })
 
 app.post('/api/payment', (req, res) => {
 
-    const convertedAmt = req.body.amount * 100
+// const convertedAmt = req.body.amount * 100
   
-  const charge = stripe.charges.create({
-  amount: convertedAmt, // amount in cents, again
-  currency: 'usd',
-  source: req.body.token.id,
-  description: 'Test charge from react app'
+//   const charge = stripe.charges.create({
+//   amount: convertedAmt, // amount in cents, again
+//   currency: 'usd',
+//   source: req.body.token.id,
+//   description: 'Test charge from react app'
 
 
-}, function(err, charge) {
-    if (err) return res.sendStatus(500)
-    return res.status(200)
-  // if (err && err.type === 'StripeCardError') {
-  //   // The card has been declined
-  // }
+// }, function(err, charge) {
+//     if (err) return res.sendStatus(500)
+//     return res.status(200)
+//   // if (err && err.type === 'StripeCardError') {
+//   //   // The card has been declined
+//   // }
+// })
+
+const {email, name, sub} = req.session.user
+    
+    const customer = stripe.customers.create({
+        description: name, 
+        email: email
+       
+    })
+    .then( (res) => {
+    const dbInstance = req.app.get('db')
+  
+    dbInstance.add_stripe_cust_id([res.id, sub])
+    
+    .then( user => {
+
+        console.log('uzzza', user)
+        res.status(200)
+
+
+    })
+     
 })
 
 stripe.customers.createSource(
     "cus_DLYFpcSbtvOk5i",
     {source: req.body.token.id, }).then(card => {
 
+        stripe.subscriptions.create({
+            customer: "cus_DLYFpcSbtvOk5i",
+            items: [
+              {
+                plan: process.env.PLAN_ID,
+              },
+            ]
+          }, function(err, subscription) {
+              // asynchronously called
+            }
+          );
     
         console.log('yup')
 
@@ -148,17 +184,17 @@ stripe.customers.createSource(
         //   })
     })
 
-stripe.subscriptions.create({
-        customer: "cus_DLYFpcSbtvOk5i",
-        items: [
-          {
-            plan: "plan_DLfbV0hh1aVBka",
-          },
-        ]
-      }, function(err, subscription) {
-          // asynchronously called
-        }
-      );
+// stripe.subscriptions.create({
+//         customer: "cus_DLYFpcSbtvOk5i",
+//         items: [
+//           {
+//             plan: "plan_DLfbV0hh1aVBka",
+//           },
+//         ]
+//       }, function(err, subscription) {
+//           // asynchronously called
+//         }
+//       );
     
     
 

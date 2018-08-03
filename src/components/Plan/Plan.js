@@ -15,7 +15,7 @@ export default class Pricing extends Component {
   onToken = (token) => {
     console.log('token', token)
     axios.post('/api/payment', {token, amount: 100} ).then( res => {
-    axios.post('/api/linkcustomer', {card: token.id})
+    // axios.post('/api/linkcustomer', {card: token.id})
     })
   }
 
