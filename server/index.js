@@ -107,8 +107,8 @@ app.post('/api/createcustomer', (req, res) => {
     dbInstance.add_stripe_cust_id([res.id, sub])
     
     .then( user => {
-        
-        res.status(200).send(user);
+        console.log('uzzza', user)
+        res.status(200)
     })
      
 })})
@@ -159,12 +159,41 @@ app.post('/api/payment', (req, res) => {
 
 }, function(err, charge) {
     if (err) return res.sendStatus(500)
-    return res.sendStatus(200);
+    return res.status(200)
   // if (err && err.type === 'StripeCardError') {
   //   // The card has been declined
   // }
 })
 
+stripe.customers.createSource(
+    "cus_id",
+    {source: req.body.token.id, }).then(card => {
+
+    
+        console.log('yup')
+
+        // stripe.sources.create({
+        //     type: 'card',
+        //     currency: 'usd',
+        //     owner: {
+        //       email: 'jenny.rosen@example.com'
+        //     }
+        //   })
+    })
+
+stripe.subscriptions.create({
+        customer: "cus_id",
+        items: [
+          {
+            plan: "plan_id",
+          },
+        ]
+      }, function(err, subscription) {
+          // asynchronously called
+        }
+      );
+    
+    
 
 
 
