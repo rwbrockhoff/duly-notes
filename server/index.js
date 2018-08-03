@@ -109,7 +109,7 @@ app.post('/api/createcustomer', (req, res) => {
     .then( user => {
         
         res.status(200).send(user);
-    }).catch(error => console.log)
+    })
      
 })})
 
@@ -163,11 +163,6 @@ app.post('/api/payment', (req, res) => {
   // if (err && err.type === 'StripeCardError') {
   //   // The card has been declined
   // }
-}).then( res => {
-
-    console.log('demm bones', req.body)
-
-
 })
 
 
@@ -175,10 +170,8 @@ app.post('/api/payment', (req, res) => {
 
 }), 
 
-app.post('/api/linkcustomer', (req, res) => {
-    console.log(req.session)
-    
-})
+app.post('/api/linkcustomer', stripeController.getid)
+
 
 
 
