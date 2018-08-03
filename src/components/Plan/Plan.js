@@ -7,9 +7,9 @@ import StripeCheckout from 'react-stripe-checkout'
 export default class Pricing extends Component {
 
   componentDidMount(){
-    axios.post('/api/createcustomer').then( (res) => {
-      console.log('did mount:', res)
-    })
+    // axios.post('/api/createcustomer').then( (res) => {
+    //   console.log('did mount:', res)
+    // })
   }
 
   onToken = (token) => {

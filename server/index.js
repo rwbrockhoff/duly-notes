@@ -114,42 +114,9 @@ app.post('/api/createcustomer', (req, res) => {
 })})
 
 app.post('/api/payment', (req, res) => {
-    
-    const amountArray = req.body.amount.toString().split('');
-  const pennies = [];
-  for (var i = 0; i < amountArray.length; i++) {
-    if(amountArray[i] === ".") {
-      if (typeof amountArray[i + 1] === "string") {
-        pennies.push(amountArray[i + 1]);
-      } else {
-        pennies.push("0");
-      }
-      if (typeof amountArray[i + 2] === "string") {
-        pennies.push(amountArray[i + 2]);
-      } else {
-        pennies.push("0");
-      }
-    	break;
-    } else {
-    	pennies.push(amountArray[i])
-    }
-  }
-  const convertedAmt = parseInt(pennies.join(''));
 
+    const convertedAmt = req.body.amount * 100
   
-    
-    //req.body.token.card
-//  const ownerInfo = {
-//      name: req.body.token.card.name 
-//  }
-// const {card} = req.body.token
- 
-// const updateCustomerSource = stripe.createSource({
-//     token: req.body.token.id,
-//     customer: 
-// })
-
-
   const charge = stripe.charges.create({
   amount: convertedAmt, // amount in cents, again
   currency: 'usd',
@@ -166,7 +133,7 @@ app.post('/api/payment', (req, res) => {
 })
 
 stripe.customers.createSource(
-    "cus_id",
+    "cus_DLYFpcSbtvOk5i",
     {source: req.body.token.id, }).then(card => {
 
     
@@ -182,10 +149,10 @@ stripe.customers.createSource(
     })
 
 stripe.subscriptions.create({
-        customer: "cus_id",
+        customer: "cus_DLYFpcSbtvOk5i",
         items: [
           {
-            plan: "plan_id",
+            plan: "plan_DLfbV0hh1aVBka",
           },
         ]
       }, function(err, subscription) {
