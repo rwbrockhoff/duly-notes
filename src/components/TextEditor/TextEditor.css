@@ -25,6 +25,11 @@ div.editor {
     outline:0;
 }
 
+.medium-editor-element a  {
+    color: #576593;
+}
+
+
 textarea {
     width: 92%;
     height: 95vh;

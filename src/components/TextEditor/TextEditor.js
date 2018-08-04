@@ -99,7 +99,8 @@ class TextEditor extends Component {
   }
 
   handleKeyDownContent(e){
-    if (e.keyCode === 13){
+    
+    if (e.keyCode === 32 || 13){
       const {title, content} = this.state
       axios.put('/api/note', {title: title, content: content, note_id: this.props.displayNote.note_id}).then( res => {
         this.props.updateUser({notes: res.data})
@@ -111,7 +112,7 @@ class TextEditor extends Component {
 
   handleChange = (text, medium) => {
     this.setState({content: text});
-    console.log(medium)
+    
   }
   
   render() {
