@@ -29,8 +29,9 @@ div.editor {
     color: #576593;
 }
 
+
 .medium-editor-placeholder:after {
-    content: none;
+    left: 100vw !important;
 }
 
 

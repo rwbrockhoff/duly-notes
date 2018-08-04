@@ -17,7 +17,7 @@ div.logo {
     font-family: Avenir;
     font-size: 2em;
     font-weight: 700;
-    color: #4D76FF
+    color: #3b65ed;
     
 }
 nav {
@@ -37,6 +37,16 @@ li {
 
 li.login {
     font-weight: 700;
+    border: 1px solid #4D76FF;
+    border-radius: 5px;
+    margin-right: 3vw;
+    margin-left: 2vw;
+}
+
+li.login:hover {
+    background-color: #4D76FF;
+    color: white;
+    border: white;
 }
 
 div.intro {
