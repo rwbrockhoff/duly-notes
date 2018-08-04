@@ -90,38 +90,10 @@ const headers = {
     api_key: process.env.STRIPE_KEY,
   };
 
-//create customer on register 
-
-app.post('/api/createcustomer', (req, res) => {
-    
-    const {email, name, sub} = req.session.user
-    
-    const customer = stripe.customers.create({
-        description: name, 
-        email: email
-       
-    })
-    .then( (res) => {
-    const dbInstance = req.app.get('db')
-  
-    dbInstance.add_stripe_cust_id([res.id, sub])
-    
-    .then( user => {
-
-        console.log('uzzza', user)
-        res.status(200)
-
-
-    })
-     
-})  })
-
 app.post('/api/payment', (req, res) => {
 
-
-
 const {email, name, sub} = req.session.user
-    
+    //Create Customer on Stripe
     const customer = stripe.customers.create({
         description: name, 
         email: email
@@ -129,17 +101,15 @@ const {email, name, sub} = req.session.user
     })
     .then( (res) => {
     const dbInstance = req.app.get('db')
-  console.log(res.id)
+        //add Stripe Customer ID to DB
     dbInstance.add_stripe_cust_id([res.id, sub])
     
     .then( user => {
-
-        
-
+        //create source 
         stripe.customers.createSource(
             user[0].customer_id,
             {source: req.body.token.id, }).then(card => {
-        
+        //create subscription
                 stripe.subscriptions.create({
                     customer: user[0].customer_id,
                     items: [
@@ -147,51 +117,15 @@ const {email, name, sub} = req.session.user
                         plan: process.env.PLAN_ID,
                       },
                     ]
-                  }, function(err, subscription) {
-                      // asynchronously called
-                    }
+                  }
                   );
             
-            })
+                 })
+            }) 
+        })
 
-    })
-     
+
 })
-
-
-
-// stripe.subscriptions.create({
-//         customer: "cus_DLYFpcSbtvOk5i",
-//         items: [
-//           {
-//             plan: "plan_DLfbV0hh1aVBka",
-//           },
-//         ]
-//       }, function(err, subscription) {
-//           // asynchronously called
-//         }
-//       );
-    
-    
-
-
-
-}), 
-
-app.post('/api/linkcustomer', stripeController.getid)
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //--------STRIPE-------------//
 
