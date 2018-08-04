@@ -35,3 +35,12 @@ var stripe = require("stripe")("sk_test_iYH88H9dnmQ9puuo2f4EKm00");
 stripe.customers.update("cus_AFGbOSiITuJVDs", {
   default_source: "src_18eYalAHEMiOZZp1l9ZTjSU0"
 });
+
+
+//-----coding steps-------//
+
+// Check DB for existing customer_id. 
+
+//   If ID exists > Pop Up: You Already Have a Subscription
+
+//   Else > Go through the steps like norm. 

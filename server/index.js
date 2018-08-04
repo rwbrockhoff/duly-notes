@@ -118,22 +118,7 @@ app.post('/api/createcustomer', (req, res) => {
 
 app.post('/api/payment', (req, res) => {
 
-// const convertedAmt = req.body.amount * 100
-  
-//   const charge = stripe.charges.create({
-//   amount: convertedAmt, // amount in cents, again
-//   currency: 'usd',
-//   source: req.body.token.id,
-//   description: 'Test charge from react app'
 
-
-// }, function(err, charge) {
-//     if (err) return res.sendStatus(500)
-//     return res.status(200)
-//   // if (err && err.type === 'StripeCardError') {
-//   //   // The card has been declined
-//   // }
-// })
 
 const {email, name, sub} = req.session.user
     
@@ -144,19 +129,19 @@ const {email, name, sub} = req.session.user
     })
     .then( (res) => {
     const dbInstance = req.app.get('db')
-  
+  console.log(res.id)
     dbInstance.add_stripe_cust_id([res.id, sub])
     
     .then( user => {
 
-        console.log('uzzza', user[0].customer_id)
+        
 
         stripe.customers.createSource(
-            "cus_DLYFpcSbtvOk5i",
+            user[0].customer_id,
             {source: req.body.token.id, }).then(card => {
         
                 stripe.subscriptions.create({
-                    customer: "cus_DLYFpcSbtvOk5i",
+                    customer: user[0].customer_id,
                     items: [
                       {
                         plan: process.env.PLAN_ID,
@@ -165,25 +150,15 @@ const {email, name, sub} = req.session.user
                   }, function(err, subscription) {
                       // asynchronously called
                     }
-                  ) })
+                  );
+            
+            })
 
-        res.status(200)
     })
      
 })
 
 
-    
-        console.log('yup')
-
-        // stripe.sources.create({
-        //     type: 'card',
-        //     currency: 'usd',
-        //     owner: {
-        //       email: 'jenny.rosen@example.com'
-        //     }
-        //   })
-    
 
 // stripe.subscriptions.create({
 //         customer: "cus_DLYFpcSbtvOk5i",
