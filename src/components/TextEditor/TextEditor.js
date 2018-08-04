@@ -117,6 +117,7 @@ class TextEditor extends Component {
   
   render() {
     var Editor = require('react-medium-editor').default;
+    
 
     let image = this.props.picture
     if (this.props.user){
@@ -152,7 +153,7 @@ class TextEditor extends Component {
             <Editor text={this.state.content}
             onChange={this.handleChange}
             onKeyDown={e => this.handleKeyDownContent(e)}
-            placeholder={false}
+            
             />
             {/* <textarea 
             onChange={e => this.handleChangeContent(e)}

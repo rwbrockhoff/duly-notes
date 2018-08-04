@@ -7,7 +7,7 @@ import {HashRouter as Router, Switch, Route} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import store from './ducks/store';
 import TextEditor from './components/TextEditor/TextEditor';
-
+import Contact from './components/Contact/Contact';
 import Plan from './components/Plan/Plan';
 import LandingFeatures from './components/LandingFeatures/LandingFeatures';
 
@@ -24,8 +24,14 @@ ReactDOM.render(
             )
             }/>
 
+           <Route path="/contact" render={() => (
+               <div>
+                  <App/>
+                    <Contact/>
+                </div>
+           )
+           }/>
 
-           
             <Route path="/texteditor" component={TextEditor}/>
             <Route path="/plan" component={Plan}/>
        </Switch>

@@ -31,7 +31,7 @@ class Landing extends Component {
             <div className='logo'>note</div>
             <nav>
                 <li>mindset</li>
-                <li>contact</li>
+                <Link to="/contact"><li>contact</li></Link>
                 {loginUI}
             </nav>
         </div>
