@@ -14,7 +14,7 @@ class SideNote extends Component {
       }
       >
         <p className='title'> {this.props.note.title}</p>
-        <p className='preview'>{this.props.note.content.split("").splice(0, 75)}...</p>
+        {/* <p className='preview'>{this.props.note.content.split("").splice(0, 75)}...</p> */}
       </div>
     )
   }

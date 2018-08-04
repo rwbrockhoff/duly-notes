@@ -4,6 +4,11 @@ import Sidebar from '../Sidebar/Sidebar';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
+
+import'medium-editor/dist/css/medium-editor.css';
+import'medium-editor/dist/css/themes/default.css';
+
+import Editor from 'react-medium-editor';
 import {updateUser, logoutUser, updateDisplay} from '../../ducks/reducer';
 import trash from '../../assets/trash.svg';
 let note;
@@ -95,16 +100,23 @@ class TextEditor extends Component {
 
   handleKeyDownContent(e){
     if (e.keyCode === 13){
-      const {title} = this.state
-      axios.put('/api/note', {title: title, content: e.target.value, note_id: this.props.displayNote.note_id}).then( res => {
+      const {title, content} = this.state
+      axios.put('/api/note', {title: title, content: content, note_id: this.props.displayNote.note_id}).then( res => {
         this.props.updateUser({notes: res.data})
-        this.setState({content: res.data[0].content})
+        this.setState({title: res.data[0].title})
       })
       
     }
   }
+
+  handleChange = (text, medium) => {
+    this.setState({content: text});
+    console.log(medium)
+  }
   
   render() {
+    var Editor = require('react-medium-editor').default;
+
     let image = this.props.picture
     if (this.props.user){
       image = this.props.picture
@@ -135,11 +147,15 @@ class TextEditor extends Component {
        
             <Link to ='/'><img className='profilepic' alt="profilepic" src={image}
             onClick={() => this.logout()}/></Link>
-
-            <textarea 
+            
+            <Editor text={this.state.content}
+            onChange={this.handleChange}
+            onKeyDown={e => this.handleKeyDownContent(e)}
+            />
+            {/* <textarea 
             onChange={e => this.handleChangeContent(e)}
             onKeyDown={e => this.handleKeyDownContent(e)}
-            value={this.state.content} />
+            value={this.state.content} /> */}
          </div>
       </div>
     )

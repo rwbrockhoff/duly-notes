@@ -10,6 +10,20 @@ div.editor {
     align-items: center;
     flex-direction: column;
 }
+:focus {outline:0;}
+
+.medium-editor-element {
+    width:91%;
+    margin-top: 5vh;
+    height: 100vh;
+    overflow-y: scroll;
+  
+    
+}
+
+.medium-editor-element:focus  {
+    outline:0;
+}
 
 textarea {
     width: 92%;
