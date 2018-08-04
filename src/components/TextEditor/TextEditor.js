@@ -152,6 +152,7 @@ class TextEditor extends Component {
             <Editor text={this.state.content}
             onChange={this.handleChange}
             onKeyDown={e => this.handleKeyDownContent(e)}
+            placeholder={false}
             />
             {/* <textarea 
             onChange={e => this.handleChangeContent(e)}

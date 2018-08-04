@@ -29,6 +29,10 @@ div.editor {
     color: #576593;
 }
 
+.medium-editor-placeholder:after {
+    content: none;
+}
+
 
 textarea {
     width: 92%;
