@@ -23,21 +23,21 @@ class Contact extends Component {
 
   sendEmail =() => {
     const {name, email, message} = this.state
-    axios.post('/api/sendemail', {name: name, email: email, message: message}).then( () => {
-      alert('Message Sent!')
+    axios.post('/api/sendemail', {name: name, email: email, message: message}).then( (res) => {
+     window.alert('We have lift off 🚀. Message sent.')
+     this.setState({name: '', email: '', message: '' })
     })
   }
 
   render() {
 
-    console.log(this.state)
     return (
       <div className="contact-container">
 
       <div className="textinfo">
       <h1>Questions? Comments? ...Opinion on the 5th season of Friends?</h1>
       <div className='response'>
-      <h2>Fill out this form. We'll read it over ☕ in the next 1-2 business days.</h2>
+      <h2>Fill out this form. We'll read it over <span role="img" > ☕ </span> in the next 1-2 business days.</h2>
       
       </div>
 
@@ -53,7 +53,7 @@ class Contact extends Component {
       
         <textarea placeholder={"Message"} onChange={e => this.setState({message: e.target.value})}/>
 
-        <button onClick={this.sendEmail}>Submit</button>
+        <button onClick={this.sendEmail}>submit</button>
 
      </div>
 

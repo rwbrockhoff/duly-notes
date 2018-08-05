@@ -145,6 +145,7 @@ app.post('/api/sendemail', (req, res) => {
       };
 
       sgMail.send(msg);
+      res.sendStatus(200)
 
 })
 

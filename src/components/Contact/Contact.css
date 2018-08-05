@@ -5,6 +5,12 @@ h2 {
     font-weight: 100;
 }
 
+span {
+    margin: 0 1%;
+    font-size: 1.3em;
+
+}
+
 div.contact-container {
     width: 100%;
     height: 90vh;
@@ -63,7 +69,8 @@ div.form textarea {
 
 div.form button {
     width: 9vw;
-    height: 3vh;
+    height: 5%;
+    font-size: .9em;
     border-radius: 5px;
     font-weight: 700;
     color: #4D76FF;
