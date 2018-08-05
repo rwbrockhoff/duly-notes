@@ -13,6 +13,8 @@ import Editor from 'react-medium-editor';
 import {updateUser, logoutUser, updateDisplay} from '../../ducks/reducer';
 import trash from '../../assets/trash.svg';
 let note;
+var change = false;
+
 
 class TextEditor extends Component {
   constructor(){
@@ -22,6 +24,17 @@ class TextEditor extends Component {
       content: '',
       open: false
     }
+    document.body.onkeydown = (e => {
+      if (e.keyCode === 17 && this.state.open === false){
+        
+        this.setState({content: e.target.innerHTML, open: !this.state.open})
+      }
+      else if (e.keyCode === 17 && this.state.open === true){
+        this.setState({open:!this.state.open})
+      }
+     
+      
+    }) 
   }
  
   componentDidMount(){
@@ -100,34 +113,36 @@ class TextEditor extends Component {
     this.setState({content: e.target.value})
   }
 
-  handleKeyDownContent(e){
-    
-    if (e.keyCode === 32 || 13){
-      const {title, content} = this.state
-      axios.put('/api/note', {title: title, content: content, note_id: this.props.displayNote.note_id}).then( res => {
-        this.props.updateUser({notes: res.data})
-        this.setState({title: res.data[0].title})
-      })
-      
-    }
+  handleKeyDownContent(){
+   
+    // if (e.keyCode === 17){
+    //   change = !change
+    //   console.log('innerchange', change)
+    // }
   }
 
+  
   handleChange = (text, medium) => {
-    this.setState({content: text});
+    
+    // this.setState({content: text});
+    const {title, content} = this.state
+      axios.put('/api/note', {title: title, content: content, note_id: this.props.displayNote.note_id}).then( res => {
+        console.log(res.data[0])
+        this.props.updateUser({notes: res.data})
+        this.props.updateDisplay({displayNote: res.data[0]})
+        this.setState({title: res.data[0].title})
+       })
+
+        
     
   }
   
   render() {
+ 
+    console.log(this.state.content)
 
-    document.body.onkeydown = (e => {
-      if (e.keyCode === 17){
-            console.log('hit it')
-            this.setState({open: !this.state.open})
-          }
-    }) 
-
-    var Editor = require('react-medium-editor').default;
-    
+ 
+   
 
     let image = this.props.picture
     if (this.props.user){
@@ -141,10 +156,12 @@ class TextEditor extends Component {
       note = '';
     }
 
-
+  
     return (
-      <Motion style={{x: spring(this.state.open ? -20 : 0)}}>
-       {({x}) => 
+      
+      <Motion style={{x: spring(this.state.open ? -20 : 0),
+      y: spring(this.state.open ? 80 : 65)}}>
+       {({x, y}) => 
 
       <div className='editorFrame' style={{marginLeft: x + 'vw'}}>
 
@@ -152,8 +169,8 @@ class TextEditor extends Component {
 
          <div className='editor'>
          
-             <input type="text" 
-            onChange={e => this.handleChangeTitle(e)}
+             <input type="text" style={{width: y + 'vw', marginLeft: 0}}
+            onChange={this.handleChangeTitle}
             onKeyDown={(e) => this.handleKeyDownTitle(e)}
             value={this.state.title}/>
 
@@ -165,7 +182,6 @@ class TextEditor extends Component {
             
             <Editor text={this.state.content}
             onChange={this.handleChange}
-            onKeyDown={e => this.handleKeyDownContent(e)}
             
             />
             {/* <textarea 

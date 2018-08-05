@@ -2,13 +2,15 @@
 div.editorFrame {
     display: flex;
     height: 100vh;
+    
 
 }
 
 div.editor {
     width: 80vw;
     display: flex;
-    align-items: center;
+    padding-left: 5vw;
+    padding-top: 1vh;
     flex-direction: column;
     z-index: 1;
 }
@@ -53,7 +55,7 @@ textarea {
 input {
     width: 65vw;
     height: 8vh;
-    margin-left: -8vw;
+    
     border: none;
     outline: none;
     border-bottom: 1px solid #E2E2E2;
