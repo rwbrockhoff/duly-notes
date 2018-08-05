@@ -57,8 +57,8 @@ class TextEditor extends Component {
       //   content: this.props.notes[0].content
       //          }
       //         )
-      //       }
-      //   })
+            }
+        })
    } 
 
    else {
