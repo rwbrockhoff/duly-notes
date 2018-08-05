@@ -4,11 +4,18 @@ import {connect} from 'react-redux';
 import {displayNote, updateUser} from '../../ducks/reducer';
 import SideNote from '../SideNote/SideNote';
 import axios from 'axios';
+
 import add from '../../assets/add.svg';
 let listOutNotes = null;
 
 
 class Sidebar extends Component {
+  constructor(){
+    super()
+    this.state = {
+      open: true
+    }
+  }
 
   createNote(){
     axios.post('/api/note', {title: 'Title', content: 'Shall we start?'}).then(res => { 
@@ -17,8 +24,23 @@ class Sidebar extends Component {
     })
   }
 
+ 
+
+  // eventHandler(e){
+  //   if (e.keyCode === 27){
+  //     console.log('hit it')
+  //     this.setState({open: !this.state.open})
+  //   }
+  // }
+
 
   render() {
+
+   
+      
+    
+
+
     if (!this.props.notes){
       listOutNotes = null;
       
@@ -34,7 +56,9 @@ class Sidebar extends Component {
   }
     
     return (
-      <div className='sidebar'>
+      
+       
+      <div className='sidebar'  >
             <div className="iconbar">
                 <img src={add} alt='new' onClick={() => this.createNote()}/>
             </div>
@@ -42,8 +66,9 @@ class Sidebar extends Component {
             <div className="noteContainer">
              {listOutNotes}
             </div>
-            
       </div>
+       
+      
     )
   }
 

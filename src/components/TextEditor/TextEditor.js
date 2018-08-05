@@ -4,6 +4,7 @@ import Sidebar from '../Sidebar/Sidebar';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
+import {Motion, spring} from 'react-motion';
 
 import'medium-editor/dist/css/medium-editor.css';
 import'medium-editor/dist/css/themes/default.css';
@@ -18,7 +19,8 @@ class TextEditor extends Component {
     super()
     this.state = {
       title: '',
-      content: ''
+      content: '',
+      open: false
     }
   }
  
@@ -116,6 +118,14 @@ class TextEditor extends Component {
   }
   
   render() {
+
+    document.body.onkeydown = (e => {
+      if (e.keyCode === 17){
+            console.log('hit it')
+            this.setState({open: !this.state.open})
+          }
+    }) 
+
     var Editor = require('react-medium-editor').default;
     
 
@@ -133,7 +143,10 @@ class TextEditor extends Component {
 
 
     return (
-      <div className='editorFrame'>
+      <Motion style={{x: spring(this.state.open ? -20 : 0)}}>
+       {({x}) => 
+
+      <div className='editorFrame' style={{marginLeft: x + 'vw'}}>
 
         <Sidebar/>
 
@@ -160,7 +173,8 @@ class TextEditor extends Component {
             onKeyDown={e => this.handleKeyDownContent(e)}
             value={this.state.content} /> */}
          </div>
-      </div>
+      </div>}
+      </Motion>
     )
   }
 }

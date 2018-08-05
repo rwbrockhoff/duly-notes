@@ -10,6 +10,7 @@ div.editor {
     display: flex;
     align-items: center;
     flex-direction: column;
+    z-index: 1;
 }
 :focus {outline:0;}
 
@@ -51,8 +52,7 @@ textarea {
 
 input {
     width: 65vw;
-    height: 5vh;
-    margin-top: 2vh;
+    height: 8vh;
     margin-left: -8vw;
     border: none;
     outline: none;

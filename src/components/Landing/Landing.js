@@ -3,7 +3,7 @@ import './Landing.css';
 import {Link, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 import LandingFeatures from '../LandingFeatures/LandingFeatures';
-
+import {Motion, spring} from 'react-motion';
 
 class Landing extends Component {
   
