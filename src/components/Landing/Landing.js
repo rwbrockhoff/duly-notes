@@ -23,15 +23,15 @@ class Landing extends Component {
     : 
     <li className='login' onClick={this.login}>login</li>
 
-
+   
     return (
       <div className='landing'>
         
         <div className='headerbar'>
-            <div className='logo'>note</div>
+            <div className='logo'><Link to="/"> note</Link></div>
             <nav>
-                <li>mindset</li>
-                <Link to="/contact"><li>contact</li></Link>
+                <Link to="/contact"><li className="landinglinks">mindset</li></Link>
+                <Link to="/contact"><li className="landinglinks">contact</li></Link>
                 {loginUI}
             </nav>
         </div>

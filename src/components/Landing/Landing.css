@@ -35,6 +35,16 @@ li {
     padding: 0px 2.5vw;
 }
 
+a {
+    text-decoration: none;
+}
+li.landinglinks:hover {
+    border-bottom: 1px solid #4D76FF
+}
+a:visited {
+    color: #4D76FF;
+}
+
 li.login {
     font-weight: 700;
     border: 1px solid #4D76FF;

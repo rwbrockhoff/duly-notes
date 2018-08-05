@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './LandingFeatures.css';
+import typeDown from '../../assets/typeDown.svg';
 
 export default class LandingFeatures extends Component {
   register(){
@@ -20,6 +21,39 @@ export default class LandingFeatures extends Component {
         <h1> get a better grasp</h1>
         <h5> on how you take notes</h5>
         <button onClick={this.register}>sign up </button>
+        </div>
+
+        <div className='features'>
+            <h1> Features </h1>
+
+            <div className='grid'>
+
+            <div className='gridItem'>
+            <img src={typeDown}/>
+            <h2>typeDown</h2>
+            <p>Things about typeDown</p>
+            </div>
+
+             <div className='gridItem'>
+            <img src={typeDown}/>
+            <h2>typeDown</h2>
+            <p>Things about typeDown</p>
+            </div>
+
+             <div className='gridItem'>
+            <img src={typeDown}/>
+            <h2>typeDown</h2>
+            <p>Things about typeDown</p>
+            </div>
+
+             <div className='gridItem'>
+            <img src={typeDown}/>
+            <h2>typeDown</h2>
+            <p>Things about typeDown</p>
+            </div>
+
+
+            </div>
         </div>
 
       </div>

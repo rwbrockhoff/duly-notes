@@ -1,4 +1,44 @@
+div.gridItem img {
+    width: 5vw !important;
+}
+div.gridItem h2 {
+    font-weight: 700 !important;
+    margin-top: 1vh;
+}
+
 div button:hover {
     background-color: white;
     color: #4D76FF
+}
+
+div.features {
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #e2e2e2;
+    color: black;
+    
+}
+
+div.features h1 {
+    align-self: center;
+    padding-bottom: 5vh;
+}
+
+div.features div.grid {
+    display: flex;
+    justify-content: space-around;
+}
+div.features div.grid div.gridItem {
+    width: 15vw;
+    height: 20vh;
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2%;
+    
 }
