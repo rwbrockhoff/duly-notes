@@ -1,4 +1,12 @@
-
+a {
+    text-decoration: none;
+}
+a:hover {
+    border-bottom: 1px solid #4D76FF
+}
+a:visited {
+    color: #4D76FF;
+}
 
 div.editorFrame {
     display: flex;

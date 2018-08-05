@@ -1,3 +1,10 @@
+::placeholder {
+    color: white;
+}
+h2 {
+    font-weight: 100;
+}
+
 div.contact-container {
     width: 100%;
     height: 90vh;
@@ -13,6 +20,8 @@ div.textinfo {
     flex-direction: column;
     padding-left: 3vw;
     padding-right: 3vw;
+    word-wrap: break-word;
+    margin-top: -2vh;
 }
 
 div.form {
@@ -26,6 +35,45 @@ div.response {
 
 div.response h1 {
     padding-left: 1vw;
-    padding-right: 1vw;
+    
     margin-top: 1.5vh;
+}
+
+div.form {
+    padding-top: 21vh;
+    padding-left: 10vw;
+
+}
+
+div.form input {
+    width: 25vw;
+    margin-left: 0;
+   
+    background-color: #4D76FF;
+    color: white;
+
+    
+}
+
+
+input:invalid:not(:focus) {
+    background-color: #ce5959;
+    border-bottom: none;
+}
+
+div.form textarea {
+    background-color: #4D76FF;
+    color: white;
+    width: 35vw;
+    height: 8vw;
+    margin-top: 3vh;
+    padding-left: 0;
+}
+
+div.form button {
+    width: 9vw;
+    height: 3vh;
+    border-radius: 5px;
+    font-weight: 700;
+    color: #4D76FF;
 }
