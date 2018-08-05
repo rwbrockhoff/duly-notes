@@ -25,13 +25,14 @@ class TextEditor extends Component {
       open: false
     }
     document.body.onkeydown = (e => {
-      if (e.keyCode === 17 && this.state.open === false){
-        
-        this.setState({content: e.target.innerHTML, open: !this.state.open})
+      console.log('tes',e.target.innerHTML)
+      this.setState({content: e.target.innerHTML})
+      
+      if (e.keyCode === 17){
+        console.log('in first key')
+        this.setState({open: !this.state.open})
       }
-      else if (e.keyCode === 17 && this.state.open === true){
-        this.setState({open:!this.state.open})
-      }
+     
      
       
     }) 
@@ -46,16 +47,18 @@ class TextEditor extends Component {
       this.props.updateUser(user)
 
       axios.get('/api/notes').then( notes => {
-       
+        console.log('IN DID MOUNT')
       if (notes.data[0]){
       this.props.updateUser({notes: notes.data, displayNote: notes.data[0]})
      
       // this.props.updateDisplay({displayName: notes.data[0]})
-      this.setState({
-        title: this.props.notes[0].title,
-        content: this.props.notes[0].content
-               })}
-        })
+      // this.setState({
+      //   title: this.props.notes[0].title,
+      //   content: this.props.notes[0].content
+      //          }
+      //         )
+      //       }
+      //   })
    } 
 
    else {
@@ -68,6 +71,8 @@ class TextEditor extends Component {
     })}
   
   componentWillReceiveProps(nextProps){
+    console.log('IN prop func')
+    console.log('props cont', nextProps.displayNote.content)
     this.setState({
       title: nextProps.displayNote.title,
       content: nextProps.displayNote.content
@@ -109,9 +114,9 @@ class TextEditor extends Component {
     }
   }
 
-  handleChangeContent(e){
-    this.setState({content: e.target.value})
-  }
+  // handleChangeContent(e){
+  //   this.setState({content: e.target.value})
+  // }
 
   handleKeyDownContent(){
    
@@ -123,13 +128,15 @@ class TextEditor extends Component {
 
   
   handleChange = (text, medium) => {
-    
+    console.log('handle change"')
     // this.setState({content: text});
+    console.log('changecontent', this.state.content)
     const {title, content} = this.state
       axios.put('/api/note', {title: title, content: content, note_id: this.props.displayNote.note_id}).then( res => {
-        console.log(res.data[0])
+        
         this.props.updateUser({notes: res.data})
         this.props.updateDisplay({displayNote: res.data[0]})
+        console.log('after props in change')
         this.setState({title: res.data[0].title})
        })
 
@@ -139,7 +146,7 @@ class TextEditor extends Component {
   
   render() {
  
-    console.log(this.state.content)
+    console.log('render', this.state.content)
 
  
    
