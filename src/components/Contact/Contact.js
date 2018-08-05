@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './Contact.css';
 import {connect} from 'react-redux';
+import axios from 'axios';
 
 class Contact extends Component {
   constructor(){
@@ -17,6 +18,13 @@ class Contact extends Component {
     this.setState({
       name: this.props.name,
       email: this.props.email
+    })
+  }
+
+  sendEmail =() => {
+    const {name, email, message} = this.state
+    axios.post('/api/sendemail', {name: name, email: email, message: message}).then( () => {
+      alert('Message Sent!')
     })
   }
 
@@ -45,7 +53,7 @@ class Contact extends Component {
       
         <textarea placeholder={"Message"} onChange={e => this.setState({message: e.target.value})}/>
 
-        <button>Submit</button>
+        <button onClick={this.sendEmail}>Submit</button>
 
      </div>
 

@@ -10,6 +10,9 @@ const controller = require('./controller');
 const stripeController = require('./stripeController');
 const stripe = require('stripe')(process.env.STRIPE_KEY)
 
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -131,16 +134,21 @@ const {email, name, sub} = req.session.user
 
 
 //---------SENDGRID--------//
-const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-const msg = {
-    to: 'brockhoffrw@gmail.com',
-    from: 'admin@sidenote.com',
-    subject: 'Sending WITHOUT OR with SendGrid is Fun',
-    text: 'and easy to do anywhere, even with Node.js',
-    html: '<strong>and easy to do anywhere, even with Node.js</strong>',
-  };
-//   sgMail.send(msg);
+
+app.post('/api/sendemail', (req, res) => {
+
+    const msg = {
+        to: 'brockhoffrw@gmail.com',
+        from: req.body.email,
+        subject: `Message from ${req.body.name}`,
+        text: req.body.message
+      };
+
+      sgMail.send(msg);
+
+})
+
+
 
 //--------------------------//
 
