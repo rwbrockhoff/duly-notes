@@ -33,12 +33,6 @@ div.response {
     display: flex;
 }
 
-div.response h1 {
-    padding-left: 1vw;
-    
-    margin-top: 1.5vh;
-}
-
 div.form {
     padding-top: 21vh;
     padding-left: 10vw;
@@ -48,11 +42,8 @@ div.form {
 div.form input {
     width: 25vw;
     margin-left: 0;
-   
     background-color: #4D76FF;
-    color: white;
-
-    
+    color: white;  
 }
 
 
@@ -77,3 +68,4 @@ div.form button {
     font-weight: 700;
     color: #4D76FF;
 }
+

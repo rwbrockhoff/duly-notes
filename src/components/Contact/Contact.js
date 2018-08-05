@@ -1,8 +1,28 @@
 import React, { Component } from 'react'
 import './Contact.css';
+import {connect} from 'react-redux';
 
-export default class Contact extends Component {
+class Contact extends Component {
+  constructor(){
+    super()
+    
+    this.state = {
+      name: '',
+      email: '',
+      message: ''
+    }
+  }
+
+  componentDidMount(){
+    this.setState({
+      name: this.props.name,
+      email: this.props.email
+    })
+  }
+
   render() {
+
+    console.log(this.state)
     return (
       <div className="contact-container">
 
@@ -18,11 +38,12 @@ export default class Contact extends Component {
 
      <div className="form">
     
-        <input placeholder={"Name"}/>
+        <input defaultValue={ this.props.name|| "Name"} onChange={e => this.setState({name: e.target.value})}/>
       
-        <input type={"email"} placeholder={"name@company.com"}/>
+        <input type={"email"} defaultValue={this.props.email || "name@company.com"}
+        onChange={e => this.setState({email: e.target.value})}/>
       
-        <textarea placeholder={"Message"}/>
+        <textarea placeholder={"Message"} onChange={e => this.setState({message: e.target.value})}/>
 
         <button>Submit</button>
 
@@ -33,3 +54,12 @@ export default class Contact extends Component {
     )
   }
 }
+function mapStateToProps(state){
+  return {
+    ...this.props, ...state
+  }
+}
+
+export default connect(mapStateToProps)(Contact)
+
+
