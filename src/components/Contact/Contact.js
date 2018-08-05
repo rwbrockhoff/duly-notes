@@ -30,7 +30,9 @@ class Contact extends Component {
   }
 
   render() {
-
+// document.body.onkeydown = function typedown(e) {
+  
+// }
     return (
       <div className="contact-container">
 
