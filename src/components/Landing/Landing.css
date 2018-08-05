@@ -39,7 +39,10 @@ a {
     text-decoration: none;
 }
 li.landinglinks:hover {
-    border-bottom: 1px solid #4D76FF
+    background-color: #f7f5f5;
+    height: 10vh;
+    display: flex;
+    align-items: center;
 }
 a:visited {
     color: #4D76FF;
