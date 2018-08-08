@@ -125,10 +125,16 @@ class TextEditor extends Component {
 
   handleKeyDownTitle(e){
     if (e.keyCode === 13){
-      const {content} = this.state
+      console.log('tarval', e.target.value)
       axios.put('/api/note', {title: e.target.value, content: this.props.displayNote.content, note_id: this.props.displayNote.note_id}).then( res => {
-        this.props.updateUser({notes: res.data})
-        this.setState({title: res.data[0].title})
+        
+
+        axios.get('/api/notes').then( notes => {
+           
+          if (notes.data[0]){
+          this.props.updateUser({notes: notes.data, displayNote: notes.data[0]})}})
+
+        
       })
       
     }
