@@ -25,9 +25,12 @@ class TextEditor extends Component {
       open: false
     }
 
+    
     document.body.onkeydown = (e => {
+  if (e.target.innerHTML){
     
       if (e.keyCode === 13){
+        console.log('i am a mediume ditor')
          this.setState({content: e.target.innerHTML})
          
          const {title, content} = this.state
@@ -46,7 +49,7 @@ class TextEditor extends Component {
 
 
         // this.setState({open: !this.state.open})
-      }
+      } }
     }) 
    
   }
@@ -66,11 +69,11 @@ class TextEditor extends Component {
       this.props.updateUser({notes: notes.data, displayNote: notes.data[0]})
      
       // this.props.updateDisplay({displayName: notes.data[0]})
-      // this.setState({
-      //   title: this.props.notes[0].title,
-      //   content: this.props.notes[0].content
-      //          }
-      //         )
+      this.setState({
+        title: this.props.notes[0].title,
+        content: this.props.notes[0].content
+               }
+              )
             }
         })
    } 
@@ -114,9 +117,11 @@ class TextEditor extends Component {
   }
 
   componentWillReceiveProps(nextProps){
+    if (nextProps){
     this.setState({
       title: nextProps.displayNote.title
     })
+  }
   }
 
   handleChangeTitle = (e) => {
@@ -124,12 +129,14 @@ class TextEditor extends Component {
   }
 
   handleKeyDownTitle(e){
+    console.log('i am not')
     if (e.keyCode === 13){
       this.setState({title: e.target.value})
+     
       const {title} = this.state
-      console.log('returntitle', title)
+    
       axios.put('/api/note', {title: title, content: this.props.displayNote.content, note_id: this.props.displayNote.note_id}).then( res => {
-        this.setState({title: res.data[0].title})
+       
         this.props.updateDisplay({displayNote: res.data[0]})
         axios.get('/api/notes').then( notes => {
            
