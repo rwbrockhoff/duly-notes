@@ -129,7 +129,7 @@ class TextEditor extends Component {
       const {title} = this.state
       console.log('returntitle', title)
       axios.put('/api/note', {title: title, content: this.props.displayNote.content, note_id: this.props.displayNote.note_id}).then( res => {
-        
+        this.setState({title: res.data[0].title})
         this.props.updateDisplay({displayNote: res.data[0]})
         axios.get('/api/notes').then( notes => {
            
