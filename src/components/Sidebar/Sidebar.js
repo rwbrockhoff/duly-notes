@@ -58,7 +58,8 @@ class Sidebar extends Component {
     return (
       
        
-      <div className='sidebar'  >
+      <div className='sidebar' >
+      
             <div className="iconbar">
                 <img src={add} alt='new' onClick={() => this.createNote()}/>
             </div>

@@ -27,10 +27,14 @@ class TextEditor extends Component {
 
     
     document.body.onkeydown = (e => {
+    if (e.keyCode === 17){
+        this.setState({open: !this.state.open})
+        console.log(this.state.open)
+      }
   if (e.target.innerHTML){
     
       if (e.keyCode === 13){
-        console.log('i am a mediume ditor')
+       
          this.setState({content: e.target.innerHTML})
          
          const {title, content} = this.state
@@ -43,13 +47,12 @@ class TextEditor extends Component {
             if (notes.data[0]){
             this.props.updateUser({notes: notes.data})}})
 
-
          })
 
-
-
-        // this.setState({open: !this.state.open})
+        
       } }
+
+    
     }) 
    
   }
@@ -129,7 +132,7 @@ class TextEditor extends Component {
   }
 
   handleKeyDownTitle(e){
-    console.log('i am not')
+    
     if (e.keyCode === 13){
       this.setState({title: e.target.value})
      
@@ -194,11 +197,13 @@ class TextEditor extends Component {
 
     return (
       
-      // <Motion style={{x: spring(this.state.open ? -20 : 0),
-      // y: spring(this.state.open ? 80 : 65)}}>
-      //  {({x, y}) => 
-      // style={{marginLeft: x + 'vw'}}
-      <div className='editorFrame' >
+      <Motion style={{x: spring(this.state.open ? -20 : 0),
+      y: spring(this.state.open ? 80 : 65)}}>
+
+       {({x, y}) => 
+      
+
+      <div className='editorFrame' style={{marginLeft: x + 'vw'}}>
 
         <Sidebar/>
 
@@ -222,7 +227,9 @@ class TextEditor extends Component {
             />
          
          </div>
-      </div>
+         
+      </div> }
+     </Motion>
     )
   }
 }

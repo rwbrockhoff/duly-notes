@@ -12,10 +12,9 @@ div.sidebar {
 
 
 div.iconbar {
-    width: 19vw;
     height: 7vh;
+    width: 19vh;
     position: absolute;
-    margin-top: 0;
     display: flex;
     justify-content: center;
     background-color: #576593;
