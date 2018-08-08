@@ -40,6 +40,8 @@ app.get('/api/notes', controller.getnotes)
 
 app.put('/api/note', controller.updatenote)
 
+app.put('/api/note/title', controller.updatenotetitle)
+
 app.delete('/api/note/:id', controller.deleteNote)
 
 app.post('/api/note', controller.createnote)

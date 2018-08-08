@@ -28,7 +28,7 @@ class TextEditor extends Component {
     
     document.body.onkeydown = (e => {
     if (e.keyCode === 17){
-        this.setState({open: !this.state.open})
+        this.setState({open: !this.state.open, content: e.target.innerHTML})
         console.log(this.state.open)
       }
   if (e.target.innerHTML){
@@ -137,8 +137,8 @@ class TextEditor extends Component {
       this.setState({title: e.target.value})
      
       const {title} = this.state
-    
-      axios.put('/api/note', {title: title, content: this.props.displayNote.content, note_id: this.props.displayNote.note_id}).then( res => {
+    console.log('rollin', this.props.displayNote.content)
+      axios.put('/api/note/title', {title: title, note_id: this.props.displayNote.note_id}).then( res => {
        
         this.props.updateDisplay({displayNote: res.data[0]})
         axios.get('/api/notes').then( notes => {

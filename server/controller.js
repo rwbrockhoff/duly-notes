@@ -44,6 +44,17 @@ module.exports = {
         })
     },
 
+    updatenotetitle: (req, res, next) => {
+        const dbInstance = req.app.get('db');
+        
+        const {title, note_id} = req.body;
+        const {sub} = req.session.user;
+        
+        dbInstance.update_notetitle([title, sub, note_id]).then( notes => {
+            res.status(200).send(notes);
+        })
+    },
+
     deleteNote: (req, res, next) => {
         const dbInstance = req.app.get('db');
 
