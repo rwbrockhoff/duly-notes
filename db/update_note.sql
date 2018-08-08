@@ -5,4 +5,4 @@ and note_id = $4;
 
 select * from notes
 where author_id = $3
-order by timestamp desc;
+and note_id = $4;

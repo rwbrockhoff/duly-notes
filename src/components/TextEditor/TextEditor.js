@@ -24,18 +24,33 @@ class TextEditor extends Component {
       content: '',
       open: false
     }
+
     document.body.onkeydown = (e => {
-      console.log('tes',e.target.innerHTML)
-      this.setState({content: e.target.innerHTML})
-      
-      if (e.keyCode === 17){
-        console.log('in first key')
-        this.setState({open: !this.state.open})
+    
+      if (e.keyCode === 13){
+         this.setState({content: e.target.innerHTML})
+         
+         const {title, content} = this.state
+
+         axios.put('/api/note', {title: title, content: content, note_id: this.props.displayNote.note_id})
+         .then(res => {
+           
+          axios.get('/api/notes').then( notes => {
+        
+            if (notes.data[0]){
+            this.props.updateUser({notes: notes.data})}})
+
+
+
+            // this.props.updateDisplay({displayNote: res.data[0]})
+         })
+
+
+
+        // this.setState({open: !this.state.open})
       }
-     
-     
-      
     }) 
+   
   }
  
   componentDidMount(){
@@ -47,7 +62,7 @@ class TextEditor extends Component {
       this.props.updateUser(user)
 
       axios.get('/api/notes').then( notes => {
-        console.log('IN DID MOUNT')
+        
       if (notes.data[0]){
       this.props.updateUser({notes: notes.data, displayNote: notes.data[0]})
      
@@ -71,7 +86,7 @@ class TextEditor extends Component {
     })}
   
   componentWillReceiveProps(nextProps){
-    console.log('IN prop func')
+
     console.log('props cont', nextProps.displayNote.content)
     this.setState({
       title: nextProps.displayNote.title,
@@ -113,43 +128,37 @@ class TextEditor extends Component {
       
     }
   }
-
-  // handleChangeContent(e){
-  //   this.setState({content: e.target.value})
-  // }
-
-  handleKeyDownContent(){
-   
-    // if (e.keyCode === 17){
-    //   change = !change
-    //   console.log('innerchange', change)
-    // }
-  }
-
   
   handleChange = (text, medium) => {
-    console.log('handle change"')
-    // this.setState({content: text});
-    console.log('changecontent', this.state.content)
-    const {title, content} = this.state
-      axios.put('/api/note', {title: title, content: content, note_id: this.props.displayNote.note_id}).then( res => {
+    this.setState({content: text})
+  }
+
+
+
+
+  // handleSave = (e) => {
+  //   console.log('going in', this.state.content)
+
+  //   if (e.keyCode === 13 || 17 || 190){
+  //     const {title, content} = this.state
+  //     axios.put('/api/note', {title: title, content: content, note_id: this.props.displayNote.note_id})
+  //   }
+  // }
+
+    
+      // axios.put('/api/note', {title: title, content: content, note_id: this.props.displayNote.note_id}).then( res => {
         
-        this.props.updateUser({notes: res.data})
-        this.props.updateDisplay({displayNote: res.data[0]})
-        console.log('after props in change')
-        this.setState({title: res.data[0].title})
-       })
+      //   this.props.updateUser({notes: res.data})
+      //   this.props.updateDisplay({displayNote: res.data[0]})
+      //   console.log('after props in change')
+      //   this.setState({title: res.data[0].title})
+      //  })
 
         
     
-  }
+ 
   
   render() {
- 
-    console.log('render', this.state.content)
-
- 
-   
 
     let image = this.props.picture
     if (this.props.user){
@@ -163,20 +172,19 @@ class TextEditor extends Component {
       note = '';
     }
 
-  
     return (
       
-      <Motion style={{x: spring(this.state.open ? -20 : 0),
-      y: spring(this.state.open ? 80 : 65)}}>
-       {({x, y}) => 
-
-      <div className='editorFrame' style={{marginLeft: x + 'vw'}}>
+      // <Motion style={{x: spring(this.state.open ? -20 : 0),
+      // y: spring(this.state.open ? 80 : 65)}}>
+      //  {({x, y}) => 
+      // style={{marginLeft: x + 'vw'}}
+      <div className='editorFrame' >
 
         <Sidebar/>
 
          <div className='editor'>
-         
-             <input type="text" style={{width: y + 'vw', marginLeft: 0}}
+         {/* style={{width: y + 'vw', marginLeft: 0}} */}
+             <input type="text" 
             onChange={this.handleChangeTitle}
             onKeyDown={(e) => this.handleKeyDownTitle(e)}
             value={this.state.title}/>
@@ -189,15 +197,11 @@ class TextEditor extends Component {
             
             <Editor text={this.state.content}
             onChange={this.handleChange}
-            
+           
             />
-            {/* <textarea 
-            onChange={e => this.handleChangeContent(e)}
-            onKeyDown={e => this.handleKeyDownContent(e)}
-            value={this.state.content} /> */}
+         
          </div>
-      </div>}
-      </Motion>
+      </div>
     )
   }
 }
