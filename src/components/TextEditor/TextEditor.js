@@ -31,18 +31,16 @@ class TextEditor extends Component {
          this.setState({content: e.target.innerHTML})
          
          const {title, content} = this.state
-
+        console.log('title', title)
          axios.put('/api/note', {title: title, content: content, note_id: this.props.displayNote.note_id})
          .then(res => {
            
           axios.get('/api/notes').then( notes => {
-        
+           
             if (notes.data[0]){
             this.props.updateUser({notes: notes.data})}})
 
 
-
-            // this.props.updateDisplay({displayNote: res.data[0]})
          })
 
 
@@ -64,6 +62,7 @@ class TextEditor extends Component {
       axios.get('/api/notes').then( notes => {
         
       if (notes.data[0]){
+       
       this.props.updateUser({notes: notes.data, displayNote: notes.data[0]})
      
       // this.props.updateDisplay({displayName: notes.data[0]})
@@ -85,14 +84,14 @@ class TextEditor extends Component {
       console.log('CDM/Axios/GET:', error);
     })}
   
-  componentWillReceiveProps(nextProps){
-
-    console.log('props cont', nextProps.displayNote.content)
-    this.setState({
-      title: nextProps.displayNote.title,
-      content: nextProps.displayNote.content
-    })
-  }
+  // componentWillReceiveProps(nextProps){
+    
+  //   console.log('props cont', nextProps.displayNote.content)
+  //   this.setState({
+  //     title: nextProps.displayNote.title,
+  //     content: nextProps.displayNote.content
+  //   })
+  // }
  
   logout(){
     axios.post('/api/logout').then( () => {
@@ -114,14 +113,20 @@ class TextEditor extends Component {
     })
   }
 
-  handleChangeTitle(e){
+  componentWillReceiveProps(nextProps){
+    this.setState({
+      title: nextProps.displayNote.title
+    })
+  }
+
+  handleChangeTitle = (e) => {
     this.setState({title: e.target.value})
   }
 
   handleKeyDownTitle(e){
     if (e.keyCode === 13){
       const {content} = this.state
-      axios.put('/api/note', {title: e.target.value, content: content, note_id: this.props.displayNote.note_id}).then( res => {
+      axios.put('/api/note', {title: e.target.value, content: this.props.displayNote.content, note_id: this.props.displayNote.note_id}).then( res => {
         this.props.updateUser({notes: res.data})
         this.setState({title: res.data[0].title})
       })
@@ -187,7 +192,8 @@ class TextEditor extends Component {
              <input type="text" 
             onChange={this.handleChangeTitle}
             onKeyDown={(e) => this.handleKeyDownTitle(e)}
-            value={this.state.title}/>
+            value={this.state.title}
+           />
 
             <img className='trash' src={trash} alt='trash'
             onClick={() => this.deleteNote()}/>
@@ -195,7 +201,7 @@ class TextEditor extends Component {
             <Link to ='/'><img className='profilepic' alt="profilepic" src={image}
             onClick={() => this.logout()}/></Link>
             
-            <Editor text={this.state.content}
+            <Editor text={this.props.displayNote.content}
             onChange={this.handleChange}
            
             />
