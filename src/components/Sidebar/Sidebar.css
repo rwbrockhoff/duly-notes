@@ -13,7 +13,7 @@ div.sidebar {
 
 div.iconbar {
     height: 7vh;
-    width: 19vh;
+    width: 19vw;
     position: absolute;
     display: flex;
     justify-content: center;
