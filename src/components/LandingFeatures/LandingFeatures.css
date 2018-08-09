@@ -44,12 +44,12 @@ div.features div.grid div.gridItem {
 }
 
 footer {
-    background-color: #8B8B8B;
+    background-color: #E2E2E2;
     height: 10vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: 700;
-    color: #e2e2e2;
+    
+    color: black;
     
 }

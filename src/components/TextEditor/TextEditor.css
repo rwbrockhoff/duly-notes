@@ -9,20 +9,19 @@ div.editorFrame {
 div.editor {
     width: 80vw;
     display: flex;
-    padding-left: 5vw;
-    padding-top: 1vh;
+    padding-left: 3vw;
+    padding-top: 1.5vh;
+    padding-bottom: 2vh;
     flex-direction: column;
     z-index: 1;
 }
 :focus {outline:0;}
 
 .medium-editor-element {
-    width:91%;
-    margin-top: 5vh;
     height: 100vh;
     overflow-y: scroll;
+    line-height: 2em;
   
-    
 }
 
 .medium-editor-element:focus  {
@@ -58,7 +57,7 @@ input {
     
     border: none;
     outline: none;
-    border-bottom: 1px solid #E2E2E2;
+    /* border-bottom: 1px solid #E2E2E2; */
 
     font-family: Avenir;
     font-size: 1.5em;
@@ -77,9 +76,8 @@ img.profilepic {
 
 img.trash {
     position: absolute;
-    top: 2vh;
+    top: 3vh;
     right: 13vw;
     width: 1.5vw;
 }
-
 

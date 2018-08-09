@@ -4,6 +4,7 @@ div.container {
     border-bottom: 1px solid #E2E2E2;
     padding: 1vh;
     padding-left: 1.5vw;
+    padding-right: 1.5vw;
     display: flex;
     flex-direction: column;
     justify-content: center;

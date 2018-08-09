@@ -96,6 +96,7 @@ const headers = {
   };
 
 app.post('/api/payment', (req, res) => {
+    
 
 const {email, name, sub} = req.session.user
     //Create Customer on Stripe
@@ -130,6 +131,31 @@ const {email, name, sub} = req.session.user
         })
 
 
+})
+
+app.get('/api/verify', (req, res) => {
+    const {sub} = req.session.user
+
+    const dbInstance = req.app.get('db')
+
+    //Grab Stripe ID using Google Sub
+
+    dbInstance.get_stripe(sub).then(customer => {
+        const {customer_id} = customer[0]
+        
+        stripe.customers.retrieve(customer_id).then(customer => {
+           
+            const {total_count} = customer.subscriptions
+
+            if (total_count === 1){
+                res.status(200).send(true)
+            }
+            else {
+                res.status(200).send(false)
+            }
+        })
+    })
+    
 })
 
 //--------STRIPE-------------//

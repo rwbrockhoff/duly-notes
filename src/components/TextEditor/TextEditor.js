@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './TextEditor.css';
 import Sidebar from '../Sidebar/Sidebar';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
 import {Motion, spring} from 'react-motion';
 
@@ -26,6 +26,7 @@ class TextEditor extends Component {
     }
 
     document.body.onkeydown = (e => {
+      console.log(e)
     if (e.keyCode === 17){
         this.setState({open: !this.state.open, content: e.target.innerHTML})
       }
@@ -49,12 +50,21 @@ class TextEditor extends Component {
       }}
     }) 
   }
+
+
  
   componentDidMount(){
     
     axios.get('/api/user-data').then(res => {
       if (res.data.user){
 
+        axios.get('/api/verify').then(res => {
+          if (!res.data){
+           this.props.history.push("/plan");
+          }
+        })
+
+        
       const {user} = res.data;
       this.props.updateUser(user)
 
@@ -135,6 +145,7 @@ class TextEditor extends Component {
   }
   
   handleChange = (text, medium) => {
+    
     this.setState({content: text})
   }
 
@@ -156,9 +167,9 @@ class TextEditor extends Component {
     return (
       
       <Motion style={{x: spring(this.state.open ? -20 : 0),
-      y: spring(this.state.open ? 85 : 65)}}>
+      y: spring(this.state.open ? 95 : 75), z: spring(this.state.open ? 90 : 65)}}>
 
-       {({x, y}) => 
+       {({x, y, z}) => 
       
 
       <div className='editorFrame' style={{marginLeft: x + 'vw'}}>
@@ -168,7 +179,7 @@ class TextEditor extends Component {
          <div className='editor'>
         
              <input type="text" 
-            style={{width: y + 'vw'}}
+            style={{width: z + 'vw'}}
             onChange={this.handleChangeTitle}
             onKeyDown={(e) => this.handleKeyDownTitle(e)}
             value={this.state.title}

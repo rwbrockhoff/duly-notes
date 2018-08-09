@@ -33,7 +33,12 @@ ReactDOM.render(
            }/>
 
             <Route path="/texteditor" component={TextEditor}/>
-            <Route path="/plan" component={Plan}/>
+            <Route path="/plan" render={() => (
+                <div>
+                    <App/>
+                        <Plan/>
+                </div>
+            )}/>
        </Switch>
     </Router>
 </Provider>

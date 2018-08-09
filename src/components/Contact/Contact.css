@@ -32,7 +32,7 @@ div.textinfo {
 
 div.form {
     width: 50%;
-    background-color: #4D76FF;
+    background-color: #2658FF;
 }
 
 div.response {
@@ -48,8 +48,9 @@ div.form {
 div.form input {
     width: 25vw;
     margin-left: 0;
-    background-color: #4D76FF;
+    background-color: #2658FF;
     color: white;  
+    border-bottom: 1px solid #f7f5f5;
 }
 
 
@@ -59,7 +60,7 @@ input:invalid:not(:focus) {
 }
 
 div.form textarea {
-    background-color: #4D76FF;
+    background-color: #2658FF;
     color: white;
     width: 35vw;
     height: 8vw;
@@ -73,6 +74,10 @@ div.form button {
     font-size: .9em;
     border-radius: 5px;
     font-weight: 700;
-    color: #4D76FF;
+    color: #2658FF;
 }
-
+div.form button:hover {
+    border: 2px solid white;
+    background-color: #2658FF;
+    color: white;
+}
