@@ -156,7 +156,7 @@ class TextEditor extends Component {
     return (
       
       <Motion style={{x: spring(this.state.open ? -20 : 0),
-      y: spring(this.state.open ? 80 : 65)}}>
+      y: spring(this.state.open ? 85 : 65)}}>
 
        {({x, y}) => 
       
@@ -166,8 +166,9 @@ class TextEditor extends Component {
         <Sidebar/>
 
          <div className='editor'>
-         {/* style={{width: y + 'vw', marginLeft: 0}} */}
+        
              <input type="text" 
+            style={{width: y + 'vw'}}
             onChange={this.handleChangeTitle}
             onKeyDown={(e) => this.handleKeyDownTitle(e)}
             value={this.state.title}
@@ -181,7 +182,7 @@ class TextEditor extends Component {
             
             <Editor text={this.props.displayNote.content}
             onChange={this.handleChange}
-           
+            style={{width: y + 'vw'}}
             />
          
          </div>

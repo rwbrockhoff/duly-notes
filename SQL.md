@@ -47,3 +47,11 @@ and note_id = $2
 
 select * from notes
 order by timestamp desc;
+
+
+select note_id, 
+title, 
+age(localtimestamp,
+    timestamp) as duration
+from notes
+order by duration desc;

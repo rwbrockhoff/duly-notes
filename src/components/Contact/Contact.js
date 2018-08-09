@@ -48,9 +48,9 @@ class Contact extends Component {
 
      <div className="form">
     
-        <input defaultValue={ this.props.name|| "Name"} onChange={e => this.setState({name: e.target.value})}/>
+        <input value={ this.state.name|| "Name"} onChange={e => this.setState({name: e.target.value})}/>
       
-        <input type={"email"} defaultValue={this.props.email || "name@company.com"}
+        <input type={"email"} value={this.state.email || "name@company.com"}
         onChange={e => this.setState({email: e.target.value})}/>
       
         <textarea placeholder={"Message"} onChange={e => this.setState({message: e.target.value})}/>
