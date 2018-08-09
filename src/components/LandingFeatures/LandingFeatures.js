@@ -54,8 +54,13 @@ export default class LandingFeatures extends Component {
 
 
             </div>
+
+        
         </div>
 
+            <footer> 
+              <h2>note</h2> &nbsp;&nbsp;| &nbsp; www.note.com
+            </footer>
       </div>
     )
   }

@@ -17,7 +17,7 @@ div.features {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #e2e2e2;
+    background-color: white;
     color: black;
     
 }
@@ -40,5 +40,16 @@ div.features div.grid div.gridItem {
     justify-content: center;
     align-items: center;
     padding: 2%;
+    
+}
+
+footer {
+    background-color: #8B8B8B;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    color: #e2e2e2;
     
 }

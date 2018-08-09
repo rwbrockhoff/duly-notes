@@ -25,11 +25,9 @@ class TextEditor extends Component {
       open: false
     }
 
-    
     document.body.onkeydown = (e => {
     if (e.keyCode === 17){
         this.setState({open: !this.state.open, content: e.target.innerHTML})
-        console.log(this.state.open)
       }
   if (e.target.innerHTML){
     
@@ -38,7 +36,7 @@ class TextEditor extends Component {
          this.setState({content: e.target.innerHTML})
          
          const {title, content} = this.state
-        console.log('title', title)
+       
          axios.put('/api/note', {title: title, content: content, note_id: this.props.displayNote.note_id})
          .then(res => {
            
@@ -48,13 +46,8 @@ class TextEditor extends Component {
             this.props.updateUser({notes: notes.data})}})
 
          })
-
-        
-      } }
-
-    
+      }}
     }) 
-   
   }
  
   componentDidMount(){
@@ -90,15 +83,6 @@ class TextEditor extends Component {
       console.log('CDM/Axios/GET:', error);
     })}
   
-  // componentWillReceiveProps(nextProps){
-    
-  //   console.log('props cont', nextProps.displayNote.content)
-  //   this.setState({
-  //     title: nextProps.displayNote.title,
-  //     content: nextProps.displayNote.content
-  //   })
-  // }
- 
   logout(){
     axios.post('/api/logout').then( () => {
       this.props.logoutUser();
@@ -146,9 +130,7 @@ class TextEditor extends Component {
           if (notes.data[0]){
           this.props.updateUser({notes: notes.data})}})
           
-        
       })
-      
     }
   }
   
@@ -157,30 +139,6 @@ class TextEditor extends Component {
   }
 
 
-
-
-  // handleSave = (e) => {
-  //   console.log('going in', this.state.content)
-
-  //   if (e.keyCode === 13 || 17 || 190){
-  //     const {title, content} = this.state
-  //     axios.put('/api/note', {title: title, content: content, note_id: this.props.displayNote.note_id})
-  //   }
-  // }
-
-    
-      // axios.put('/api/note', {title: title, content: content, note_id: this.props.displayNote.note_id}).then( res => {
-        
-      //   this.props.updateUser({notes: res.data})
-      //   this.props.updateDisplay({displayNote: res.data[0]})
-      //   console.log('after props in change')
-      //   this.setState({title: res.data[0].title})
-      //  })
-
-        
-    
- 
-  
   render() {
 
     let image = this.props.picture
