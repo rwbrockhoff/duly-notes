@@ -2,14 +2,21 @@ import React, { Component } from 'react'
 import './Plan.css';
 import axios from 'axios';
 import StripeCheckout from 'react-stripe-checkout'
-
+import {Link, withRouter} from 'react-router-dom';
 
 export default class Pricing extends Component {
 
   componentDidMount(){
-    // axios.post('/api/createcustomer').then( (res) => {
-    //   console.log('did mount:', res)
-    // })
+    //do we have a new user, or already a created account
+    axios.get('/api/verify').then(res => {
+          
+      if (res.data === 'notactive' || 'active'){
+
+       this.props.history.push("/subscription");
+      }
+      
+      
+    })
   }
 
   onToken = (token) => {
