@@ -9,6 +9,7 @@ import store from './ducks/store';
 import TextEditor from './components/TextEditor/TextEditor';
 import Contact from './components/Contact/Contact';
 import Plan from './components/Plan/Plan';
+import Subscription from './components/Subscription/Subscription';
 import LandingFeatures from './components/LandingFeatures/LandingFeatures';
 
 ReactDOM.render(
@@ -37,6 +38,13 @@ ReactDOM.render(
                 <div>
                     <App/>
                         <Plan {...props}/>
+                </div>
+            )}/>
+
+            <Route path="/subscription" render={(props) => (
+                <div>
+                    <App/>
+                    <Subscription {...props}/>
                 </div>
             )}/>
        </Switch>

@@ -134,14 +134,17 @@ const {email, name, sub} = req.session.user
 })
 
 app.get('/api/verify', (req, res) => {
-    const {sub} = req.session.user
 
-    const dbInstance = req.app.get('db')
+    if (req.session.user){
+            const {sub} = req.session.user
+
+            const dbInstance = req.app.get('db')
 
     //Grab Stripe ID using Google Sub
 
     dbInstance.get_stripe(sub).then(customer => {
         const {customer_id} = customer[0]
+        console.log(customer, customer_id)
         if (customer_id){
 
         stripe.customers.retrieve(customer_id).then(customer => {
@@ -156,12 +159,14 @@ app.get('/api/verify', (req, res) => {
             }
         })
     }
-    else {
-        res.status(200).send('noaccount')
-    }
 
-    })
+        })
     
+    }
+    else {
+    res.status(200).send('noaccount')
+}
+
 })
 
 //--------STRIPE-------------//

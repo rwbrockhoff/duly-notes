@@ -10,7 +10,7 @@ export default class Pricing extends Component {
     //do we have a new user, or already a created account
     axios.get('/api/verify').then(res => {
           
-      if (res.data === 'notactive' || 'active'){
+      if (res.data === 'notactive' || res.data === 'active'){
 
        this.props.history.push("/subscription");
       }
