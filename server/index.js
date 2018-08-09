@@ -142,18 +142,24 @@ app.get('/api/verify', (req, res) => {
 
     dbInstance.get_stripe(sub).then(customer => {
         const {customer_id} = customer[0]
-        
+        if (customer_id){
+
         stripe.customers.retrieve(customer_id).then(customer => {
-           
+           console.log('customer', customer)
             const {total_count} = customer.subscriptions
 
             if (total_count === 1){
-                res.status(200).send(true)
+                res.status(200).send('active')
             }
             else {
-                res.status(200).send(false)
+                res.status(200).send('notactive')
             }
         })
+    }
+    else {
+        res.status(200).send('noaccount')
+    }
+
     })
     
 })

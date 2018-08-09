@@ -54,16 +54,23 @@ class TextEditor extends Component {
 
  
   componentDidMount(){
-    
+    //see if we have a user
     axios.get('/api/user-data').then(res => {
       if (res.data.user){
-
+    //see if they are active
         axios.get('/api/verify').then(res => {
-          if (!res.data){
-           this.props.history.push("/plan");
+          
+          if (res.data === 'notactive'){
+   
+           this.props.history.push("/subscription");
+          }
+          else if (res.data === 'noaccount'){
+
+            this.props.history.push("/plan")
           }
         })
-
+      
+     
         
       const {user} = res.data;
       this.props.updateUser(user)
@@ -86,7 +93,10 @@ class TextEditor extends Component {
 
    else {
     //user is not in our DB.
-    axios.post('/api/auth/register')
+    
+      this.props.history.push("/")
+    
+    // axios.post('/api/auth/register')
   }
 
   }).catch(error => {
