@@ -133,6 +133,45 @@ const {email, name, sub} = req.session.user
 
 })
 
+app.put('/api/updatecard', (req, res) => {
+   
+
+            const {sub} = req.session.user
+            const dbInstance = req.app.get('db')
+
+        //Grab Stripe ID using Google Sub
+        dbInstance.get_stripe(sub).then(customer => {
+            const {customer_id} = customer[0]
+        
+            
+        stripe.customers.createSource(customer_id,
+            {source: req.body.token.id }).then(res => {
+
+                stripe.customers.retrieve(customer_id).then(customer => {
+                    console.log('wustomer', customer.sources.data[1].id)
+
+                    const {id} = customer.sources.data[1]
+                    stripe.customers.update(customer_id, {
+                        default_source: id
+                      })
+                })
+            })
+        
+        
+       
+             })
+
+            
+
+            // stripe.sources.update("src_1CxVbNLKuJEOZqWvI48vJTCu", {
+            //     metadata: {order_id: "6735"}
+            //   })
+        })
+
+
+   
+
+
 app.get('/api/verify', (req, res) => {
 
     if (req.session.user){
@@ -144,7 +183,7 @@ app.get('/api/verify', (req, res) => {
 
     dbInstance.get_stripe(sub).then(customer => {
         const {customer_id} = customer[0]
-        console.log(customer, customer_id)
+        
         if (customer_id){
 
         stripe.customers.retrieve(customer_id).then(customer => {
@@ -156,18 +195,55 @@ app.get('/api/verify', (req, res) => {
             }
             else {
                 res.status(200).send('notactive')
-            }
+                          }
+                    })
+                 }
+             })
+         }
+            else {
+                    res.status(200).send('noaccount')
+                    }   
         })
-    }
 
+app.get('/api/customerid', (req, res) => {
+        //get the Customer ID from DB
+        const {sub} = req.session.user
+
+        const dbInstance = req.app.get('db');
+
+        dbInstance.get_stripe(sub).then(customer => {
+        const {customer_id} = customer[0]
+
+        //retrie a Customer
+        stripe.customers.retrieve(customer_id).then(stripecust => {
+            
+            res.status(200).send({stripecust: stripecust, name: req.session.user})
+             })  
         })
+app.post('/api/customersub', (req, res) => {
+    const {id, default_source} = req.body.customer
+
+    // retrieve a Customer's card
+
+        stripe.customers.retrieveCard(
+        id,
+        default_source,
+        ).then(card => {
+            const {brand, last4} = card
+            res.status(200).send({brand: brand, last4: last4})
+        })
+})
+
+        
     
-    }
-    else {
-    res.status(200).send('noaccount')
-}
+
+    
 
 })
+
+
+
+
 
 //--------STRIPE-------------//
 
