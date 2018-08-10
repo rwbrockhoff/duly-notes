@@ -160,6 +160,26 @@ app.put('/api/updatecard', (req, res) => {
              res.sendStatus(200)
         })
 
+app.put('/api/cancelsub', (req, res) => {
+    const {sub} = req.session.user
+    const dbInstance = req.app.get('db');
+
+    dbInstance.get_stripe(sub).then(customer => {
+        const {customer_id} = customer[0]
+
+        stripe.customers.retrieve(customer_id).then(customer => {
+            const {current_period_end, id} = customer.subscriptions.data[0]
+               
+             stripe.subscriptions.del(id, {at_period_end: true}).then(res => {
+                 res.sendStatus(200)
+             })
+
+        })
+       
+    })
+
+})
+
 
    
 

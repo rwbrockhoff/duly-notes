@@ -27,7 +27,7 @@ componentDidMount(){
         } 
 
     axios.get('/api/customerid').then( res => {
-        console.log(res.data.stripecust)
+        
         var start = res.data.stripecust.created
         var startDate = new Date(start*1000).toDateString();
         
@@ -56,6 +56,12 @@ onToken = (token) => {
         this.setState({brand: brand, last4: last4})
     })
   }
+
+handleCancel = () => {
+    axios.put('/api/cancelsub').then(res => {
+        console.log('handleCancelRes:', res.data)
+    })
+}
 
 
   render() {
@@ -96,7 +102,7 @@ onToken = (token) => {
 
                         <h2> Account Status: {displayStatus} </h2>
                         <h2> Next Payment: {this.state.nextPayment} </h2>
-                        <button> Cancel </button>
+                        <button onClick={this.handleCancel}> Cancel </button>
                      </div>
             </div>
       </div>
