@@ -170,8 +170,8 @@ app.put('/api/cancelsub', (req, res) => {
         stripe.customers.retrieve(customer_id).then(customer => {
             const {current_period_end, id} = customer.subscriptions.data[0]
                
-             stripe.subscriptions.del(id, {at_period_end: true}).then(res => {
-                 res.sendStatus(200)
+             stripe.subscriptions.del(id, {at_period_end: true}).then(cus => {
+                 res.status(200).send(cus)
              })
 
         })

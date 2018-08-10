@@ -5,6 +5,7 @@ import {withRouter} from 'react-router-dom';
 import StripeCheckout from 'react-stripe-checkout';
 
 var displayStatus;
+var cancelDisplay;
 
 export default class Subscription extends Component {
 constructor(){
@@ -13,9 +14,13 @@ constructor(){
         name: '',
         startDate: '',
         status: '', 
-        nextPayment: '',
+        paymentInfo: '',
         brand: '',
-        last4: ''
+        last4: '', 
+        canceled_at: '',
+        cancelToggle: false,
+        periodEnd: ''
+
     }
 }
 componentDidMount(){
@@ -27,15 +32,18 @@ componentDidMount(){
         } 
 
     axios.get('/api/customerid').then( res => {
-        
+        console.log(res.data.stripecust)
         var start = res.data.stripecust.created
         var startDate = new Date(start*1000).toDateString();
         
+        const {cancel_at_period_end, canceled_at} = res.data.stripecust.subscriptions.data[0]
+        console.log(cancel_at_period_end, canceled_at)
+
         const {status, current_period_end} = res.data.stripecust.subscriptions.data[0]
         const {stripecust} = res.data
-        var nextPayment = new Date(current_period_end*1000).toDateString();
+        var paymentInfo = 'Next Payment: ' + new Date(current_period_end*1000).toDateString();
 
-        this.setState({startDate: startDate, status: status, nextPayment: nextPayment, name: res.data.name.given_name})
+        this.setState({startDate: startDate, status: status, paymentInfo: paymentInfo, name: res.data.name.given_name})
   
             
             
@@ -59,7 +67,11 @@ onToken = (token) => {
 
 handleCancel = () => {
     axios.put('/api/cancelsub').then(res => {
-        console.log('handleCancelRes:', res.data)
+        const {canceled_at, cancel_at_period_end} = res.data;
+        var cancelDate = 'Access until: ' + new Date(canceled_at*1000).toDateString();
+
+        this.setState({paymentInfo: cancelDate, status: 'canceled', cancelToggle: true})
+        console.log('state', this.state)
     })
 }
 
@@ -68,10 +80,14 @@ handleCancel = () => {
     const {REACT_APP_STRIPE_PUB_KEY} = process.env;
 
     if (this.state.status === 'active'){
-        displayStatus = 'Active 🎉 '
+        displayStatus = 'Account Status: Active 🎉 '
+    }
+    else if (this.state.status === 'canceled'){
+        displayStatus = 'Account Status: Canceled 🚧'
+        cancelDisplay = {display: 'none'}
     }
     else {
-        displayStatus = 'Not Active 📡'
+        displayStatus = 'Account Status: Not Active 📡'
     }
 
     return (
@@ -100,9 +116,9 @@ handleCancel = () => {
                        
                     </div>
 
-                        <h2> Account Status: {displayStatus} </h2>
-                        <h2> Next Payment: {this.state.nextPayment} </h2>
-                        <button onClick={this.handleCancel}> Cancel </button>
+                        <h2> {displayStatus} </h2>
+                        <h2> {this.state.paymentInfo} </h2>
+                        <button style={cancelDisplay} onClick={this.handleCancel}> Cancel </button>
                      </div>
             </div>
       </div>
