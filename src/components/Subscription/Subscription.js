@@ -87,7 +87,6 @@ onToken = (token) => {
                             name="Note Co."
                             description="www.note.com"
                             panelLabel="Update Payment Method"
-                            email={false}
                             stripeKey={REACT_APP_STRIPE_PUB_KEY}
                             token={this.onToken}
                             />
