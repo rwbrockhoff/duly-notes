@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './Plan.css';
 import axios from 'axios';
 import StripeCheckout from 'react-stripe-checkout'
-import {Link, withRouter} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 
 export default class Pricing extends Component {
 

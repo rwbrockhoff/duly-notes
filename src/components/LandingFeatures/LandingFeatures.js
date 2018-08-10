@@ -29,25 +29,25 @@ export default class LandingFeatures extends Component {
             <div className='grid'>
 
            <div className='gridItem'>
-            <img src={typeDown}/>
+            <img src={typeDown} alt='FeatureIcon'/>
             <h2>typeDown</h2>
             <p>Built in hotkeys. Do more with fewer buttons.</p>
             </div>
             
              <div className='gridItem'>
-            <img src={typeDown}/>
+            <img src={typeDown} alt='FeatureIcon'/>
             <h2>typeDown</h2>
             <p>Things about typeDown</p>
             </div>
 
              <div className='gridItem'>
-            <img src={typeDown}/>
+            <img src={typeDown} alt='FeatureIcon'/>
             <h2>typeDown</h2>
             <p>Things about typeDown</p>
             </div>
 
              <div className='gridItem'>
-            <img src={typeDown}/>
+            <img src={typeDown} alt='FeatureIcon'/>
             <h2>typeDown</h2>
             <p>Things about typeDown</p>
             </div>
