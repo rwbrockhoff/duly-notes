@@ -33,14 +33,19 @@ div.features div.grid {
 }
 div.features div.grid div.gridItem {
     width: 15vw;
-    height: 20vh;
-    /* border: 1px solid black; */
+    height: 25vh;
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 2%;
     
+}
+
+div.features div.grid div.gridItem p {
+    margin-top: -1vh;
+    text-align: center;
 }
 
 footer {

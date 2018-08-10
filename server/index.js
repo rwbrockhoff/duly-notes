@@ -152,15 +152,9 @@ app.get('/api/verify', (req, res) => {
             const {total_count} = customer.subscriptions
 
             if (total_count === 1){
-                if (req.body){
-                    res.status(200).send(customer)
-                }
                 res.status(200).send('active')
             }
             else {
-                if (req.body){
-                    res.status(200).send(customer)
-                }
                 res.status(200).send('notactive')
             }
         })
