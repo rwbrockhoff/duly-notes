@@ -4,23 +4,35 @@ import axios from 'axios';
 import {withRouter} from 'react-router-dom';
 
 export default class Subscription extends Component {
-
+constructor(){
+    super()
+    this.state = {
+        date: ''
+    }
+}
 componentDidMount(){
      //do we have a new user, or already a created account
-     axios.get('/api/verify').then(res => {
-          console.log(res.data)
+     axios.get('/api/verify', {user: 'grabCustomer'}).then(res => {
+        console.log(res)
         if (res.data === 'noaccount'){
              this.props.history.push("/plan");
         } 
+
+        var a = new Date(res.data.created * 1000).toDateString();
+        
+        this.setState({date: a})
+     
       })
 }
+
+
   render() {
     return (
       <div className='subcontainer'>
 
             <div className='welcomebar'>
                 <h1> Welcome back, Ryan. </h1>
-                <h3> We've been together for 4 months. Can you believe it? That's true love, baby. </h3>
+                <h3> We've been together since <b>{this.state.date}</b>. Can you believe it? That's true love, baby. </h3>
             </div>
 
             <div className='userinfo'>
