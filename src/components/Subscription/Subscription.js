@@ -32,22 +32,35 @@ componentDidMount(){
         } 
 
     axios.get('/api/customerid').then( res => {
+
         console.log(res.data.stripecust)
+        const {stripecust} = res.data;
         var start = res.data.stripecust.created
         var startDate = new Date(start*1000).toDateString();
-        
-        const {cancel_at_period_end, canceled_at} = res.data.stripecust.subscriptions.data[0]
-        console.log(cancel_at_period_end, canceled_at)
+        //////-------update when user started--------///////
+
+        const {cancel_at_period_end, canceled_at} = stripecust.subscriptions.data[0]
+
+        if (cancel_at_period_end === false){
 
         const {status, current_period_end} = res.data.stripecust.subscriptions.data[0]
         const {stripecust} = res.data
         var paymentInfo = 'Next Payment: ' + new Date(current_period_end*1000).toDateString();
-
+        
+        
         this.setState({startDate: startDate, status: status, paymentInfo: paymentInfo, name: res.data.name.given_name})
-  
-            
-            
 
+        }
+
+        else {
+            
+        var cancelDate = 'Access until: ' + new Date(canceled_at*1000).toDateString();
+
+        this.setState({paymentInfo: cancelDate, status: 'canceled', cancelToggle: true})
+        }
+            
+            
+        ///////------update display w/ card on file------////////
         axios.post('/api/customersub', {customer: stripecust}).then(card => {
             const {brand, last4} = card.data;
             this.setState({brand: brand, last4: Number.parseInt(last4)})
