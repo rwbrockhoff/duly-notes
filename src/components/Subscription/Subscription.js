@@ -46,17 +46,19 @@ componentDidMount(){
         const {status, current_period_end} = res.data.stripecust.subscriptions.data[0]
         const {stripecust} = res.data
         var paymentInfo = 'Next Payment: ' + new Date(current_period_end*1000).toDateString();
+        var memoriesTogether = "We've been together since " + startDate + "." + " That's true love, baby."
+        var welcomeName = "Welcome back, " + res.data.name.given_name
         
-        
-        this.setState({startDate: startDate, status: status, paymentInfo: paymentInfo, name: res.data.name.given_name})
+        this.setState({startDate: memoriesTogether, status: status, paymentInfo: paymentInfo, name: welcomeName})
 
         }
 
         else {
             
         var cancelDate = 'Access until: ' + new Date(canceled_at*1000).toDateString();
-
-        this.setState({paymentInfo: cancelDate, status: 'canceled', cancelToggle: true})
+        var onlyUntil = "Ever has it been that love knows not its own depth until the hour of separation. -Kahlil Gibran"
+        var missYouName = "I'll miss you, " + res.data.name.given_name
+        this.setState({startDate: onlyUntil, paymentInfo: cancelDate, status: 'canceled', cancelToggle: true, name: missYouName})
         }
             
             
@@ -107,8 +109,9 @@ handleCancel = () => {
       <div className='subcontainer'>
 
             <div className='welcomebar'>
-                <h1> Welcome back, {this.state.name}. </h1>
-                <h3> We've been together since <b>{this.state.startDate}</b>. Can you believe it? That's true love, baby. </h3>
+                <h1> {this.state.name}. </h1>
+                <h3> {this.state.startDate} </h3>
+                {/* <h3> We've been together since <b>{this.state.startDate}</b>. Can you believe it? That's true love, baby. </h3> */}
             </div>
 
             <div className='userinfo'>
@@ -131,7 +134,7 @@ handleCancel = () => {
 
                         <h2> {displayStatus} </h2>
                         <h2> {this.state.paymentInfo} </h2>
-                        <button style={cancelDisplay} onClick={this.handleCancel}> Cancel </button>
+                        <button className='cancel' style={cancelDisplay} onClick={this.handleCancel}> cancel </button>
                      </div>
             </div>
       </div>

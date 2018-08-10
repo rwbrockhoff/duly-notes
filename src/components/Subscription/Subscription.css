@@ -47,6 +47,18 @@ div.infobox {
     
 }
 
+div.infobox button.cancel {
+    height: 3vh;
+    background-color: white;
+    color: #FF5964;
+    border: none;
+    border-radius: 1vh;
+    font-family: Avenir;
+    font-size: .90em;
+    
+
+}   
+
 div.card {
     background-color: #8B8B8B;
     width: 40vw;
