@@ -40,11 +40,16 @@ div.userinfo {
 div.infobox {
     width: 60vh;
     height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     
 }
 
 div.card {
     background-color: #8B8B8B;
+    width: 40vw;
     color: white;
     margin-top: -2vh;
     padding: .1%;
@@ -60,7 +65,4 @@ div.card button {
     margin-left: 3vw;
 }
 
-div.monster {
-    width: 25vw;
-    background-color: blue;
-}
+

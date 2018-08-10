@@ -52,7 +52,8 @@ componentDidMount(){
 onToken = (token) => {
     console.log('token', token)
     axios.put('/api/updatecard', {token} ).then( res => {
-        console.log(res)
+        const {brand, last4} = token.card
+        this.setState({brand: brand, last4: last4})
     })
   }
 
@@ -86,7 +87,7 @@ onToken = (token) => {
                             name="Note Co."
                             description="www.note.com"
                             panelLabel="Update Payment Method"
-                           
+                            email={false}
                             stripeKey={REACT_APP_STRIPE_PUB_KEY}
                             token={this.onToken}
                             />

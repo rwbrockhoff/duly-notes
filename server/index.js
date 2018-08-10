@@ -153,11 +153,11 @@ app.put('/api/updatecard', (req, res) => {
                     stripe.customers.update(customer_id, {
                         default_source: id
 
-
                             })
                       })
                 })
              })
+             res.sendStatus(200)
         })
 
 
