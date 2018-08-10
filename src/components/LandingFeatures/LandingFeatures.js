@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import './LandingFeatures.css';
 import typeDown from '../../assets/typeDown.svg';
+import'medium-editor/dist/css/medium-editor.css';
+import'medium-editor/dist/css/themes/default.css';
+
+
 
 export default class LandingFeatures extends Component {
   register(){
@@ -14,6 +18,8 @@ export default class LandingFeatures extends Component {
 }
 
     render() {
+      
+
     return (
       <div className ='LandingFeatures'>
 
@@ -57,6 +63,7 @@ export default class LandingFeatures extends Component {
 
         
         </div>
+           
 
             <footer> 
               <h2>note</h2> &nbsp;&nbsp;<h2>|</h2> &nbsp; www.note.com

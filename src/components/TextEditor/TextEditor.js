@@ -9,6 +9,8 @@ import {Motion, spring} from 'react-motion';
 import'medium-editor/dist/css/medium-editor.css';
 import'medium-editor/dist/css/themes/default.css';
 
+import {Editor, EditorState} from 'draft-js';
+
 import Editor from 'react-medium-editor';
 import {updateUser, logoutUser, updateDisplay} from '../../ducks/reducer';
 import trash from '../../assets/trash.svg';
@@ -141,7 +143,7 @@ class TextEditor extends Component {
       this.setState({title: e.target.value})
      
       const {title} = this.state
-    console.log('rollin', this.props.displayNote.content)
+   
       axios.put('/api/note/title', {title: title, note_id: this.props.displayNote.note_id}).then( res => {
        
         this.props.updateDisplay({displayNote: res.data[0]})
@@ -204,6 +206,7 @@ class TextEditor extends Component {
             <Editor text={this.props.displayNote.content}
             onChange={this.handleChange}
             style={{width: y + 'vw'}}
+            
             />
          
          </div>
