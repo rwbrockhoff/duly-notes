@@ -143,29 +143,21 @@ app.put('/api/updatecard', (req, res) => {
         dbInstance.get_stripe(sub).then(customer => {
             const {customer_id} = customer[0]
         
-            
+            //create new source
         stripe.customers.createSource(customer_id,
             {source: req.body.token.id }).then(res => {
-
+            //retreive customer object
                 stripe.customers.retrieve(customer_id).then(customer => {
-                    console.log('wustomer', customer.sources.data[1].id)
-
+            //find new source just created and make it default
                     const {id} = customer.sources.data[1]
                     stripe.customers.update(customer_id, {
                         default_source: id
+
+
+                            })
                       })
                 })
-            })
-        
-        
-       
              })
-
-            
-
-            // stripe.sources.update("src_1CxVbNLKuJEOZqWvI48vJTCu", {
-            //     metadata: {order_id: "6735"}
-            //   })
         })
 
 
