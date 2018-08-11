@@ -43,7 +43,7 @@ class TextEditor extends Component {
     };
 
     document.body.onkeydown = (e => {
-      console.log(e)
+      console.log('jam', e.target.innerHTML)
     if (e.keyCode === 17){
         this.setState({open: !this.state.open, content: e.target.innerHTML})
       }
@@ -51,7 +51,7 @@ class TextEditor extends Component {
     
       if (e.keyCode === 13){
        
-         this.setState({content: e.target.innerHTML})
+         
          
          const {title, content} = this.state
        
@@ -61,6 +61,7 @@ class TextEditor extends Component {
           axios.get('/api/notes').then( notes => {
            
             if (notes.data[0]){
+              console.log(notes.data)
             this.props.updateUser({notes: notes.data})}})
 
          })
@@ -101,7 +102,7 @@ class TextEditor extends Component {
       // this.props.updateDisplay({displayName: notes.data[0]})
       this.setState({
         title: this.props.notes[0].title,
-        content: this.props.notes[0].content
+        // content: this.props.notes[0].content
                }
               )
             }
@@ -161,8 +162,8 @@ class TextEditor extends Component {
     // }
   componentWillReceiveProps = (nextProps) => {
     
-    if (nextProps){
-      console.log(String(nextProps.displayNote.content))
+    if (nextProps.displayNote.note_id !== this.props.displayNote.note_id){
+      console.log('cashew', String(nextProps.displayNote.content))
     const blocksFromHTML = convertFromHTML(String(nextProps.displayNote.content))
    
     const contentState = ContentState.createFromBlockArray(blocksFromHTML)
@@ -196,10 +197,10 @@ class TextEditor extends Component {
     }
   }
   
-  handleChange = (text, medium) => {
+  // handleChange = (text, medium) => {
     
-    this.setState({content: text})
-  }
+  //   this.setState({content: text})
+  // }
 
 
   render() {
