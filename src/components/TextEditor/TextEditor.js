@@ -35,8 +35,8 @@ class TextEditor extends Component {
     this.onChange = (editorState) => {
       this.setState({ editorState });
       
-     
-      // var html = stateToHTML(this.state.editorState.getCurrentContent())
+     var html = stateToHTML(this.state.editorState.getCurrentContent())
+     this.setState({content: html})
       // var contentState = stateFromHTML(html)
       // editorState: EditorState.createWithContent(contentState)
     };
