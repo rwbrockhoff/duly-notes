@@ -5,6 +5,7 @@ import axios from 'axios';
 import {Link, withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
 import {Motion, spring} from 'react-motion';
+import {convertFromHTML, ContentState, EditorState} from 'draft-js';
 import'medium-editor/dist/css/medium-editor.css';
 // import'medium-editor/dist/css/themes/default.css';
 // import Editor from 'react-medium-editor';
@@ -141,11 +142,33 @@ class TextEditor extends Component {
       
     })
   }
+   // var contentState = stateFromHTML(html)
+      // editorState: EditorState.createWithContent(contentState)
 
-  componentWillReceiveProps(nextProps){
+      // let contentState = stateFromHTML('<p>Hello</p>');
+      // return {
+      //   editorState: EditorState.createWithContent(contentState)
+
+      // const blocksFromHTML = convertFromHTML(html);
+      // const content = ContentState.createFromBlockArray(
+      //   blocksFromHTML.contentBlocks,
+      //   blocksFromHTML.entityMap
+      // );
+
+    //   const blocksFromHTML = convertFromHTML(props.content);
+    //   const contentState = ContentState.createFromBlockArray(blocksFromHTML);
+    //   editorState = EditorState.createWithContent(contentState);
+    // }
+  componentWillReceiveProps = (nextProps) => {
+    
     if (nextProps){
+      console.log(String(nextProps.displayNote.content))
+    const blocksFromHTML = convertFromHTML(String(nextProps.displayNote.content))
+   
+    const contentState = ContentState.createFromBlockArray(blocksFromHTML)
     this.setState({
-      title: nextProps.displayNote.title
+      title: nextProps.displayNote.title,
+      editorState: EditorState.createWithContent(contentState)
     })
   }
   }

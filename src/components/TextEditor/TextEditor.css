@@ -38,7 +38,7 @@ div.editor {
 }
 
 
-textarea {
+/* textarea {
     width: 92%;
     height: 95vh;
     outline: none;
@@ -49,7 +49,7 @@ textarea {
     max-width: 100%;
     margin-bottom: 3vh;
     resize: none;
-}
+} */
 
 input {
     width: 65vw;
