@@ -50,8 +50,9 @@ class TextEditor extends Component {
   if (e.target.innerHTML){
     
       if (e.keyCode === 13){
-       
-         
+        
+        var html = stateToHTML(this.state.editorState.getCurrentContent())
+        this.setState({content: html})
          
          const {title, content} = this.state
        
