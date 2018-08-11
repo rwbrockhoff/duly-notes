@@ -5,11 +5,11 @@ import axios from 'axios';
 import {Link, withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
 import {Motion, spring} from 'react-motion';
-
+// import MediumEditorSpreadsheet from 'medium-editor-handsontable';
 import'medium-editor/dist/css/medium-editor.css';
 import'medium-editor/dist/css/themes/default.css';
 
-import {Editor, EditorState} from 'draft-js';
+
 
 import Editor from 'react-medium-editor';
 import {updateUser, logoutUser, updateDisplay} from '../../ducks/reducer';
