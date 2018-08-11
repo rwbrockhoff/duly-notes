@@ -5,13 +5,17 @@ import axios from 'axios';
 import {Link, withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
 import {Motion, spring} from 'react-motion';
-// import MediumEditorSpreadsheet from 'medium-editor-handsontable';
 import'medium-editor/dist/css/medium-editor.css';
-import'medium-editor/dist/css/themes/default.css';
+// import'medium-editor/dist/css/themes/default.css';
+// import Editor from 'react-medium-editor';
 
 
+import {Editor,createEditorState} from 'medium-draft'
+import 'medium-draft/lib/index.css'
+import {stateToHTML} from 'draft-js-export-html';
+import {stateFromHTML} from 'draft-js-import-html';
 
-import Editor from 'react-medium-editor';
+
 import {updateUser, logoutUser, updateDisplay} from '../../ducks/reducer';
 import trash from '../../assets/trash.svg';
 let note;
@@ -19,13 +23,23 @@ var change = false;
 
 
 class TextEditor extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
       title: '',
       content: '',
-      open: false
+      open: false,
+      editorState: createEditorState()
     }
+
+    this.onChange = (editorState) => {
+      this.setState({ editorState });
+      
+     
+      // var html = stateToHTML(this.state.editorState.getCurrentContent())
+      // var contentState = stateFromHTML(html)
+      // editorState: EditorState.createWithContent(contentState)
+    };
 
     document.body.onkeydown = (e => {
       console.log(e)
@@ -103,7 +117,10 @@ class TextEditor extends Component {
 
   }).catch(error => {
       console.log('CDM/Axios/GET:', error);
-    })}
+    })
+  
+    // this.refs.editor.focus();
+  }
   
   logout(){
     axios.post('/api/logout').then( () => {
@@ -163,7 +180,7 @@ class TextEditor extends Component {
 
 
   render() {
-
+    const { editorState } = this.state;
     let image = this.props.picture
     if (this.props.user){
       image = this.props.picture
@@ -203,11 +220,15 @@ class TextEditor extends Component {
             <Link to ='/'><img className='profilepic' alt="profilepic" src={image}
             onClick={() => this.logout()}/></Link>
             
-            <Editor text={this.props.displayNote.content}
+            {/* <Editor text={this.props.displayNote.content}
             onChange={this.handleChange}
-            style={{width: y + 'vw'}}
-            
-            />
+            style={{width: y + 'vw'}}/> */}
+
+            <Editor
+              ref="editor"
+              editorState={editorState}
+              onChange={this.onChange}
+               />
          
          </div>
          

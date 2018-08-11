@@ -19,6 +19,7 @@ export default class EditorNew extends Component {
      
       // var html = stateToHTML(this.state.editorState.getCurrentContent())
       // var contentState = stateFromHTML(html)
+      // editorState: EditorState.createWithContent(contentState)
     };
 
     // this.onKey = (editorState) => {
