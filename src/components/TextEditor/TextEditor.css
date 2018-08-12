@@ -32,6 +32,27 @@ div.editor {
     font-size: 1.3em;
 }
 
+.md-block-todo {
+   padding-left: 2vw;
+}
+
+.block-todo-completed {
+   /* color: blue; */
+}
+
+.md-editor-toolbar {
+    font-family: Avenir !important;
+    background-color: black !important;
+    
+}
+
+.md-RichEditor-controls {
+    font-family: Avenir !important;
+    font-weight: 700;
+}
+
+
+
 .md-RichEditor-root h1{
     line-height: 1.1em;
     font-size: 2.5em;
@@ -46,7 +67,16 @@ div.editor {
 
 blockquote {
     font-size: 1em !important;
+    background-color:#E2E2E2 !important;
+    border-left: 5% solid !important;
+    border-left-color: #2658FF !important;
+    color: black !important;
 }
+
+.md-sb-button {
+    font-weight: 100;
+}
+
 
 .medium-editor-placeholder:after {
     left: 100vw !important;

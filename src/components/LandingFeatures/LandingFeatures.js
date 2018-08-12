@@ -36,26 +36,26 @@ export default class LandingFeatures extends Component {
 
            <div className='gridItem'>
             <img src={typeDown} alt='FeatureIcon'/>
-            <h2>typeDown</h2>
+            <h2>Hotkeys</h2>
             <p>Built in hotkeys. Do more with fewer buttons.</p>
             </div>
             
              <div className='gridItem'>
             <img src={typeDown} alt='FeatureIcon'/>
-            <h2>typeDown</h2>
-            <p>Things about typeDown</p>
+            <h2>Markdown</h2>
+            <p>The markdown you're used to, updating as you type. </p>
             </div>
 
              <div className='gridItem'>
             <img src={typeDown} alt='FeatureIcon'/>
-            <h2>typeDown</h2>
-            <p>Things about typeDown</p>
+            <h2>Minimalist Design</h2>
+            <p>80% of the screen is what you're working on. </p>
             </div>
 
              <div className='gridItem'>
             <img src={typeDown} alt='FeatureIcon'/>
-            <h2>typeDown</h2>
-            <p>Things about typeDown</p>
+            <h2>Memory Gradient</h2>
+            <p>Keep track of what you need to review.</p>
             </div>
 
 
