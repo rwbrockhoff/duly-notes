@@ -33,27 +33,26 @@ export default class LandingFeatures extends Component {
             <h1> Features </h1>
 
             <div className='grid'>
-
            <div className='gridItem'>
-            <img src={typeDown} alt='FeatureIcon'/>
+           <i class="fas fa-burn"/>
             <h2>Hotkeys</h2>
             <p>Built in hotkeys. Do more with fewer buttons.</p>
             </div>
             
              <div className='gridItem'>
-            <img src={typeDown} alt='FeatureIcon'/>
+             <i class="fab fa-markdown"/>
             <h2>Markdown</h2>
             <p>The markdown you're used to, updating as you type. </p>
             </div>
 
              <div className='gridItem'>
-            <img src={typeDown} alt='FeatureIcon'/>
+             <i class="fas fa-drafting-compass"/>
             <h2>Minimalist Design</h2>
             <p>80% of the screen is what you're working on. </p>
             </div>
 
              <div className='gridItem'>
-            <img src={typeDown} alt='FeatureIcon'/>
+             <i class="fas fa-brain"/>
             <h2>Memory Gradient</h2>
             <p>Keep track of what you need to review.</p>
             </div>

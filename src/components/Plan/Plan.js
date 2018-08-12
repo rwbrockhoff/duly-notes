@@ -30,7 +30,7 @@ export default class Pricing extends Component {
     const {REACT_APP_STRIPE_PUB_KEY} = process.env;
     
     return (
-      <div className='container'>
+      <div className='plancontainer'>
 
        <div className='info'>
         <h1>Life is about to get a lot more zen.</h1>

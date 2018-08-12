@@ -1,6 +1,9 @@
-div.gridItem img {
-    width: 5vw !important;
+i {
+    display: flex;
+    font-size: 3em;
 }
+
+
 div.gridItem h2 {
     font-weight: 700 !important;
     margin-top: 1vh;

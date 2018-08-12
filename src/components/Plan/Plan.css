@@ -4,11 +4,15 @@ div.plan h4 {
     margin-bottom: 1vh;
 }
 
-div.container {
+div.plancontainer {
     font-family: Avenir;
     display: flex;
     justify-content: center;
     align-content: center;
+    flex-direction: row;
+    width: 100%;
+    height: 90vh;
+     padding: 0;
 
 }
 
