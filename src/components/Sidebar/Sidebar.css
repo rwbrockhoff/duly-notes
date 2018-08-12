@@ -18,7 +18,7 @@ div.iconbar {
     
     display: flex;
     justify-content: center;
-    background-color: #576593;
+    background-color: #4D76FF;
     color: white;
 
 }
@@ -33,4 +33,6 @@ div.noteContainer {
 
 div.iconbar img {
     width: 1.5vw;
+    
 }
+
