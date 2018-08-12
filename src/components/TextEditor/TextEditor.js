@@ -43,7 +43,7 @@ class TextEditor extends Component {
     };
 
     document.body.onkeydown = (e => {
-      console.log('jam', e.target.innerHTML)
+      
     if (e.keyCode === 17){
         this.setState({open: !this.state.open, content: e.target.innerHTML})
       }
@@ -62,7 +62,7 @@ class TextEditor extends Component {
           axios.get('/api/notes').then( notes => {
            
             if (notes.data[0]){
-              console.log(notes.data)
+              
             this.props.updateUser({notes: notes.data})}})
 
          })
@@ -164,7 +164,7 @@ class TextEditor extends Component {
   componentWillReceiveProps = (nextProps) => {
     
     if (nextProps.displayNote.note_id !== this.props.displayNote.note_id){
-      console.log('cashew', String(nextProps.displayNote.content))
+     
     const blocksFromHTML = convertFromHTML(String(nextProps.displayNote.content))
    
     const contentState = ContentState.createFromBlockArray(blocksFromHTML)

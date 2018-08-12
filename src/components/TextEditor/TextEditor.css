@@ -17,12 +17,6 @@ div.editor {
 }
 :focus {outline:0;}
 
-.medium-editor-element {
-    height: 100vh;
-    overflow-y: scroll;
-    line-height: 2em;
-  
-}
 
 .medium-editor-element:focus  {
     outline:0;
@@ -35,25 +29,20 @@ div.editor {
     overflow-y: scroll;
     padding: 1vh 2vw !important;
     padding-left: 0vw !important;
+    
+}
+
+.md-RichEditor-root h1{
+    line-height: 1.1em;
+}
+
+.md-RichEditor-root h2{
+    line-height: 1.4em;
 }
 
 .medium-editor-placeholder:after {
     left: 100vw !important;
 }
-
-
-/* textarea {
-    width: 92%;
-    height: 95vh;
-    outline: none;
-    border: none;
-    font-size: 1.5em;
-    padding: 3vh;
-    font-family: Avenir;
-    max-width: 100%;
-    margin-bottom: 3vh;
-    resize: none;
-} */
 
 input.titlebox {
     width: 65vw;
