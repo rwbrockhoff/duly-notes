@@ -254,6 +254,7 @@ class TextEditor extends Component {
               ref="editor"
               editorState={editorState}
               onChange={this.onChange}
+              style={{width: z + 'vw'}}
                />
          
          </div>

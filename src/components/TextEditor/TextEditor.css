@@ -7,7 +7,7 @@ div.editorFrame {
 }
 
 div.editor {
-    width: 80vw;
+    width: 100vw;
     display: flex;
     padding-left: 3vw;
     padding-top: 1.5vh;
