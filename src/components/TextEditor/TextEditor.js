@@ -233,6 +233,7 @@ class TextEditor extends Component {
          <div className='editor'>
         
              <input type="text" 
+             className="titlebox"
             style={{width: z + 'vw'}}
             onChange={this.handleChangeTitle}
             onKeyDown={(e) => this.handleKeyDownTitle(e)}

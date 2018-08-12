@@ -30,14 +30,14 @@ export default class Pricing extends Component {
     const {REACT_APP_STRIPE_PUB_KEY} = process.env;
     
     return (
-      <div className='Container'>
+      <div className='container'>
 
-       <div className='Info'>
+       <div className='info'>
         <h1>Life is about to get a lot more zen.</h1>
         </div>
 
-        <div className='Plan'>
-              <div className='PlanItem'>
+        <div className='plan'>
+              <div className='planitem'>
         <h1> $5/month </h1>
         <h4> Pay month to month. Cancel at anytime. </h4>
        

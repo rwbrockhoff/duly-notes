@@ -31,7 +31,11 @@ div.editor {
 .medium-editor-element a  {
     color: #576593;
 }
-
+.md-RichEditor-root {
+    overflow-y: scroll;
+    padding: 1vh 2vw !important;
+    padding-left: 0vw !important;
+}
 
 .medium-editor-placeholder:after {
     left: 100vw !important;
@@ -51,7 +55,7 @@ div.editor {
     resize: none;
 } */
 
-input {
+input.titlebox {
     width: 65vw;
     height: 8vh;
     

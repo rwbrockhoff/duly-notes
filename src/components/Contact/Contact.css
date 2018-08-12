@@ -1,11 +1,11 @@
 ::placeholder {
     color: white;
 }
-h2 {
+div.response h2 {
     font-weight: 100;
 }
 
-span {
+div.response span {
     margin: 0 1%;
     font-size: 1.3em;
 
