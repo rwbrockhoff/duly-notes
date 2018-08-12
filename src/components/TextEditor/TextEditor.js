@@ -240,9 +240,11 @@ class TextEditor extends Component {
             value={this.state.title}
            />
 
-            <img className='trash' src={trash} alt='trash'
+            <div className='menu'>
+            <i className="fas fa-ellipsis-h"
             onClick={() => this.deleteNote()}/>
-       
+            </div>
+            
             <Link to ='/'><img className='profilepic' alt="profilepic" src={image}
             onClick={() => this.logout()}/></Link>
             

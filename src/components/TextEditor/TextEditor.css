@@ -106,12 +106,15 @@ img.profilepic {
     right: 1vw;
 }
 
-img.trash {
+div.menu {
     position: absolute;
     top: 3vh;
-    right: 13vw;
+    right: 20vw;
     width: 1.5vw;
+    font-size: .4em;
+    color: #8B8B8B;
 }
+
 
 
 
