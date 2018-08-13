@@ -236,7 +236,7 @@ class TextEditor extends Component {
    
 
     return (
-      
+      <div className = 'frame'>
       <Motion style={{x: spring(this.state.open ? -20 : 0),
       y: spring(this.state.open ? 95 : 75), z: spring(this.state.open ? 90 : 65)}}>
 
@@ -330,6 +330,7 @@ class TextEditor extends Component {
          
       </div> }
      </Motion>
+    </div>
     )
   }
 }

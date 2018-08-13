@@ -57,6 +57,12 @@ export default class LandingFeatures extends Component {
             <p>Keep track of what you need to review.</p>
             </div>
 
+            <div className='gridItem'>
+            <i className="fas fa-moon"/>
+            <h2>Dark Theme</h2>
+            <p>One click and you're in a different world. Imagine that.</p>
+            </div>
+
 
             </div>
 
