@@ -33,6 +33,7 @@ div.features h1 {
 div.features div.grid {
     display: flex;
     justify-content: space-around;
+    align-items: baseline;
 }
 div.features div.grid div.gridItem {
     width: 15vw;

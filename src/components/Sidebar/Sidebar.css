@@ -14,10 +14,9 @@ div.sidebar {
 div.iconbar {
     height: 8vh;
     width: 100%;
-    
-    
     display: flex;
     justify-content: center;
+    align-content: center;
     background-color: #4D76FF;
     color: white;
 
@@ -31,8 +30,13 @@ div.noteContainer {
    display: none;
 }
 
-div.iconbar img {
-    width: 1.5vw;
-    
+div.addnote {
+    display: flex;
+    align-self: center;
+    font-size: .4em;
+}
+
+div.addnote:hover {
+    color: black;
 }
 

@@ -34,9 +34,9 @@ export default class LandingFeatures extends Component {
 
             <div className='grid'>
            <div className='gridItem'>
-           <i class="fas fa-burn"/>
-            <h2>Hotkeys</h2>
-            <p>Built in hotkeys. Do more with fewer buttons.</p>
+           <i class="fas fa-outdent"/>
+            <h2>Inline Editing</h2>
+            <p>No more toolbar clutter. Focus more on writing--less on clicking.</p>
             </div>
             
              <div className='gridItem'>
@@ -46,7 +46,7 @@ export default class LandingFeatures extends Component {
             </div>
 
              <div className='gridItem'>
-             <i class="fas fa-drafting-compass"/>
+             <i class="far fa-list-alt"/>
             <h2>Minimalist Design</h2>
             <p>80% of the screen is what you're working on. </p>
             </div>

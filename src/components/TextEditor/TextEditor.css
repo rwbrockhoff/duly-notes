@@ -36,9 +36,9 @@ div.editor {
    padding-left: 2vw;
 }
 
-.block-todo-completed {
-   /* color: blue; */
-}
+/* .block-todo-completed {
+   color: blue;
+} */
 
 .md-editor-toolbar {
     font-family: Avenir !important;
