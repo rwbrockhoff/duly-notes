@@ -122,7 +122,7 @@ div.usermenu {
     top: 5vh;
     right: 3vw;
     width: 10vw;
-    height: 12vh;
+    height: 22vh;
     background-color: #4D76FF;
     color: white;
     list-style: none;
@@ -135,13 +135,17 @@ div.usermenu {
     align-items: flex-start;
     padding-left: 1vw;
     padding-bottom: 1vh;
+    padding-top: 1vh;
     flex-direction: column;
+    margin-top: 1vh;
     
     font-weight: 500;  
 }
 
 div.usermenu li {
     z-index: 2;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
 }
 
 div.usermenu Link {

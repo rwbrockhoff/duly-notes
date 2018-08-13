@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import {Motion, spring} from 'react-motion';
 import {Transition} from 'react-spring';
 import {convertFromHTML, ContentState, EditorState} from 'draft-js';
-
+import Switch from 'react-switch';
 
 
 import {Editor,createEditorState} from 'medium-draft'
@@ -32,7 +32,8 @@ class TextEditor extends Component {
       openMenu: false,
       openNoteMenu: false,
       editorState: createEditorState(),
-      theme: true
+      theme: true,
+      checked: false
     }
 
     this.onChange = (editorState) => {
@@ -204,7 +205,11 @@ class TextEditor extends Component {
       })
     }
   }
-  
+
+  handleThemeChange = (checked) => {
+    this.setState({ checked })
+    this.props.updateUser({theme: checked})
+  }
 
   render() {
     
@@ -253,15 +258,34 @@ class TextEditor extends Component {
 
         <div>
             <div className='usermenu' style={{opacity: m}}>
-                <li style={{'marginBottom': '1vh', 'marginTop':'1vh'}}> Hey, {this.props.given_name} </li>
+                <li > <b> Hey, {this.props.given_name} </b></li>
                 <li> 
                 <Link to="/subscription">
                   <i className="fas fa-credit-card"/> &nbsp; Subscription </Link></li>
 
+                  <li> 
+                    <i className="fas fa-moon"/> &nbsp; Dark Theme: &nbsp;
+                    <Switch
+                        checked={this.state.checked}
+                        onChange={this.handleThemeChange}
+                        onColor="#86d3ff"
+                        onHandleColor="#2693e6"
+                        handleDiameter={15}
+                        uncheckedIcon={false}
+                        checkedIcon={false}
+                        boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
+                        activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
+                        height={10}
+                        width={24}
+                        className="react-switch"
+                        id="material-switch"
+                      />
+                  </li> 
+
                 <li onClick={() => this.logout()}> 
                   <Link to ='/'> 
                   <i className="fas fa-sign-out-alt"/> &nbsp; Logout </Link></li> 
-             
+               
             </div>
 
             <div className='notemenu' style={{opacity: n}}>
@@ -294,9 +318,7 @@ class TextEditor extends Component {
             <Editor
               ref="editor"
               editorState={editorState}
-              onChange={this.onChange} 
-              style={{opacity: 0.1}}
-              />
+              onChange={this.onChange} />
          
          </div>
          
