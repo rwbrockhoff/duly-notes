@@ -251,14 +251,19 @@ class TextEditor extends Component {
 
         <div>
             <div className='usermenu' style={{opacity: m}}>
-                <li> Preferences  </li>
-                <li> <Link to = "/subscription"> Subscription </Link> </li>
-                <li onClick={() => this.logout()}> <Link to ='/'> Logout </Link></li> 
+                <li> <Link to = '/texteditor'>  
+                <div>
+                  <i className="fas fa-book"/>&nbsp; Notebook 
+                </div>
+                </Link> </li>
+
+                <li> <Link to = "/subscription"> <i className="fas fa-credit-card"/> &nbsp; Subscription </Link> </li>
+                <li onClick={() => this.logout()}> <Link to ='/'> <i className="fas fa-sign-out-alt"/> &nbsp; Logout </Link></li> 
               
             </div>
 
             <div className='notemenu' style={{opacity: n}}>
-               <li onClick={() => this.deleteNote()}> <i className="far fa-trash-alt"/>  
+               <li onClick={() => this.deleteNote}> <i className="far fa-trash-alt"/>  
                &thinsp; Delete Note </li>
             </div>
         </div>
