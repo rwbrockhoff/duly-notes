@@ -251,11 +251,11 @@ class TextEditor extends Component {
 
         <div>
             <div className='usermenu' style={{opacity: m}}>
-                <li> <Link to = '/texteditor'>  
+                {/* <li> <Link to = '/texteditor'>  
                 <div>
                   <i className="fas fa-book"/>&nbsp; Notebook 
                 </div>
-                </Link> </li>
+                </Link> </li> */}
 
                 <li> <Link to = "/subscription"> <i className="fas fa-credit-card"/> &nbsp; Subscription </Link> </li>
                 <li onClick={() => this.logout()}> <Link to ='/'> <i className="fas fa-sign-out-alt"/> &nbsp; Logout </Link></li> 
