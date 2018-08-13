@@ -25,11 +25,18 @@ module.exports = {
     },
     getnotes: (req, res, next) => {
         const dbInstance = req.app.get('db');
-
         const { sub } = req.session.user;
+
+        
         
         dbInstance.get_notes(sub).then( notes => {
-            res.status(200).send(notes)
+            for(let i = 0; i < notes.length; i++){
+                dbInstance.insert_timestamp(notes[i].note_id, sub)
+            }
+            dbInstance.get_notes(sub).then( notesupdated => {
+                res.status(200).send(notesupdated)
+            })
+            
         })
     },
 
