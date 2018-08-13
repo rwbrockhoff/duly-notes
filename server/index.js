@@ -46,6 +46,7 @@ app.delete('/api/note/:id', controller.deleteNote)
 
 app.post('/api/note', controller.createnote)
 
+app.put('/api/theme', controller.changetheme)
 
 //-------------------//
 

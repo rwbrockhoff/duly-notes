@@ -32,8 +32,8 @@ class TextEditor extends Component {
       openMenu: false,
       openNoteMenu: false,
       editorState: createEditorState(),
-      theme: true,
-      checked: false
+      theme: this.props.theme, 
+      checked: this.props.theme
     }
 
     this.onChange = (editorState) => {
@@ -80,6 +80,7 @@ class TextEditor extends Component {
 
  
   componentDidMount(){
+    
     //see if we have a user
     axios.get('/api/user-data').then(res => {
       if (res.data.user){
@@ -111,6 +112,8 @@ class TextEditor extends Component {
       // this.props.updateDisplay({displayName: notes.data[0]})
       this.setState({
         title: this.props.notes[0].title,
+        theme: this.props.theme,
+        checked: this.props.theme
         // content: this.props.notes[0].content
                }
               )
@@ -209,6 +212,9 @@ class TextEditor extends Component {
   handleThemeChange = (checked) => {
     this.setState({ checked })
     this.props.updateUser({theme: checked})
+    axios.put('/api/theme', {theme: this.state.checked}).then(res => {
+      console.log(res)
+    })
   }
 
   render() {

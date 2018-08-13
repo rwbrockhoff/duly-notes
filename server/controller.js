@@ -84,5 +84,15 @@ module.exports = {
         dbInstance.create_note([title, content, sub]).then( notes => {
             res.status(200).send(notes)
         })
+    },
+
+    changetheme: (req, res, next) => {
+        const dbInstance = req.app.get('db');
+        const {theme} = req.body;
+        const {sub} = req.session.user;
+        
+        dbInstance.changetheme([theme, sub]).then(data => {
+            res.sendStatus(200)
+        })
     }
 }
