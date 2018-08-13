@@ -13,7 +13,7 @@ div.editor {
     padding-top: 1.5vh;
     padding-bottom: 2vh;
     flex-direction: column;
-    z-index: 1;
+    
 }
 :focus {outline:0;}
 
@@ -22,9 +22,7 @@ div.editor {
     outline:0;
 }
 
-.medium-editor-element a  {
-    color: #576593;
-}
+
 .md-RichEditor-root {
     overflow-y: scroll;
     padding: 1vh 2vw !important;
@@ -108,12 +106,48 @@ img.profilepic {
 
 div.menu {
     position: absolute;
-    top: 3vh;
-    right: 20vw;
+    top: 2.5vh;
+    right: 5vw;
     width: 1.5vw;
     font-size: .4em;
     color: #8B8B8B;
 }
+
+div.usermenu {
+    position: absolute;
+    top: 5vh;
+    right: 3vw;
+    width: 8vw;
+    height: 12vh;
+    background-color: #4D76FF;
+    color: white;
+    list-style: none;
+    border-radius: 1vw 0vw 1vw 1vw;
+    box-shadow: 0px 0px 50px -20px rgba(0,0,0,0.75);
+    z-index: 2;
+    line-height: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    flex-direction: column;
+    padding-left: 1vw;
+    font-weight: 500;
+   
+    
+}
+
+div.usermenu li {
+    z-index: 2;
+}
+
+div.usermenu a {
+    color: white;
+}
+
+div.username a:hover {
+    color: #E2E2E2;
+}
+
 
 
 

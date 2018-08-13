@@ -5,10 +5,9 @@ import axios from 'axios';
 import {Link, withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
 import {Motion, spring} from 'react-motion';
+import {Transition} from 'react-spring';
 import {convertFromHTML, ContentState, EditorState} from 'draft-js';
-import'medium-editor/dist/css/medium-editor.css';
-// import'medium-editor/dist/css/themes/default.css';
-// import Editor from 'react-medium-editor';
+
 
 
 import {Editor,createEditorState} from 'medium-draft'
@@ -30,6 +29,7 @@ class TextEditor extends Component {
       title: '',
       content: '',
       open: false,
+      openMenu: false,
       editorState: createEditorState()
     }
 
@@ -68,6 +68,7 @@ class TextEditor extends Component {
          })
       }}
     }) 
+    
   }
 
 
@@ -240,13 +241,31 @@ class TextEditor extends Component {
             value={this.state.title}
            />
 
+      <Motion style={{m: spring(this.state.openMenu ? 100 : 0) }}>
+     
+       {({m}) => 
+
+           <div className='usermenu' style={{opacity: m}}>
+              <li> Preferences  </li>
+              <li> <Link to = "/subscription"> Subscription </Link> </li>
+              <li onClick={() => this.logout()}> <Link to ='/'> Logout </Link></li> 
+             
+           </div>
+       }
+       </Motion>
+       
+
+
             <div className='menu'>
             <i className="fas fa-ellipsis-h"
             onClick={() => this.deleteNote()}/>
             </div>
+
             
-            <Link to ='/'><img className='profilepic' alt="profilepic" src={image}
-            onClick={() => this.logout()}/></Link>
+            <img className='profilepic' alt="profilepic" src={image}
+           
+            onClick={() => this.setState({openMenu: !this.state.openMenu})}
+            />
             
             {/* <Editor text={this.props.displayNote.content}
             onChange={this.handleChange}

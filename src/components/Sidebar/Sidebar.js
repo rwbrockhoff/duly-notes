@@ -61,7 +61,7 @@ class Sidebar extends Component {
       <div className='sidebar' >
       
             <div className="iconbar">
-                <div className='addnote'><i class="far fa-sticky-note" onClick={() => this.createNote()}/></div>
+                <div className='addnote'><i className="far fa-sticky-note" onClick={() => this.createNote()}/></div>
             </div>
 
             <div className="noteContainer">
