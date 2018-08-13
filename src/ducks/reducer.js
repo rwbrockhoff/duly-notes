@@ -1,7 +1,8 @@
 const initialState = {
     name: '',
     picture: "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png",
-    displayNote: {title: ''}
+    displayNote: {title: ''}, 
+    theme: true
 }
 
 const UPDATE_USER = 'UPDATE_USER';

@@ -31,7 +31,8 @@ class TextEditor extends Component {
       open: false,
       openMenu: false,
       openNoteMenu: false,
-      editorState: createEditorState()
+      editorState: createEditorState(),
+      theme: true
     }
 
     this.onChange = (editorState) => {
@@ -97,13 +98,14 @@ class TextEditor extends Component {
      
         
       const {user} = res.data;
+      
       this.props.updateUser(user)
-
+      
       axios.get('/api/notes').then( notes => {
         
       if (notes.data[0]){
        
-      this.props.updateUser({notes: notes.data, displayNote: notes.data[0]})
+      this.props.updateUser({notes: notes.data, displayNote: notes.data[0], theme: notes.data[0].theme})
      
       // this.props.updateDisplay({displayName: notes.data[0]})
       this.setState({
@@ -203,13 +205,9 @@ class TextEditor extends Component {
     }
   }
   
-  // handleChange = (text, medium) => {
-    
-  //   this.setState({content: text})
-  // }
-
 
   render() {
+    
     const { editorState } = this.state;
     let image = this.props.picture
     if (this.props.user){
@@ -223,6 +221,9 @@ class TextEditor extends Component {
       note = '';
     }
 
+    
+   
+
     return (
       
       <Motion style={{x: spring(this.state.open ? -20 : 0),
@@ -231,7 +232,7 @@ class TextEditor extends Component {
        {({x, y, z}) => 
       
 
-      <div className='editorFrame' style={{marginLeft: x + 'vw'}}>
+      <div className='editorFrame' style={{marginLeft: x + 'vw', backgroundColor: this.props.theme ? 'black' : 'white', color: this.props.theme ? 'white' : 'black'}}>
 
         <Sidebar/>
 
@@ -246,20 +247,21 @@ class TextEditor extends Component {
            />
 
       <Motion style={{m: spring(this.state.openMenu ? 1 : 0), n: spring(this.state.openNoteMenu ? 1 : 0) }}>
-     
+
+      
        {({m, n}) => 
 
         <div>
             <div className='usermenu' style={{opacity: m}}>
-                {/* <li> <Link to = '/texteditor'>  
-                <div>
-                  <i className="fas fa-book"/>&nbsp; Notebook 
-                </div>
-                </Link> </li> */}
+                <li style={{'marginBottom': '1vh', 'marginTop':'1vh'}}> Hey, {this.props.given_name} </li>
+                <li> 
+                <Link to="/subscription">
+                  <i className="fas fa-credit-card"/> &nbsp; Subscription </Link></li>
 
-                <li> <Link to = "/subscription"> <i className="fas fa-credit-card"/> &nbsp; Subscription </Link> </li>
-                <li onClick={() => this.logout()}> <Link to ='/'> <i className="fas fa-sign-out-alt"/> &nbsp; Logout </Link></li> 
-              
+                <li onClick={() => this.logout()}> 
+                  <Link to ='/'> 
+                  <i className="fas fa-sign-out-alt"/> &nbsp; Logout </Link></li> 
+             
             </div>
 
             <div className='notemenu' style={{opacity: n}}>
@@ -289,16 +291,12 @@ class TextEditor extends Component {
             onClick={() => this.setState({openMenu: !this.state.openMenu, openNoteMenu: false})}
             />
             
-            {/* <Editor text={this.props.displayNote.content}
-            onChange={this.handleChange}
-            style={{width: y + 'vw'}}/> */}
-
             <Editor
               ref="editor"
               editorState={editorState}
-              onChange={this.onChange}
-              
-               />
+              onChange={this.onChange} 
+              style={{opacity: 0.1}}
+              />
          
          </div>
          

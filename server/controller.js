@@ -34,6 +34,7 @@ module.exports = {
                 dbInstance.insert_timestamp(notes[i].note_id, sub)
             }
             dbInstance.get_notes(sub).then( notesupdated => {
+                console.log(notesupdated)
                 res.status(200).send(notesupdated)
             })
             

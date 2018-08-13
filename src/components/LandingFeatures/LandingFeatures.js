@@ -34,25 +34,25 @@ export default class LandingFeatures extends Component {
 
             <div className='grid'>
            <div className='gridItem'>
-           <i class="fas fa-outdent"/>
+           <i className="fas fa-outdent"/>
             <h2>Inline Editing</h2>
             <p>No more toolbar clutter. Focus more on writing--less on clicking.</p>
             </div>
             
              <div className='gridItem'>
-             <i class="fab fa-markdown"/>
+             <i className="fab fa-markdown"/>
             <h2>Markdown</h2>
             <p>The markdown you're used to, updating as you type. </p>
             </div>
 
              <div className='gridItem'>
-             <i class="far fa-list-alt"/>
+             <i className="far fa-list-alt"/>
             <h2>Minimalist Design</h2>
             <p>80% of the screen is what you're working on. </p>
             </div>
 
              <div className='gridItem'>
-             <i class="fas fa-brain"/>
+             <i className="fas fa-brain"/>
             <h2>Memory Gradient</h2>
             <p>Keep track of what you need to review.</p>
             </div>

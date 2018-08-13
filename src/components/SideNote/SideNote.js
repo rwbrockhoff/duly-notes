@@ -9,6 +9,7 @@ class SideNote extends Component {
       
     return (
       <div className='container'
+      style={{backgroundColor: this.props.theme ? '#3D3D3D' : '#f7f5f5', color: this.props.theme ? 'white' : 'black'}}
       onClick={() => 
         this.props.displayNote({displayNote: this.props.note})
       }
