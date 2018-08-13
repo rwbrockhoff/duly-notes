@@ -131,9 +131,7 @@ div.usermenu {
     align-items: left;
     flex-direction: column;
     padding-left: 1vw;
-    font-weight: 500;
-   
-    
+    font-weight: 500;  
 }
 
 div.usermenu li {
@@ -144,7 +142,38 @@ div.usermenu a {
     color: white;
 }
 
+div.notemenu {
+    position: absolute;
+    top: 5vh;
+    right: 5vw;
+    width: 12vw;
+    height: 5vh;
+    background-color: #f7f5f5;
+    color: #ce5959;
+    list-style: none;
+    border-radius: 1vw 0vw 1vw 1vw;
+    z-index: 2;
+    line-height: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+    font-weight: 500;  
+}
 
+div.notemenu li {
+    z-index: 2;
+}
+
+div.notemenu a {
+    color: white;
+}
+
+div.notemenu i {
+    font-size: 1em;
+    color: #ce5959;
+}
 
 
 

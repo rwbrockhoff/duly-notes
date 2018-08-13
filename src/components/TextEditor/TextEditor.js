@@ -30,6 +30,7 @@ class TextEditor extends Component {
       content: '',
       open: false,
       openMenu: false,
+      openNoteMenu: false,
       editorState: createEditorState()
     }
 
@@ -41,7 +42,10 @@ class TextEditor extends Component {
       // var contentState = stateFromHTML(html)
       // editorState: EditorState.createWithContent(contentState)
     };
-
+    this.clickBody = () => {
+      this.setState({openNoteMenu: false, openMenu: false })
+    }
+    document.body.addEventListener('click', this.clickBody)
     document.body.onkeydown = (e => {
       
     if (e.keyCode === 17){
@@ -241,30 +245,43 @@ class TextEditor extends Component {
             value={this.state.title}
            />
 
-      <Motion style={{m: spring(this.state.openMenu ? 1 : 0) }}>
+      <Motion style={{m: spring(this.state.openMenu ? 1 : 0), n: spring(this.state.openNoteMenu ? 1 : 0) }}>
      
-       {({m}) => 
+       {({m, n}) => 
 
-           <div className='usermenu' style={{opacity: m}}>
-              <li> Preferences  </li>
-              <li> <Link to = "/subscription"> Subscription </Link> </li>
-              <li onClick={() => this.logout()}> <Link to ='/'> Logout </Link></li> 
-             
-           </div>
+        <div>
+            <div className='usermenu' style={{opacity: m}}>
+                <li> Preferences  </li>
+                <li> <Link to = "/subscription"> Subscription </Link> </li>
+                <li onClick={() => this.logout()}> <Link to ='/'> Logout </Link></li> 
+              
+            </div>
+
+            <div className='notemenu' style={{opacity: n}}>
+               <li onClick={() => this.deleteNote()}> <i className="far fa-trash-alt"/>  
+               &thinsp; Delete Note </li>
+            </div>
+        </div>
+
        }
        </Motion>
+
+       
+
+       
        
 
 
             <div className='menu'>
             <i className="fas fa-ellipsis-h"
-            onClick={() => this.deleteNote()}/>
+            onClick={() => this.setState({openNoteMenu: !this.state.openNoteMenu, openMenu: false})}
+            />
             </div>
 
             
             <img className='profilepic' alt="profilepic" src={image}
            
-            onClick={() => this.setState({openMenu: !this.state.openMenu})}
+            onClick={() => this.setState({openMenu: !this.state.openMenu, openNoteMenu: false})}
             />
             
             {/* <Editor text={this.props.displayNote.content}
