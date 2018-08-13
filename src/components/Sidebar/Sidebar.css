@@ -12,19 +12,20 @@ div.sidebar {
 
 
 div.iconbar {
-    height: 8vh;
+    height: 10vh;
     width: 100%;
     display: flex;
     justify-content: center;
     align-content: center;
     background-color: #4D76FF;
     color: white;
-    border-radius: 0vw 0vw 1vw 0vw;
+   
+    /* border-radius: 0vw 0vw 1vw 0vw; */
 
 }
 
 div.noteContainer {
-    height: 92vh;
+    height: 90vh;
 }
 
 ::-webkit-scrollbar {

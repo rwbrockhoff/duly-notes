@@ -48,8 +48,22 @@ class Sidebar extends Component {
     else {
 
       listOutNotes = this.props.notes.map((e,i) => {
+        let memoryGradient;
+        if (e.memory === 0){
+          memoryGradient = '#4D76FF'
+        }
+        else if (e.memory === 1){
+          memoryGradient = '#9478FF'
+        }
+        else if (e.memory === 2) {
+          memoryGradient = '#B878FF'
+        }
+        else {
+          memoryGradient = '#DB78FF'
+        }
+
         return (
-        <SideNote key ={i} note={e} index={i} />
+        <SideNote key ={i} note={e} index={i} color={memoryGradient}/>
         )
     })
         

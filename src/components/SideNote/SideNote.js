@@ -13,6 +13,7 @@ class SideNote extends Component {
         this.props.displayNote({displayNote: this.props.note})
       }
       >
+      <div className='memorybar' style={{backgroundColor: this.props.color}}></div>
         <p className='title'> {this.props.note.title}</p>
         {/* <p className='preview'>{this.props.note.content.split("").splice(0, 75)}...</p> */}
       </div>

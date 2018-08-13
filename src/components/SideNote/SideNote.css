@@ -6,8 +6,9 @@ div.container {
     padding-left: 1.5vw;
     padding-right: 1.5vw;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
 }
 
 div.container:hover {
@@ -23,9 +24,21 @@ p {
 p.title {
     font-weight: 700;
     font-size: 1.1em;
+    padding-left: 1vw;
 }
 
 p.preview {
     font-size: .9em;
     margin-top: -2vh;
+}
+
+div.memorybar {
+    width: .3vw;
+    height: 50%;
+    display: flex;
+    justify-content: flex-start;
+    margin-left: -.5vw;
+    background-color: red;
+    border-radius: 1vw;
+    
 }
