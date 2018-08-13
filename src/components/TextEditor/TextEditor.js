@@ -241,7 +241,7 @@ class TextEditor extends Component {
             value={this.state.title}
            />
 
-      <Motion style={{m: spring(this.state.openMenu ? 100 : 0) }}>
+      <Motion style={{m: spring(this.state.openMenu ? 1 : 0) }}>
      
        {({m}) => 
 
