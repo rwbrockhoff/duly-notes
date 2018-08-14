@@ -36,7 +36,7 @@ export default class LandingFeatures extends Component {
            <div className='gridItem'>
            <i className="fas fa-outdent"/>
             <h2>Inline Editing</h2>
-            <p>No more toolbar clutter. Focus more on writing--less on clicking.</p>
+            <p>No more toolbar clutter. Focus more on writing.</p>
             </div>
             
              <div className='gridItem'>
@@ -54,13 +54,13 @@ export default class LandingFeatures extends Component {
              <div className='gridItem'>
              <i className="fas fa-brain"/>
             <h2>Memory Gradient</h2>
-            <p>Keep track of what you need to review.</p>
+            <p>The science of learning has a color scheme. </p>
             </div>
 
             <div className='gridItem'>
             <i className="fas fa-moon"/>
             <h2>Dark Theme</h2>
-            <p>One click and you're in a different world. Imagine that.</p>
+            <p>One click and you're in a different world. </p>
             </div>
 
 

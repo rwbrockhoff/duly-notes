@@ -72,13 +72,13 @@ class Sidebar extends Component {
     return (
       
        
-      <div className='sidebar' >
+      <div className='sidebar' style={{backgroundColor: this.props.theme ? '#3d3d3d' : '#f7f5f5'}}>
       
             <div className="iconbar">
                 <div className='addnote'><i className="far fa-sticky-note" onClick={() => this.createNote()}/></div>
             </div>
 
-            <div className="noteContainer">
+            <div className="noteContainer" backgroundColor='blue'>
              {listOutNotes}
             </div>
       </div>

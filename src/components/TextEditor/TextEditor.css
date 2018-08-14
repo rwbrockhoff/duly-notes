@@ -17,7 +17,7 @@ div.editor {
     display: flex;
     padding-left: 3vw;
     padding-top: 1.5vh;
-    padding-bottom: 2vh;
+    padding-bottom: 2vh !important;
     flex-direction: column;
     
     
@@ -25,21 +25,22 @@ div.editor {
 :focus {outline:0;}
 
 
-.medium-editor-element:focus  {
-    outline:0;
-}
-
-
 .md-RichEditor-root {
-    overflow-y: scroll;
+    
     padding: 1vh 2vw !important;
     padding-left: 0vw !important;
     font-size: 1.3em;
     background-color: transparent !important;
+    
 }
-div.md-RichEditor-root p {
-    color: white !important;
+
+.public-DraftEditor-content {
+    overflow-y: scroll;
+    max-height: 82vh;
+   
+    
 }
+
 
 
 
@@ -54,12 +55,13 @@ div.md-RichEditor-root p {
 .md-editor-toolbar {
     font-family: Avenir !important;
     background-color: black !important;
-    
+    block-overflow: visible !important;
 }
 
 .md-RichEditor-controls {
     font-family: Avenir !important;
     font-weight: 700;
+    
 }
 
 
