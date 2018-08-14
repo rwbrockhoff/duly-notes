@@ -53,13 +53,13 @@ class Sidebar extends Component {
           memoryGradient = '#4D76FF'
         }
         else if (e.memory === 1){
-          memoryGradient = '#9478FF'
+          memoryGradient = '#C34CFF'
         }
         else if (e.memory === 2) {
-          memoryGradient = '#B878FF'
+          memoryGradient = '#FF4CEA'
         }
         else {
-          memoryGradient = '#DB78FF'
+          memoryGradient = '#FF4C4C'
         }
 
         return (

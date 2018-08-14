@@ -189,11 +189,13 @@ class TextEditor extends Component {
     
     const html = nextProps.displayNote.content
     const editorState = createEditorState(convertToRaw(mediumDraftImporter(html)))
-    
+    console.log('html before', html)
     this.setState({
       title: nextProps.displayNote.title,
       editorState: editorState
     })
+    var html2 = mediumDraftExporter(editorState.getCurrentContent());
+    console.log('html2', html2)
   }
   }
 

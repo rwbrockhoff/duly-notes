@@ -36,9 +36,12 @@ div.editor {
     padding-left: 0vw !important;
     font-size: 1.3em;
     background-color: transparent !important;
-    
-    
 }
+div.md-RichEditor-root p {
+    color: white !important;
+}
+
+
 
 .md-block-todo {
    padding-left: 2vw;
@@ -72,6 +75,10 @@ div.editor {
     font-size: 2em;
     margin-bottom: -1.5vh;
 }
+
+
+
+
 
 blockquote {
     font-size: 1em !important;
@@ -198,6 +205,8 @@ div.notemenu li:hover {
 div.usermenu li:hover {
     cursor: pointer;
 }
+
+
 
 
 
