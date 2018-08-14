@@ -45,7 +45,7 @@ div.editor {
 
 
 .md-block-todo {
-   padding-left: 2vw;
+   display: none;
 }
 
 /* .block-todo-completed {
@@ -208,6 +208,25 @@ div.usermenu li:hover {
     cursor: pointer;
 }
 
+.md-RichEditor-styleButton md-RichEditor-styleButton-todo {
+    display: none;
+}
+
+.md-RichEditor-styleButton:hover {
+    color: #E2E2E2 !important;
+}
+
+.md-RichEditor-styleButton-todo {
+    display: none !important;
+   
+}
+
+.md-editor-toolbar--isopen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 21vw !important;
+}
 
 
 
