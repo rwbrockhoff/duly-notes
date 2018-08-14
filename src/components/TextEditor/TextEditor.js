@@ -15,6 +15,10 @@ import 'medium-draft/lib/index.css'
 import {stateToHTML} from 'draft-js-export-html';
 import {stateFromHTML} from 'draft-js-import-html';
 
+import { convertToRaw } from 'draft-js';
+import mediumDraftExporter from 'medium-draft/lib/exporter';
+import mediumDraftImporter from 'medium-draft/lib/importer';
+import 'medium-draft/lib/basic.css';
 
 import {updateUser, logoutUser, updateDisplay} from '../../ducks/reducer';
 import trash from '../../assets/trash.svg';
@@ -39,7 +43,7 @@ class TextEditor extends Component {
     this.onChange = (editorState) => {
       this.setState({ editorState });
       
-     var html = stateToHTML(this.state.editorState.getCurrentContent())
+     var html = mediumDraftExporter(editorState.getCurrentContent());
      this.setState({content: html})
       // var contentState = stateFromHTML(html)
       // editorState: EditorState.createWithContent(contentState)
@@ -57,8 +61,11 @@ class TextEditor extends Component {
     
       if (e.keyCode === 13){
         
-        var html = stateToHTML(this.state.editorState.getCurrentContent())
-        this.setState({content: html})
+        // var html = stateToHTML(this.state.editorState.getCurrentContent())
+        // this.setState({content: html})
+
+        var html = mediumDraftExporter(this.state.editorState.getCurrentContent());
+     this.setState({content: html})
          
          const {title, content} = this.state
        
@@ -109,6 +116,7 @@ class TextEditor extends Component {
        
       this.props.updateUser({notes: notes.data, displayNote: notes.data[0], theme: notes.data[0].theme})
      
+
       // this.props.updateDisplay({displayName: notes.data[0]})
       this.setState({
         title: this.props.notes[0].title,
@@ -176,12 +184,15 @@ class TextEditor extends Component {
     
     if (nextProps.displayNote.note_id !== this.props.displayNote.note_id){
      
-    const blocksFromHTML = convertFromHTML(String(nextProps.displayNote.content))
-   
-    const contentState = ContentState.createFromBlockArray(blocksFromHTML)
+    // const blocksFromHTML = convertFromHTML(String(nextProps.displayNote.content))
+    // const contentState = ContentState.createFromBlockArray(blocksFromHTML)
+    
+    const html = nextProps.displayNote.content
+    const editorState = createEditorState(convertToRaw(mediumDraftImporter(html)))
+    
     this.setState({
       title: nextProps.displayNote.title,
-      editorState: EditorState.createWithContent(contentState)
+      editorState: editorState
     })
   }
   }
