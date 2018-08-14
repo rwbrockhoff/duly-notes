@@ -81,14 +81,6 @@ blockquote {
     color: black !important;
 }
 
-.md-sb-button {
-    font-weight: 100;
-}
-
-
-.medium-editor-placeholder:after {
-    left: 100vw !important;
-}
 
 input.titlebox {
     width: 65vw;
@@ -127,7 +119,7 @@ div.usermenu {
     position: absolute;
     top: 5vh;
     right: 3vw;
-    width: 10vw;
+    width: 12vw;
     height: 22vh;
     background-color: #4D76FF;
     color: white;

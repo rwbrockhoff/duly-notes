@@ -1,7 +1,5 @@
 div.container {
-    
     height: 11vh;
-    
     padding: 1vh;
     padding-left: 1.5vw;
     padding-right: 1.5vw;
@@ -12,7 +10,31 @@ div.container {
 }
 
 div.container:hover {
-    background-color: #E2E2E2;
+    background-color: #E2E2E2 !important;
+}
+
+div.containerOpenDark {
+    height: 11vh;
+    padding: 1vh;
+    padding-left: 1.5vw;
+    padding-right: 1.5vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    background-color: #6c6c6c !important;
+}
+
+div.containerOpenLight {
+    height: 11vh;
+    padding: 1vh;
+    padding-left: 1.5vw;
+    padding-right: 1.5vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    background-color: #E2E2E2 !important;
 }
 
 
@@ -38,7 +60,7 @@ div.memorybar {
     display: flex;
     justify-content: flex-start;
     margin-left: -.5vw;
-    background-color: red;
+    background-color: #e2e2e2;
     border-radius: 1vw;
 }
 

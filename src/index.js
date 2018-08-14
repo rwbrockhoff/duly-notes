@@ -9,7 +9,6 @@ import store from './ducks/store';
 import TextEditor from './components/TextEditor/TextEditor';
 import Contact from './components/Contact/Contact';
 import Plan from './components/Plan/Plan';
-import EditorNew from './components/Test/Test'
 import Subscription from './components/Subscription/Subscription';
 import LandingFeatures from './components/LandingFeatures/LandingFeatures';
 
@@ -25,7 +24,7 @@ ReactDOM.render(
                 </div>
             )
             }/>
-            <Route path='/edit' component={EditorNew}/>
+            
            <Route path="/contact" render={() => (
                <div>
                   <App/>
