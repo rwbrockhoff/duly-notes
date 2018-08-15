@@ -3,6 +3,7 @@ import './Pomodoro.css'
 import TimeMe from 'timeme.js';
 
 var pomodoroTimer = 0;
+var myVisualTimer;
 
 export default class Pomodoro extends Component {
     constructor(){
@@ -22,38 +23,32 @@ export default class Pomodoro extends Component {
     this.setState({sessionTimer: 0})
 
     TimeMe.initialize({
-      currentPageName: "pomodoro", // our pomdooro timer
-      idleTimeoutInSeconds: 30 // disables idle
+      currentPageName: "pomodoro" // our pomdooro timer
+    //   idleTimeoutInSeconds: -1 // disables idle
     });		
 
-    var myTimer = setInterval( () => {
+    myVisualTimer = setInterval( () => {
         timer += 2; 
         this.setState({sessionTimer: timer})
     }, 2000)
 
     var myStopper = setInterval( () => {
         if (this.state.sessionTimer === 8){
-            clearInterval(myTimer)
+            clearInterval(myVisualTimer)
             console.log('made it here')
         }
     }, 2000)
 
     TimeMe.callAfterTimeElapsedInSeconds(8, () => { 
       this.setState({sessioncomplete: true, sessionCount: this.state.sessionCount + 1})
-        console.log('made it in the function')
       TimeMe.resetRecordedPageTime('pomodoro');
-      
     });
-
-    
-
-    
-
   }
   
   stopPomodoro = () => {
-    this.setState({sessioncomplete: false})
-    TimeMe.stopTimer('pomodoro')
+    this.setState({sessioncomplete: false, sessionTimer: 0})
+    TimeMe.resetRecordedPageTime('pomodoro');
+    clearInterval(myVisualTimer)
   }
 
   
