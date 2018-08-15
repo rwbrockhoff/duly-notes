@@ -1,0 +1,9 @@
+div.pomodoroframe {
+    width: 40vw;
+    height: 20vh;
+    background-color: lightblue;
+    z-index: 3;
+    position: absolute;
+    left: 10vw;
+    top: 10vw;
+}

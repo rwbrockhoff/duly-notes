@@ -8,7 +8,7 @@ import {Motion, spring} from 'react-motion';
 import {Transition} from 'react-spring';
 import {convertFromHTML, ContentState, EditorState} from 'draft-js';
 import Switch from 'react-switch';
-import TimeMe from 'timeme.js';
+import Pomodoro from '../Pomodoro/Pomodoro';
 
 import {Editor,createEditorState} from 'medium-draft'
 import 'medium-draft/lib/index.css'
@@ -234,31 +234,8 @@ class TextEditor extends Component {
     })
   }
 
-  startTimer = () => {
-    TimeMe.resetRecordedPageTime('my-activity')
-    TimeMe.startTimer('my-activity')
-    this.pomodoroClock();
-  }
+  
 
-  stopTimer = () => {
-    TimeMe.stopTimer('my-activity')
-    pomodoro = TimeMe.getTimeOnPageInSeconds('my-activity')
-    var timeSpentReport = TimeMe.getTimeOnAllPagesInSeconds();
-    console.log('time spent:', pomodoro + " seconds", 'report: ', timeSpentReport)
-  }
-
-  pomodoroClock = () => {
-    TimeMe.initialize({
-      currentPageName: "pomodoro", // current page
-      idleTimeoutInSeconds: 30 // seconds
-    });		
-    
-    TimeMe.callAfterTimeElapsedInSeconds(5, function() {
-      var pomodoros;
-      pomodoros = TimeMe.getTimeOnPageInSeconds('pomodoro')
-      console.log('time', pomodoros)
-    });
-  }
   
 
   render() {
@@ -288,7 +265,7 @@ class TextEditor extends Component {
       
 
       <div className='editorFrame' style={{marginLeft: x + 'vw', backgroundColor: this.props.theme ? 'black' : 'white', color: this.props.theme ? 'white' : 'black'}}>
-
+        <Pomodoro/>
         <Sidebar/>
 
          <div className='editor'>
@@ -331,9 +308,7 @@ class TextEditor extends Component {
                         id="material-switch"
                       />
                   </li> 
-                <li> <button onClick={() => this.startTimer()}>Start</button> </li>
-                <li> <button onClick={() => this.stopTimer()}>Stop</button> </li>
-
+                
                 <li onClick={() => this.logout()}> 
                   <Link to ='/'> 
                   <i className="fas fa-sign-out-alt"/> &nbsp; Logout </Link></li> 
