@@ -44,16 +44,29 @@ componentDidMount(){
 
     axios.put('/api/addpomodoro', {sessionCount: 1}).then( () => {
 
-            
-
         axios.get('/api/getpomodoro').then(usersPomodoros => {
+            var today = [];
+            var week = [];
+            var total = usersPomodoros.data.length
 
-            console.log('usersPomos: ', usersPomodoros.data)
-                })
+            usersPomodoros.data.map(e => {
+
+                if (e.date === 0){
+                    today.push(e.sessioncount)
+                }
+                else if (e.date <= 7){
+                    week.push(e.sessioncount)
+                }
+                
             })
+
+            var totalToday = today.length
+            var totalWeek = week.length
+            this.props.updateUser({pomodoro: {today: totalToday, week: totalWeek, total: total}})
+        })
             
-        }
-    }, 2000)
+        })
+    }}, 2000)
 
   }
   
