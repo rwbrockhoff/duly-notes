@@ -78,7 +78,7 @@ class Sidebar extends Component {
                 <div className='addnote'><i className="far fa-sticky-note" onClick={() => this.createNote()}/></div>
             </div>
 
-            <div className="noteContainer" backgroundColor='blue'>
+            <div className="noteContainer" backgroundcolor='blue'>
              {listOutNotes}
             </div>
       </div>

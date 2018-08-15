@@ -32,30 +32,25 @@ div.editor {
     font-size: 1.3em;
     background-color: transparent !important;
     
+    
 }
 
 .public-DraftEditor-content {
     overflow-y: scroll;
     max-height: 82vh;
+    
    
     
 }
 
 
-
-
-.md-block-todo {
-   display: none;
-}
-
-/* .block-todo-completed {
-   color: blue;
-} */
-
 .md-editor-toolbar {
     font-family: Avenir !important;
     background-color: black !important;
     block-overflow: visible !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
 }
 
 .md-RichEditor-controls {
@@ -208,28 +203,27 @@ div.usermenu li:hover {
     cursor: pointer;
 }
 
-.md-RichEditor-styleButton md-RichEditor-styleButton-todo {
-    display: none;
-}
 
-.md-RichEditor-styleButton:hover {
-    color: #E2E2E2 !important;
+.md-block-todo {
+   color: red;
+   position: absolute;
+   top: -6000px;
 }
 
 .md-RichEditor-styleButton-todo {
     display: none !important;
-   
 }
 
 .md-editor-toolbar--isopen {
+    width: 27% !important;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 21vw !important;
 }
 
-
-
+.md-editor-toolbar:hover {
+    color: red !important;
+}
 
 
 

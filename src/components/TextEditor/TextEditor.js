@@ -41,13 +41,13 @@ class TextEditor extends Component {
     }
 
     this.onChange = (editorState) => {
-      this.setState({ editorState });
+      this.setState({ editorState: editorState });
       
      var html = mediumDraftExporter(editorState.getCurrentContent());
      this.setState({content: html})
-      // var contentState = stateFromHTML(html)
-      // editorState: EditorState.createWithContent(contentState)
+      
     };
+
     this.clickBody = () => {
       this.setState({openNoteMenu: false, openMenu: false })
     }
@@ -60,11 +60,13 @@ class TextEditor extends Component {
   if (e.target.innerHTML){
     
       if (e.keyCode === 13){
+        console.log('return-state-content', this.state.content)
         
         // var html = stateToHTML(this.state.editorState.getCurrentContent())
         // this.setState({content: html})
 
         var html = mediumDraftExporter(this.state.editorState.getCurrentContent());
+        console.log('return-html-stuff', html)
      this.setState({content: html})
          
          const {title, content} = this.state
