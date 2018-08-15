@@ -8,7 +8,7 @@ import {Motion, spring} from 'react-motion';
 import {Transition} from 'react-spring';
 import {convertFromHTML, ContentState, EditorState} from 'draft-js';
 import Switch from 'react-switch';
-
+import TimeMe from 'timeme.js';
 
 import {Editor,createEditorState} from 'medium-draft'
 import 'medium-draft/lib/index.css'
@@ -24,6 +24,7 @@ import {updateUser, logoutUser, updateDisplay} from '../../ducks/reducer';
 
 let note;
 var change = false;
+var pomodoro = 0;
 
 
 class TextEditor extends Component {
@@ -90,6 +91,7 @@ class TextEditor extends Component {
  
   componentDidMount(){
     
+
     //see if we have a user
     axios.get('/api/user-data').then(res => {
       if (res.data.user){
@@ -232,6 +234,33 @@ class TextEditor extends Component {
     })
   }
 
+  startTimer = () => {
+    TimeMe.resetRecordedPageTime('my-activity')
+    TimeMe.startTimer('my-activity')
+    this.pomodoroClock();
+  }
+
+  stopTimer = () => {
+    TimeMe.stopTimer('my-activity')
+    pomodoro = TimeMe.getTimeOnPageInSeconds('my-activity')
+    var timeSpentReport = TimeMe.getTimeOnAllPagesInSeconds();
+    console.log('time spent:', pomodoro + " seconds", 'report: ', timeSpentReport)
+  }
+
+  pomodoroClock = () => {
+    TimeMe.initialize({
+      currentPageName: "pomodoro", // current page
+      idleTimeoutInSeconds: 30 // seconds
+    });		
+    
+    TimeMe.callAfterTimeElapsedInSeconds(5, function() {
+      var pomodoros;
+      pomodoros = TimeMe.getTimeOnPageInSeconds('pomodoro')
+      console.log('time', pomodoros)
+    });
+  }
+  
+
   render() {
     
     const { editorState } = this.state;
@@ -247,8 +276,8 @@ class TextEditor extends Component {
       note = '';
     }
 
-    
    
+    
 
     return (
       <div className = 'frame'>
@@ -302,6 +331,8 @@ class TextEditor extends Component {
                         id="material-switch"
                       />
                   </li> 
+                <li> <button onClick={() => this.startTimer()}>Start</button> </li>
+                <li> <button onClick={() => this.stopTimer()}>Stop</button> </li>
 
                 <li onClick={() => this.logout()}> 
                   <Link to ='/'> 
