@@ -21,11 +21,7 @@ export default class Pomodoro extends Component {
   startPomodoro = () => {
     var timer = 0;
     this.setState({sessionTimer: 0})
-
-    TimeMe.initialize({
-      currentPageName: "pomodoro" // our pomdooro timer
-    //   idleTimeoutInSeconds: -1 // disables idle
-    });		
+	
 
     myVisualTimer = setInterval( () => {
         timer += 2; 
@@ -34,20 +30,16 @@ export default class Pomodoro extends Component {
 
     var myStopper = setInterval( () => {
         if (this.state.sessionTimer === 8){
+            this.setState({sessionCount: this.state.sessionCount + 1, sessionTimer: 0})
             clearInterval(myVisualTimer)
             console.log('made it here')
         }
     }, 2000)
 
-    TimeMe.callAfterTimeElapsedInSeconds(8, () => { 
-      this.setState({sessioncomplete: true, sessionCount: this.state.sessionCount + 1})
-      TimeMe.resetRecordedPageTime('pomodoro');
-    });
   }
   
   stopPomodoro = () => {
     this.setState({sessioncomplete: false, sessionTimer: 0})
-    TimeMe.resetRecordedPageTime('pomodoro');
     clearInterval(myVisualTimer)
   }
 
