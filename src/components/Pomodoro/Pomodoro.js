@@ -41,9 +41,17 @@ componentDidMount(){
         if (this.state.sessionTimer === 8){
             this.setState({sessionCount: this.state.sessionCount + 1, sessionTimer: 0})
             clearInterval(myVisualTimer)
-            axios.put('/api/addpomodoro', {sessionCount: 1})
-            //axios.put
-                //{sessionCount: }
+
+    axios.put('/api/addpomodoro', {sessionCount: 1}).then( () => {
+
+            
+
+        axios.get('/api/getpomodoro').then(usersPomodoros => {
+
+            console.log('usersPomos: ', usersPomodoros.data)
+                })
+            })
+            
         }
     }, 2000)
 

@@ -103,20 +103,17 @@ module.exports = {
         const {sessionCount} = req.body
 
         dbInstance.insertpomodoro([sub, sessionCount]).then(pomo => {
-            console.log(pomo)
-            // for(let i = 0; i < pomo.length; i++){
-            //     dbInstance.insert_pomodorodate(pomo[i].pomodoro_id, sub)
-            // }
+           res.sendStatus(200);
         })
     },
 
     getpomodoro: (req, res, next) => {
-        console.log('into get pomo')
+        
         const dbInstance = req.app.get('db');
         const {sub} = req.session.user
 
         dbInstance.getpomodoro(sub).then(pomo => {
-            console.log('gotpomo, here they are: ', pomo)
+            
             for(let i = 0; i < pomo.length; i++){
                 dbInstance.insert_pomodate(pomo[i].pomodoro_id, sub)
             }     
