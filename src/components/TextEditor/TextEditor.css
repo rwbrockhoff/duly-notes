@@ -168,7 +168,7 @@ div.notemenu {
     color: #ce5959;
     list-style: none;
     border-radius: 1vw 0vw 1vw 1vw;
-    z-index: 3;
+    z-index: 2;
     line-height: 1.5em;
     display: flex;
     justify-content: center;
@@ -179,7 +179,7 @@ div.notemenu {
 }
 
 div.notemenu li {
-    z-index: 3;
+    z-index: 2;
 }
 
 div.notemenu a {

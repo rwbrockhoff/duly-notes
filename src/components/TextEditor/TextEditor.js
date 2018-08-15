@@ -21,7 +21,7 @@ import mediumDraftImporter from 'medium-draft/lib/importer';
 import 'medium-draft/lib/basic.css';
 
 import {updateUser, logoutUser, updateDisplay} from '../../ducks/reducer';
-import trash from '../../assets/trash.svg';
+
 let note;
 var change = false;
 
@@ -60,13 +60,13 @@ class TextEditor extends Component {
   if (e.target.innerHTML){
     
       if (e.keyCode === 13){
-        console.log('return-state-content', this.state.content)
+        
         
         // var html = stateToHTML(this.state.editorState.getCurrentContent())
         // this.setState({content: html})
 
         var html = mediumDraftExporter(this.state.editorState.getCurrentContent());
-        console.log('return-html-stuff', html)
+       
      this.setState({content: html})
          
          const {title, content} = this.state
@@ -191,13 +191,13 @@ class TextEditor extends Component {
     
     const html = nextProps.displayNote.content
     const editorState = createEditorState(convertToRaw(mediumDraftImporter(html)))
-    console.log('html before', html)
+    
     this.setState({
       title: nextProps.displayNote.title,
       editorState: editorState
     })
     var html2 = mediumDraftExporter(editorState.getCurrentContent());
-    console.log('html2', html2)
+    
   }
   }
 
@@ -310,7 +310,7 @@ class TextEditor extends Component {
             </div>
 
             <div className='notemenu' style={{opacity: n}}>
-               <li onClick={() => this.deleteNote}> <i className="far fa-trash-alt"/>  
+               <li onClick={() => this.deleteNote()}> <i className="far fa-trash-alt"/>  
                &thinsp; Delete Note </li>
             </div>
         </div>
