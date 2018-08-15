@@ -34,7 +34,7 @@ module.exports = {
                 dbInstance.insert_timestamp(notes[i].note_id, sub)
             }
             dbInstance.get_notes(sub).then( notesupdated => {
-                console.log(notesupdated)
+                
                 res.status(200).send(notesupdated)
             })
             
@@ -93,6 +93,37 @@ module.exports = {
         
         dbInstance.changetheme([theme, sub]).then(data => {
             res.sendStatus(200)
+        })
+    },
+
+    addpomodoro: (req, res, next) => {
+        const dbInstance = req.app.get('db');
+
+        const {sub} = req.session.user
+        const {sessionCount} = req.body
+
+        dbInstance.insertpomodoro([sub, sessionCount]).then(pomo => {
+            console.log(pomo)
+            // for(let i = 0; i < pomo.length; i++){
+            //     dbInstance.insert_pomodorodate(pomo[i].pomodoro_id, sub)
+            // }
+        })
+    },
+
+    getpomodoro: (req, res, next) => {
+        console.log('into get pomo')
+        const dbInstance = req.app.get('db');
+        const {sub} = req.session.user
+
+        dbInstance.getpomodoro(sub).then(pomo => {
+            console.log('gotpomo, here they are: ', pomo)
+            for(let i = 0; i < pomo.length; i++){
+                dbInstance.insert_pomodate(pomo[i].pomodoro_id, sub)
+            }     
+        }).then( () => {
+            dbInstance.getpomodoro(sub).then(updatedpomo => {
+                res.status(200).send(updatedpomo)
+            })
         })
     }
 }

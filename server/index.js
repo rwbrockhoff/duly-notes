@@ -48,6 +48,10 @@ app.post('/api/note', controller.createnote)
 
 app.put('/api/theme', controller.changetheme)
 
+app.get('/api/getpomodoro', controller.getpomodoro)
+
+app.put('/api/addpomodoro', controller.addpomodoro)
+
 //-------------------//
 
 app.get('/auth/callback', async (req, res) => {

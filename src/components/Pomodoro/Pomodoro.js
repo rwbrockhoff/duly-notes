@@ -1,22 +1,31 @@
 import React, { Component } from 'react'
 import './Pomodoro.css'
-import TimeMe from 'timeme.js';
+import { connect } from 'react-redux';
+import {updateUser} from '../../ducks/reducer';
+import axios from 'axios';
 
 var pomodoroTimer = 0;
 var myVisualTimer;
 
-export default class Pomodoro extends Component {
+class Pomodoro extends Component {
     constructor(){
         super()
 
         this.state = {
             sessioncomplete: false,
+            sessionCount: 0,
             sessionTimer: 0,
             break: false,
-            sessionCount: 0,
+            breakTimer: 0
         }
 
     }
+
+componentDidMount(){
+    axios.get('/api/getpomodoro').then(usersPomodoros => {
+        console.log(usersPomodoros.data)
+    })
+}
 
   startPomodoro = () => {
     var timer = 0;
@@ -32,7 +41,9 @@ export default class Pomodoro extends Component {
         if (this.state.sessionTimer === 8){
             this.setState({sessionCount: this.state.sessionCount + 1, sessionTimer: 0})
             clearInterval(myVisualTimer)
-            console.log('made it here')
+            axios.put('/api/addpomodoro', {sessionCount: 1})
+            //axios.put
+                //{sessionCount: }
         }
     }, 2000)
 
@@ -56,3 +67,10 @@ export default class Pomodoro extends Component {
     )
   }
 }
+function mapStateToProps(state){
+    return {
+        ...this.props, ...state
+    }
+}
+
+export default connect(mapStateToProps, {updateUser} )(Pomodoro)
