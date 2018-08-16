@@ -71,6 +71,10 @@ class Sidebar extends Component {
             </Motion>
             <div className="iconbar">
                 <div className='addnote'><i className="far fa-sticky-note" onClick={() => this.createNote()}/></div>
+
+                <div className='pomodoro'>
+                  <i className="fas fa-stopwatch" onClick={() => this.props.updateUser({pomodoroToggle: !this.props.pomodoroToggle})}/>
+                </div>
             </div>
 
             <Motion style={{x: spring(this.props.pomodoroToggle ? 62 : 92)}}>
