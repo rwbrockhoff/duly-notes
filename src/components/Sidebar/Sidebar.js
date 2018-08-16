@@ -77,10 +77,10 @@ class Sidebar extends Component {
                 </div>
             </div>
 
-            <Motion style={{x: spring(this.props.pomodoroToggle ? 62 : 92)}}>
-           {({x}) => 
+            <Motion style={{x: spring(this.props.pomodoroToggle ? 75 : 92), y: spring(this.props.pomodoroToggle ? -17 : 0)}}>
+           {({x, y}) => 
 
-            <div className="noteContainer" backgroundcolor='blue' style={{height: x + 'vh'}}>
+            <div className="noteContainer" backgroundcolor='blue' style={{height: x + 'vh', marginBottom: y + 'vh'}}>
              {listOutNotes}
             </div>
 

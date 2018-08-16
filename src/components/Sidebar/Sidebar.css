@@ -27,6 +27,7 @@ div.iconbar i:hover {
 
 div.noteContainer {
     overflow-y: scroll;
+    
 }
 
 ::-webkit-scrollbar {
