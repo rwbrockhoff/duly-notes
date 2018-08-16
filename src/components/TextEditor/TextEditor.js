@@ -5,7 +5,6 @@ import axios from 'axios';
 import {Link, withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
 import {Motion, spring} from 'react-motion';
-import {Transition} from 'react-spring';
 import {convertFromHTML, ContentState, EditorState} from 'draft-js';
 import Switch from 'react-switch';
 import Pomodoro from '../Pomodoro/Pomodoro';
@@ -261,15 +260,6 @@ class TextEditor extends Component {
       note = '';
     }
 
-   if (this.state.checkedPomodoro){
-     displayPomodoro = <Pomodoro/>
-   }
-   else {
-     displayPomodoro = ''
-   }
-   
-
-    
 
     return (
       <div className = 'frame'>

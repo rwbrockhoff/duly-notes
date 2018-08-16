@@ -4,7 +4,6 @@ div.sidebar {
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
-    
     justify-content: flex-start;
     font-family: Avenir;
 }
@@ -24,7 +23,8 @@ div.iconbar {
 }
 
 div.noteContainer {
-    height: 92vh;
+    
+    overflow-y: scroll;
 }
 
 ::-webkit-scrollbar {

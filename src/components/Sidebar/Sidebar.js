@@ -4,8 +4,10 @@ import {connect} from 'react-redux';
 import {displayNote, updateUser} from '../../ducks/reducer';
 import SideNote from '../SideNote/SideNote';
 import axios from 'axios';
+import Pomodoro from '../Pomodoro/Pomodoro';
+import {Motion, spring} from 'react-motion';
 
-import add from '../../assets/add.svg';
+
 let listOutNotes = null;
 
 
@@ -24,23 +26,25 @@ class Sidebar extends Component {
     })
   }
 
- 
-
-  // eventHandler(e){
-  //   if (e.keyCode === 27){
-  //     console.log('hit it')
-  //     this.setState({open: !this.state.open})
-  //   }
-  // }
-
-
   render() {
 
    
+  // let displayPomodoro = () => {
+
+  //   if (this.props.pomodoroToggle){
+  //     return (
+       
+  //                      <Pomodoro/>
+       
       
+  //     )
+  //   }
+  //   else {
+  //     return null
+  //   }
     
-
-
+  // }
+    
     if (!this.props.notes){
       listOutNotes = null;
       
@@ -70,17 +74,29 @@ class Sidebar extends Component {
   }
     
     return (
+
       
        
       <div className='sidebar' style={{backgroundColor: this.props.theme ? '#3d3d3d' : '#f7f5f5'}}>
-      
+
+      <Motion style={{w: spring(this.props.pomodoroToggle ? 0 : -30)}}>
+           {({w}) => 
+           <Pomodoro style={{marginTop: w + 'vh'}}/>
+                   }
+            </Motion>
             <div className="iconbar">
                 <div className='addnote'><i className="far fa-sticky-note" onClick={() => this.createNote()}/></div>
             </div>
 
-            <div className="noteContainer" backgroundcolor='blue'>
+            <Motion style={{x: spring(this.props.pomodoroToggle ? 62 : 92)}}>
+           {({x}) => 
+
+            <div className="noteContainer" backgroundcolor='blue' style={{height: x + 'vh'}}>
              {listOutNotes}
             </div>
+
+           }
+           </Motion>
       </div>
        
       
