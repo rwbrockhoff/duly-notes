@@ -12,6 +12,7 @@ div.pomodoroframe {
     flex-direction: column;
     font-size: 1.2em;
     padding-top: 2vh;
+    padding-bottom: 2vh;
     
     
 }

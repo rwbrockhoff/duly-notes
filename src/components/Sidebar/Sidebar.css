@@ -12,7 +12,7 @@ div.sidebar {
 
 
 div.iconbar {
-    height: 8vh;
+    height: 9vh;
     width: 100%;
     display: flex;
     justify-content: space-evenly;
@@ -27,7 +27,7 @@ div.iconbar i:hover {
 
 div.noteContainer {
     overflow-y: scroll;
-    
+    height: 100vh;
 }
 
 ::-webkit-scrollbar {
@@ -44,6 +44,7 @@ div.pomodoro {
     display: flex;
     align-self: center;
     font-size: .4em;
+    
 }
 
 
