@@ -116,17 +116,18 @@ class TextEditor extends Component {
       this.props.updateUser(user)
       
       axios.get('/api/notes').then( notes => {
-        
+        console.log('getnotesnotes', notes)
       if (notes.data[0]){
        
-      this.props.updateUser({notes: notes.data, displayNote: notes.data[0], theme: notes.data[0].theme})
+      this.props.updateUser({notes: notes.data, displayNote: notes.data[0], theme: notes.data[0].theme, pomodoro: {toggle: notes.data[0].pomodoro}})
      
 
       // this.props.updateDisplay({displayName: notes.data[0]})
       this.setState({
         title: this.props.notes[0].title,
         theme: this.props.theme,
-        checked: this.props.theme
+        checked: this.props.theme,
+        checkedPomodoro: this.props.pomodoro.toggle
         // content: this.props.notes[0].content
                }
               )
