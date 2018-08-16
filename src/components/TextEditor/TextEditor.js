@@ -82,7 +82,17 @@ class TextEditor extends Component {
             this.props.updateUser({notes: notes.data})}})
 
          })
-      }}
+      }
+      
+        else if(e.keyCode === 40){
+          this.props.updateUser({pomodoroToggle: true})
+        }
+        else if (e.keyCode === 38){
+          this.props.updateUser({pomodoroToggle: false})
+        }
+      
+    
+    }
     }) 
     
   }

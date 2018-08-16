@@ -17,6 +17,8 @@ class Sidebar extends Component {
     this.state = {
       open: true
     }
+
+    
   }
 
   createNote(){
@@ -27,23 +29,6 @@ class Sidebar extends Component {
   }
 
   render() {
-
-   
-  // let displayPomodoro = () => {
-
-  //   if (this.props.pomodoroToggle){
-  //     return (
-       
-  //                      <Pomodoro/>
-       
-      
-  //     )
-  //   }
-  //   else {
-  //     return null
-  //   }
-    
-  // }
     
     if (!this.props.notes){
       listOutNotes = null;
@@ -79,7 +64,7 @@ class Sidebar extends Component {
        
       <div className='sidebar' style={{backgroundColor: this.props.theme ? '#3d3d3d' : '#f7f5f5'}}>
 
-      <Motion style={{w: spring(this.props.pomodoroToggle ? 0 : -30)}}>
+      <Motion style={{w: spring(this.props.pomodoroToggle ? 0 : -17)}}>
            {({w}) => 
            <Pomodoro style={{marginTop: w + 'vh'}}/>
                    }
