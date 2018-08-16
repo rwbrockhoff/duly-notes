@@ -20,6 +20,12 @@ div.timer {
     margin-bottom: 2vh;
 }
 
+div.timer:hover {
+    color: #4D76FF;
+    cursor: pointer;
+    font-size: 1.22em;
+}
+
 div.stats {
     width: 100%;
     display: flex;
@@ -42,7 +48,5 @@ div.pomodoroframe p {
     margin: 0;
 }
 
-i:hover {
-    color: #4D76FF;
-}
+
 

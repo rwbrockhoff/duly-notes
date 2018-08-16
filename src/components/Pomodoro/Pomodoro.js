@@ -96,8 +96,8 @@ componentDidMount(){
     return (
       <div className='pomodoroframe' style={{marginTop: this.props.style.marginTop}}>
 
-        <div className='timer'>
-        <i className="fas fa-stopwatch" onClick={() => this.handleClick()}/> &nbsp; &nbsp;
+        <div className='timer' onClick={() => this.handleClick()}>
+        <i className="fas fa-stopwatch"/> &nbsp; &nbsp;
         <p> {this.state.sessionTimer}  seconds </p>
         </div>
         
