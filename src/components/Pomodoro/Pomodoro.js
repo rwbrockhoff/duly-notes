@@ -6,10 +6,14 @@ import axios from 'axios';
 
 var pomodoroTimer = 0;
 var myVisualTimer;
+var today = [];
+var week = [];
+var totalToday = 0;
+var totalWeek = 0;
 
 class Pomodoro extends Component {
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
 
         this.state = {
             sessioncomplete: false,
@@ -23,7 +27,22 @@ class Pomodoro extends Component {
 
 componentDidMount(){
     axios.get('/api/getpomodoro').then(usersPomodoros => {
-        console.log(usersPomodoros.data)
+        
+        var total = usersPomodoros.data.length
+
+        usersPomodoros.data.map(e => {
+
+            if (e.date === 0){
+                totalToday +=1
+                totalWeek +=1
+            }
+            else if (e.date <= 7){
+                totalWeek +=1
+            }
+            
+        })
+        
+        this.props.updateUser({pomodoro: {today: totalToday, week: totalWeek, total: total}})
     })
 }
 
@@ -45,23 +64,12 @@ componentDidMount(){
     axios.put('/api/addpomodoro', {sessionCount: 1}).then( () => {
 
         axios.get('/api/getpomodoro').then(usersPomodoros => {
-            var today = [];
-            var week = [];
+            
             var total = usersPomodoros.data.length
 
-            usersPomodoros.data.map(e => {
-
-                if (e.date === 0){
-                    today.push(e.sessioncount)
-                }
-                else if (e.date <= 7){
-                    week.push(e.sessioncount)
-                }
-                
-            })
-
-            var totalToday = today.length
-            var totalWeek = week.length
+            totalToday += 1
+            totalWeek += 1
+            
             this.props.updateUser({pomodoro: {today: totalToday, week: totalWeek, total: total}})
         })
             
@@ -78,12 +86,16 @@ componentDidMount(){
   
 
   render() {
+      console.log(this.props.pomodoro)
     return (
       <div className='pomodoroframe'>
 
         <button onClick={() => this.startPomodoro()}>Start</button> 
         <button onClick={() => this.stopPomodoro()}>Stop</button> 
-        <p> Made it to 7 Seconds. Sessions: {this.state.sessionCount}. Timer: {this.state.sessionTimer} </p>
+        <p> Today: {this.props.pomodoro.today} </p>
+        <p> Week: {this.props.pomodoro.week} </p>
+        <p> Total: {this.props.pomodoro.total} </p> 
+        <p> Timer: {this.state.sessionTimer} </p>
       </div>
     )
   }
