@@ -24,7 +24,7 @@ import {updateUser, logoutUser, updateDisplay} from '../../ducks/reducer';
 
 let note;
 var change = false;
-var pomodoro = 0;
+var displayPomodoro;
 
 
 class TextEditor extends Component {
@@ -38,7 +38,8 @@ class TextEditor extends Component {
       openNoteMenu: false,
       editorState: createEditorState(),
       theme: this.props.theme, 
-      checked: this.props.theme
+      checked: this.props.theme,
+      checkedPomodoro: this.props.pomodoro.toggle
     }
 
     this.onChange = (editorState) => {
@@ -234,10 +235,16 @@ class TextEditor extends Component {
     })
   }
 
-  
+  handlePomodoroChange = (checkedPomodoro) => {
+    console.log(checkedPomodoro)
+    this.setState({checkedPomodoro})
+    this.props.updateUser({pomodoro: {toggle: checkedPomodoro}})
+    axios.put('/api/pomodorotoggle', {toggle: checkedPomodoro}).then( res => {
+      console.log(res)
+    })
+  }
 
-  
-
+ 
   render() {
     
     const { editorState } = this.state;
@@ -253,7 +260,14 @@ class TextEditor extends Component {
       note = '';
     }
 
+   if (this.state.checkedPomodoro){
+     displayPomodoro = <Pomodoro/>
+   }
+   else {
+     displayPomodoro = ''
+   }
    
+
     
 
     return (
@@ -265,7 +279,7 @@ class TextEditor extends Component {
       
 
       <div className='editorFrame' style={{marginLeft: x + 'vw', backgroundColor: this.props.theme ? 'black' : 'white', color: this.props.theme ? 'white' : 'black'}}>
-        <Pomodoro/>
+        {displayPomodoro}
         <Sidebar/>
 
          <div className='editor'>
@@ -308,6 +322,25 @@ class TextEditor extends Component {
                         id="material-switch"
                       />
                   </li> 
+
+                   <li> 
+                    <i className="fas fa-moon"/> &nbsp; Pomodoro &nbsp;
+                    <Switch
+                        checked={this.state.checkedPomodoro}
+                        onChange={this.handlePomodoroChange}
+                        onColor="#86d3ff"
+                        onHandleColor="#2693e6"
+                        handleDiameter={15}
+                        uncheckedIcon={false}
+                        checkedIcon={false}
+                        boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
+                        activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
+                        height={10}
+                        width={24}
+                        className="react-switch"
+                        id="material-switch"
+                      />
+                  </li> 
                 
                 <li onClick={() => this.logout()}> 
                   <Link to ='/'> 
@@ -323,12 +356,6 @@ class TextEditor extends Component {
 
        }
        </Motion>
-
-       
-
-       
-       
-
 
             <div className='menu'>
             <i className="fas fa-ellipsis-h"

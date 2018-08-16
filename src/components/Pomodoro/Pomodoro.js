@@ -4,10 +4,8 @@ import { connect } from 'react-redux';
 import {updateUser} from '../../ducks/reducer';
 import axios from 'axios';
 
-var pomodoroTimer = 0;
+
 var myVisualTimer;
-var today = [];
-var week = [];
 var totalToday = 0;
 var totalWeek = 0;
 
@@ -86,7 +84,7 @@ componentDidMount(){
   
 
   render() {
-      console.log(this.props.pomodoro)
+      
     return (
       <div className='pomodoroframe'>
 

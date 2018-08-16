@@ -122,5 +122,15 @@ module.exports = {
                 res.status(200).send(updatedpomo)
             })
         })
+    }, 
+    
+    pomodorotoggle: (req, res, next) => {
+        const dbInstance = req.app.get('db');
+        const {sub} = req.session.user
+        const {toggle} = req.body;
+        console.log('toggle', toggle)
+        dbInstance.pomodorotoggle([toggle, sub]).then( () => {
+            res.sendStatus(200)
+        })
     }
 }

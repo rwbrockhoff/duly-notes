@@ -52,6 +52,8 @@ app.get('/api/getpomodoro', controller.getpomodoro)
 
 app.put('/api/addpomodoro', controller.addpomodoro)
 
+app.put('/api/pomodorotoggle', controller.pomodorotoggle)
+
 //-------------------//
 
 app.get('/auth/callback', async (req, res) => {
