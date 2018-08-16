@@ -109,7 +109,7 @@ class TextEditor extends Component {
         axios.get('/api/verify').then(res => {
           
           if (res.data === 'notactive'){
-   
+          console.log('not active!')
            this.props.history.push("/subscription");
           }
           else if (res.data === 'noaccount'){
