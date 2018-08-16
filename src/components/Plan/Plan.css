@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700,800');
+
 div.plan h4 {
     font-weight: 100;
     margin-top: 0;
@@ -5,7 +7,7 @@ div.plan h4 {
 }
 
 div.plancontainer {
-    font-family: Avenir;
+    font-family: 'Nunito Sans';
     display: flex;
     justify-content: center;
     align-content: center;

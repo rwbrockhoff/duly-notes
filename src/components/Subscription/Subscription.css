@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700,800');
+
 body {
-    font-family: Avenir;
+    font-family: 'Nunito Sans';
 }
 
 div.welcomebar h3 {
@@ -53,7 +55,7 @@ div.infobox button.cancel {
     color: #FF5964;
     border: none;
     border-radius: 1vh;
-    font-family: Avenir;
+    font-family: 'Nunito Sans';
     font-size: .90em;
     
 

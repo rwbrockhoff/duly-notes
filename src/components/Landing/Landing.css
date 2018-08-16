@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700,800');
+
 div.headerbar {
     width: 100%;
     height: 10vh;
@@ -14,9 +16,9 @@ div.logo {
     justify-content: center;
     align-items: center;
 
-    font-family: Avenir;
+    font-family: 'Nunito Sans';
     font-size: 2em;
-    font-weight: 700;
+    font-weight: 800;
     color: #2658FF;
     
 }
@@ -26,7 +28,7 @@ nav {
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    font-family: Avenir;
+    font-family: 'Nunito Sans';
     color: #2658FF;
 }
 
@@ -71,7 +73,7 @@ div.intro {
     justify-content: center;
     flex-direction: column;
     
-    font-family: Avenir;
+    font-family: 'Nunito Sans';
     color: white;
     
 }
@@ -97,7 +99,7 @@ div.intro button {
     border-radius: 5em;
     color: white;
     font-size: 1.2em;
-    font-family: Avenir;
+    font-family: 'Nunito Sans';
     margin-top: -5vh;
     
 }
