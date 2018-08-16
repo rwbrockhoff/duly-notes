@@ -25,7 +25,7 @@ class Pomodoro extends Component {
 
 componentDidMount(){
     axios.get('/api/getpomodoro').then(usersPomodoros => {
-        
+        if (totalToday === 0){
         var total = usersPomodoros.data.length
 
         usersPomodoros.data.map(e => {
@@ -40,7 +40,8 @@ componentDidMount(){
             
         })
         
-        this.props.updateUser({pomodoro: {today: totalToday, week: totalWeek, total: total}})
+            this.props.updateUser({pomodoro: {today: totalToday, week: totalWeek, total: total}})
+         }
     })
 }
 

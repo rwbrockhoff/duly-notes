@@ -3,7 +3,8 @@ const initialState = {
     picture: "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png",
     displayNote: {title: ''}, 
     theme: false,
-    pomodoro: {today: 0, week: 0, total: 0, toggle: false}
+    pomodoroToggle: false,
+    pomodoro: {today: 0, week: 0, total: 0}
 }
 
 const UPDATE_USER = 'UPDATE_USER';

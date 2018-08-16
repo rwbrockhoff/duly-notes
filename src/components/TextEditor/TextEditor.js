@@ -39,7 +39,7 @@ class TextEditor extends Component {
       editorState: createEditorState(),
       theme: this.props.theme, 
       checked: this.props.theme,
-      checkedPomodoro: this.props.pomodoro.toggle
+      checkedPomodoro: this.props.pomodoroToggle
     }
 
     this.onChange = (editorState) => {
@@ -119,7 +119,7 @@ class TextEditor extends Component {
         console.log('getnotesnotes', notes)
       if (notes.data[0]){
        
-      this.props.updateUser({notes: notes.data, displayNote: notes.data[0], theme: notes.data[0].theme, pomodoro: {toggle: notes.data[0].pomodoro}})
+      this.props.updateUser({notes: notes.data, displayNote: notes.data[0], theme: notes.data[0].theme, pomodoroToggle: notes.data[0].pomodoro})
      
 
       // this.props.updateDisplay({displayName: notes.data[0]})
@@ -127,7 +127,7 @@ class TextEditor extends Component {
         title: this.props.notes[0].title,
         theme: this.props.theme,
         checked: this.props.theme,
-        checkedPomodoro: this.props.pomodoro.toggle
+        checkedPomodoro: this.props.pomodoroToggle
         // content: this.props.notes[0].content
                }
               )
@@ -239,8 +239,8 @@ class TextEditor extends Component {
   handlePomodoroChange = (checkedPomodoro) => {
     console.log(checkedPomodoro)
     this.setState({checkedPomodoro})
-    this.props.updateUser({pomodoro: {toggle: checkedPomodoro}})
-    axios.put('/api/pomodorotoggle', {toggle: checkedPomodoro}).then( res => {
+    this.props.updateUser({pomodoroToggle: checkedPomodoro})
+    axios.put('/api/pomodorotoggle', {pomodoroToggle: checkedPomodoro}).then( res => {
       console.log(res)
     })
   }
