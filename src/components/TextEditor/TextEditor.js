@@ -195,23 +195,41 @@ class TextEditor extends Component {
     //   const contentState = ContentState.createFromBlockArray(blocksFromHTML);
     //   editorState = EditorState.createWithContent(contentState);
     // }
-  componentWillReceiveProps = (nextProps) => {
+
+  // componentWillReceiveProps = (nextProps) => {
     
-    if (nextProps.displayNote.note_id !== this.props.displayNote.note_id){
+  //   if (nextProps.displayNote.note_id !== this.props.displayNote.note_id){
      
+  //   // const blocksFromHTML = convertFromHTML(String(nextProps.displayNote.content))
+  //   // const contentState = ContentState.createFromBlockArray(blocksFromHTML)
+    
+  //   const html = nextProps.displayNote.content
+  //   const editorState = createEditorState(convertToRaw(mediumDraftImporter(html)))
+    
+  //   this.setState({
+  //     title: nextProps.displayNote.title,
+  //     editorState: editorState
+  //   })
+  //   var html2 = mediumDraftExporter(editorState.getCurrentContent());
+    
+  // }
+  // }
+
+  componentDidUpdate = (prevProps) => {
+    if (prevProps.displayNote.note_id !== this.props.displayNote.note_id){
+       
     // const blocksFromHTML = convertFromHTML(String(nextProps.displayNote.content))
     // const contentState = ContentState.createFromBlockArray(blocksFromHTML)
     
-    const html = nextProps.displayNote.content
+    const html = this.props.displayNote.content
     const editorState = createEditorState(convertToRaw(mediumDraftImporter(html)))
     
     this.setState({
-      title: nextProps.displayNote.title,
+      title: this.props.displayNote.title,
       editorState: editorState
     })
     var html2 = mediumDraftExporter(editorState.getCurrentContent());
-    
-  }
+    }
   }
 
   handleChangeTitle = (e) => {
