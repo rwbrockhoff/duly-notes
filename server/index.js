@@ -193,21 +193,31 @@ app.put('/api/cancelsub', (req, res) => {
 
 
 app.get('/api/verify', (req, res) => {
-
+    
     if (req.session.user){
-            const {sub} = req.session.user
+            const {sub, name, email} = req.session.user
 
             const dbInstance = req.app.get('db')
+
+
+
+    dbInstance.check_user(sub).then(response => {
+        
+        if (!response[0]){
+           dbInstance.create_user([sub, name, email])
+        }
+        
+    })
 
     //Grab Stripe ID using Google Sub
 
     dbInstance.get_stripe(sub).then(customer => {
-        const {customer_id} = customer[0]
-        
-        if (customer_id){
 
+        if (customer[0].customer_id){
+
+            const {customer_id} = customer[0]
         stripe.customers.retrieve(customer_id).then(customer => {
-           
+          
             const {total_count} = customer.subscriptions
 
             if (total_count === 1){
@@ -218,11 +228,13 @@ app.get('/api/verify', (req, res) => {
                           }
                     })
                  }
+          else {
+              console.log('no account')
+              res.status(200).send('noaccount')
+                } 
              })
          }
-            else {
-                    res.status(200).send('noaccount')
-                    }   
+              
         })
 
 app.get('/api/customerid', (req, res) => {
