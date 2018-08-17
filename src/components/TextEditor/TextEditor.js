@@ -104,6 +104,7 @@ class TextEditor extends Component {
 
     //see if we have a user
     axios.get('/api/user-data').then(res => {
+      console.log('resfirst', res)
       if (res.data.user){
     //see if they are active
         axios.get('/api/verify').then(res => {
