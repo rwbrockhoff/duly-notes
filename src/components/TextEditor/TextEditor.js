@@ -264,7 +264,7 @@ class TextEditor extends Component {
     // else {
     //   note = '';
     // }
-
+    
 
     return (
       <div className = 'frame'>
