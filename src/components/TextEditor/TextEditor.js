@@ -191,43 +191,7 @@ class TextEditor extends Component {
       
     })
   }
-   // var contentState = stateFromHTML(html)
-      // editorState: EditorState.createWithContent(contentState)
-
-      // let contentState = stateFromHTML('<p>Hello</p>');
-      // return {
-      //   editorState: EditorState.createWithContent(contentState)
-
-      // const blocksFromHTML = convertFromHTML(html);
-      // const content = ContentState.createFromBlockArray(
-      //   blocksFromHTML.contentBlocks,
-      //   blocksFromHTML.entityMap
-      // );
-
-    //   const blocksFromHTML = convertFromHTML(props.content);
-    //   const contentState = ContentState.createFromBlockArray(blocksFromHTML);
-    //   editorState = EditorState.createWithContent(contentState);
-    // }
-
-  // componentWillReceiveProps = (nextProps) => {
-    
-  //   if (nextProps.displayNote.note_id !== this.props.displayNote.note_id){
-     
-  //   // const blocksFromHTML = convertFromHTML(String(nextProps.displayNote.content))
-  //   // const contentState = ContentState.createFromBlockArray(blocksFromHTML)
-    
-  //   const html = nextProps.displayNote.content
-  //   const editorState = createEditorState(convertToRaw(mediumDraftImporter(html)))
-    
-  //   this.setState({
-  //     title: nextProps.displayNote.title,
-  //     editorState: editorState
-  //   })
-  //   var html2 = mediumDraftExporter(editorState.getCurrentContent());
-    
-  // }
-  // }
-
+  
   componentDidUpdate = (prevProps) => {
     if (prevProps.displayNote.note_id !== this.props.displayNote.note_id){
        
