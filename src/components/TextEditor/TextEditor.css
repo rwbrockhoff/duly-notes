@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700,800');
 
+
 div.editorFrame {
     display: flex;
     height: 100vh;
@@ -12,14 +13,13 @@ div.editor {
     padding-top: 1.5vh;
     padding-bottom: 2vh !important;
     flex-direction: column;
-    
+    font-family: 'Times New Roman', Times, serif !important;
     
 }
 :focus {outline:0;}
 
 
 .md-RichEditor-root {
-    
     padding: 1vh 2vw !important;
     padding-left: 0vw !important;
     font-size: 1.3em;

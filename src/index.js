@@ -33,7 +33,7 @@ ReactDOM.render(
            )
            }/>
 
-            <Route path="/texteditor" component={TextEditor}/>
+            <Route path="/texteditor" component={TextEditor} />
             <Route path="/plan" render={(props) => (
                 <div>
                     <App/>

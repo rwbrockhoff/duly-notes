@@ -24,8 +24,8 @@ export default class LandingFeatures extends Component {
       <div className ='LandingFeatures'>
 
         <div className='intro'>
-        <h1> get a better grasp</h1>
-        <h5> on how you take notes</h5>
+        <h1> du more with duly</h1>
+        <h5>productive notes for productive people </h5>
         <button onClick={this.register}>sign up </button>
         </div>
 
@@ -71,7 +71,7 @@ export default class LandingFeatures extends Component {
            
 
             <footer> 
-              <h2>note</h2> &nbsp;&nbsp;<h2>|</h2> &nbsp; www.note.com
+              <h2>duly</h2> &nbsp;&nbsp;<h2>|</h2> &nbsp; www.dulynotes.com
             </footer>
       </div>
     )
