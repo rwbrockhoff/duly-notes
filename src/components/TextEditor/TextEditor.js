@@ -107,6 +107,7 @@ class TextEditor extends Component {
       console.log('resfirst', res)
       if (res.data.user){
     //see if they are active
+    console.log('they are a user')
         axios.get('/api/verify').then(res => {
           console.log('res', res, res.data)
           if (res.data === 'notactive'){
@@ -114,7 +115,7 @@ class TextEditor extends Component {
            this.props.history.push("/subscription");
           }
           else if (res.data === 'noaccount'){
-
+            console.log('noaccount man')
             this.props.history.push("/plan")
           }
         })
