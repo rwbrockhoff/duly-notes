@@ -100,63 +100,73 @@ class TextEditor extends Component {
 
  
   componentDidMount(){
-    
-
+  
     //see if we have a user
     axios.get('/api/user-data').then(res => {
-      console.log('resfirst', res)
+      
       if (res.data.user){
     //see if they are active
-    console.log('they are a user')
+            const {user} = res.data;
+            this.props.updateUser(user)
         axios.get('/api/verify').then(res => {
-          console.log('res', res)
+          
           if (res.data === 'notactive'){
-          console.log('not active!')
+            const {user} = res.data;
+            this.props.updateUser(user)
            this.props.history.push("/subscription");
           }
+
           else if (res.data === 'noaccount'){
-            console.log('noaccount man')
             this.props.history.push("/plan")
+          }
+
+          else if (res.data === 'active') {
+
+            const {user} = res.data;
+            this.props.updateUser(user)
+
+            axios.get('/api/notes').then( notes => {
+              console.log('getnotesnotes', notes)
+            if (notes.data[0]){
+             
+            this.props.updateUser({notes: notes.data, displayNote: notes.data[0], theme: notes.data[0].theme, pomodoroToggle: notes.data[0].pomodoro})
+           
+      
+            // this.props.updateDisplay({displayName: notes.data[0]})
+            this.setState({
+              title: this.props.notes[0].title,
+              theme: this.props.theme,
+              checked: this.props.theme,
+              checkedPomodoro: this.props.pomodoroToggle
+              // content: this.props.notes[0].content
+                     }
+                    )
+                  }
+      
+              else {
+               this.setState({
+                 title: this.props.displayNote.title,
+                 theme: this.props.theme,
+                 checked: this.props.theme,
+                 checkedPomodoro: this.props.pomodoroToggle
+               })
+              }
+      
+              })
+
+
+            
           }
         })
       
      
-        
-      const {user} = res.data;
       
-      this.props.updateUser(user)
-      
-      axios.get('/api/notes').then( notes => {
-        console.log('getnotesnotes', notes)
-      if (notes.data[0]){
-       
-      this.props.updateUser({notes: notes.data, displayNote: notes.data[0], theme: notes.data[0].theme, pomodoroToggle: notes.data[0].pomodoro})
      
-
-      // this.props.updateDisplay({displayName: notes.data[0]})
-      this.setState({
-        title: this.props.notes[0].title,
-        theme: this.props.theme,
-        checked: this.props.theme,
-        checkedPomodoro: this.props.pomodoroToggle
-        // content: this.props.notes[0].content
-               }
-              )
-            }
-        })
    } 
 
-   else {
-    //user is not in our DB.
-    
-      this.props.history.push("/")
-    
-    // axios.post('/api/auth/register')
-  }
+   
 
-  }).catch(error => {
-      console.log('CDM/Axios/GET:', error);
-    })
+  })
   
     // this.refs.editor.focus();
   }
@@ -283,12 +293,12 @@ class TextEditor extends Component {
       image = this.props.picture
     }
 
-    if (this.props.displayNote.content){
-      note = this.props.displayNote;
-    }
-    else {
-      note = '';
-    }
+    // if (this.props.displayNote.content){
+    //   note = this.props.displayNote;
+    // }
+    // else {
+    //   note = '';
+    // }
 
 
     return (

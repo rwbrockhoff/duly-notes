@@ -1,7 +1,7 @@
 const initialState = {
     name: '',
     picture: "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png",
-    displayNote: {title: ''}, 
+    displayNote: {title: 'Title'}, 
     theme: false,
     pomodoroToggle: false,
     pomodoro: {today: 0, week: 0, total: 0}

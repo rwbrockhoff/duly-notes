@@ -202,9 +202,24 @@ app.get('/api/verify', (req, res) => {
 
 
     dbInstance.check_user(sub).then(response => {
-        
+        var firstNote = {
+            title: 'Your First Note',
+            content: '	<h1 class="md-block-header-one">Willkommen! </h1><h2 class="md-block-header-two">This is your very <em class="md-inline-italic">first</em> note. </h2><p class="md-block-unstyled">I just wanted to point out some features. </p><ul class="md-block-unordered-list-item"><li>- + space creates a bullet point. </li></ul><ol class="md-block-ordered-list-item"><li> 1 + space creates a numbered list. </li></ol><p class="md-block-unstyled">And if you select the word &quot;Willkommen,&quot; you&#x27;ll see your new inline toolbar where</p><p class="md-block-unstyled">you can apply <span class="md-inline-highlight">highlights,</span> add a <a class="md-inline-link" href="http://www.dulynotes.com" target="_blank" rel="noopener noreferrer">link</a>, or even</p><blockquote class="md-block-blockquote">create a blockquote.</blockquote><p class="md-block-unstyled">Hitting the control key will toggle your notes sidebar on and off screen. </p><p class="md-block-unstyled">Hitting the up and down arrows will toggle your pomodoro on and off screen. </p><p class="md-block-unstyled"><br/></p>',
+            author_id: sub
+          }
+
+
         if (!response[0]){
-           dbInstance.create_user([sub, name, email])
+           dbInstance.create_user([sub, name, email]).then( () => {
+
+            dbInstance.insertfirstnote([firstNote.title, firstNote.content, firstNote.author_id])
+            
+           })
+
+           
+
+           res.status(200).send('noaccount')
+
         }
         
     })
@@ -229,7 +244,6 @@ app.get('/api/verify', (req, res) => {
                     })
                  }
           else {
-              console.log('no account')
               res.status(200).send('noaccount')
                 } 
              })
