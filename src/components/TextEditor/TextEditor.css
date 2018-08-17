@@ -66,6 +66,10 @@ div.editor {
     margin-bottom: -1.5vh;
 }
 
+.md-side-toolbar {
+    display: none;
+}
+
 
 
 
@@ -96,7 +100,8 @@ input.titlebox {
 
 
 img.profilepic {
-    width: 2vw;
+    width: 2.5vw;
+    min-width: 30px;
     border-radius: 2vw;
     position: absolute;
     top: 1.5vh;
