@@ -184,6 +184,7 @@ class TextEditor extends Component {
       
       this.props.updateUser({notes: res.data})
       if (res.data[0]){
+        this.props.updateUser({displayNote: res.data[0]})
       this.setState({title: this.props.notes[0].title,
             content: this.props.notes[0].content })
       }
