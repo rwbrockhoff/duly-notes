@@ -239,7 +239,16 @@ class TextEditor extends Component {
   render() {
     
     const { editorState } = this.state;
-  
+    
+    var renderDelete = () => {
+      if(this.props.deleteToggle){
+        return (
+          <DeleteMod/>
+        )
+      }
+      
+    }
+
     return (
      
       <div className = 'frame'>
@@ -252,9 +261,13 @@ class TextEditor extends Component {
      
       <div className='editorFrame' style={{marginLeft: x + 'vw', backgroundColor: this.props.theme ? 'black' : 'white', color: this.props.theme ? 'white' : 'black'}}>
 
+
         <Sidebar/>
+
+        
+        {renderDelete()}
        
-        <DeleteMod/>
+        
 
          <div className='editor'>
         
@@ -306,7 +319,7 @@ class TextEditor extends Component {
             
             <div className='notemenu' style={{opacity: n, right: o + 'vh', backgroundColor: this.props.theme ? '#3d3d3d' : '#f7f5f5'}}>
 
-               <li onClick={() => this.deleteNote()}> <i className="far fa-trash-alt"/>  
+               <li onClick={() => this.props.updateUser({deleteToggle: true})}> <i className="far fa-trash-alt"/>  
                 </li>
               
                 <li> 

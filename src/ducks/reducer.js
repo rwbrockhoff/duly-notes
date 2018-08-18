@@ -7,6 +7,7 @@ const initialState = {
     theme: false,
     pomodoroToggle: false,
     checkedMg: true,
+    deleteToggle: false,
     pomodoro: {today: 0, week: 0, total: 0}
 }
 
