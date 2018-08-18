@@ -104,7 +104,7 @@ img.profilepic {
     min-width: 30px;
     border-radius: 2vw;
     position: absolute;
-    top: 1.5vh;
+    top: 2vh;
     right: 1vw;
 }
 
@@ -158,31 +158,32 @@ div.usermenu a {
 
 div.notemenu {
     position: absolute;
-    top: 5vh;
-    right: 5vw;
-    width: 12vw;
-    height: 5vh;
+    top: 2.3vh;
+    
+    width: 8vw;
+    height: 3vh;
     background-color: #f7f5f5;
     color: #ce5959;
     list-style: none;
-    border-radius: 1vw 0vw 1vw 1vw;
+    border-radius: 1vw 1vw 1vw 1vw;
     z-index: 2;
-    line-height: 1.5em;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    flex-direction: column;
-    
-    font-weight: 500;  
+    padding: .5vh .5vw;
+    padding-top: 1vh;
 }
 
 div.notemenu li {
     z-index: 2;
+    
 }
 
 div.notemenu a {
     color: white;
 }
+
+
 
 div.notemenu i {
     font-size: 1em;

@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700,800');
 
 ::placeholder {
     color: white;
@@ -58,7 +58,7 @@ div.form input {
     outline: none;
     font-size: 1.5em;
     font-weight: 700;
-    font-family: Avenir;
+    font-family: 'Nunito Sans';
 
     
 }
@@ -81,7 +81,7 @@ div.form textarea {
     outline: none;
     font-size: 1.5em;
     font-weight: 700;
-    font-family: Avenir;
+    font-family: 'Nunito Sans';
 }
 
 div.form button {

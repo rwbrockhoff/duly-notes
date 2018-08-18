@@ -132,5 +132,15 @@ module.exports = {
         dbInstance.pomodorotoggle([pomodoroToggle, sub]).then( () => {
             res.sendStatus(200)
         })
+    },
+
+    memorygradient: (req, res, next) => {
+        const dbInstance = req.app.get('db');
+        const {sub} = req.session.user;
+        const {memorygradient, note_id} = req.body;
+
+        dbInstance.memorytoggle([memorygradient, sub, note_id]).then( notes => {
+            res.status(200).send(notes)
+        })
     }
 }

@@ -38,17 +38,24 @@ class Sidebar extends Component {
 
       listOutNotes = this.props.notes.map((e,i) => {
         let memoryGradient;
-        if (e.memory === 0){
-          memoryGradient = '#4D76FF'
+        if (e.memorygradient === true){
+              
+              if (e.memory === 0){
+                memoryGradient = '#4D76FF'
+              }
+              else if (e.memory === 1){
+                memoryGradient = '#C34CFF'
+              }
+              else if (e.memory === 2) {
+                memoryGradient = '#FF4CEA'
+              }
+              else {
+                memoryGradient = '#FF4C4C'
+              }
         }
-        else if (e.memory === 1){
-          memoryGradient = '#C34CFF'
-        }
-        else if (e.memory === 2) {
-          memoryGradient = '#FF4CEA'
-        }
+
         else {
-          memoryGradient = '#FF4C4C'
+          memoryGradient = this.props.theme ? '#8B8B8B' : '#3d3d3d'
         }
 
         return (

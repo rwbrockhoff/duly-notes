@@ -38,7 +38,8 @@ class TextEditor extends Component {
       editorState: createEditorState(),
       theme: this.props.theme, 
       checked: this.props.theme,
-      checkedPomodoro: this.props.pomodoroToggle
+      checkedPomodoro: this.props.pomodoroToggle,
+      checkedMg: this.props.checkedMg
     }
 
     this.onChange = (editorState) => {
@@ -137,7 +138,8 @@ class TextEditor extends Component {
               title: this.props.notes[0].title,
               theme: this.props.theme,
               checked: this.props.theme,
-              checkedPomodoro: this.props.pomodoroToggle
+              checkedPomodoro: this.props.pomodoroToggle,
+              checkedMg: this.props.displayNote.memorygradient
               // content: this.props.notes[0].content
                      }
                     )
@@ -148,7 +150,8 @@ class TextEditor extends Component {
                  title: this.props.displayNote.title,
                  theme: this.props.theme,
                  checked: this.props.theme,
-                 checkedPomodoro: this.props.pomodoroToggle
+                 checkedPomodoro: this.props.pomodoroToggle,
+                 checkedMg: this.props.displayNote.memorygradient
                })
               }
       
@@ -203,7 +206,8 @@ class TextEditor extends Component {
     
     this.setState({
       title: this.props.displayNote.title,
-      editorState: editorState
+      editorState: editorState,
+      checkedMg: this.props.displayNote.memorygradient
     })
     var html2 = mediumDraftExporter(editorState.getCurrentContent());
     }
@@ -234,18 +238,27 @@ class TextEditor extends Component {
 
   handleThemeChange = (checked) => {
     this.setState({ checked })
-    this.props.updateUser({theme: checked})
-    axios.put('/api/theme', {theme: this.state.checked}).then(res => {
+    // this.props.updateUser({theme: checked})
+    axios.put('/api/memorygradient', {checkedMg: this.state.checkedMg}).then(res => {
       console.log(res)
     })
   }
 
   handlePomodoroChange = (checkedPomodoro) => {
-    console.log(checkedPomodoro)
+    
     this.setState({checkedPomodoro})
     this.props.updateUser({pomodoroToggle: checkedPomodoro})
     axios.put('/api/pomodorotoggle', {pomodoroToggle: checkedPomodoro}).then( res => {
-      console.log(res)
+      console.log('response: ', res)
+    })
+  }
+
+  handleMgChange = (checkedMg) => {
+    
+    this.setState({checkedMg})
+
+    axios.put('/api/memorygradient', {memorygradient: checkedMg, note_id: this.props.displayNote.note_id}).then( notes => {
+      this.props.updateUser({notes: notes.data})
     })
   }
 
@@ -258,12 +271,7 @@ class TextEditor extends Component {
       image = this.props.picture
     }
 
-    // if (this.props.displayNote.content){
-    //   note = this.props.displayNote;
-    // }
-    // else {
-    //   note = '';
-    // }
+ 
     
 
     return (
@@ -288,10 +296,10 @@ class TextEditor extends Component {
             value={this.state.title}
            />
 
-      <Motion style={{m: spring(this.state.openMenu ? 1 : 0), n: spring(this.state.openNoteMenu ? 1 : 0) }}>
+      <Motion style={{m: spring(this.state.openMenu ? 1 : 0), n: spring(this.state.openMenu ? 0 : 1), o: spring(this.state.openMenu ? -6 : 10) }}>
 
       
-       {({m, n}) => 
+       {({m, n, o}) => 
 
         <div>
             <div className='usermenu' style={{opacity: m}}>
@@ -325,22 +333,40 @@ class TextEditor extends Component {
                   <i className="fas fa-sign-out-alt"/> &nbsp; Logout </Link></li> 
                
             </div>
+            
+            <div className='notemenu' style={{opacity: n, right: o + 'vh', backgroundColor: this.props.theme ? '#3d3d3d' : '#f7f5f5'}}>
 
-            <div className='notemenu' style={{opacity: n}}>
                <li onClick={() => this.deleteNote()}> <i className="far fa-trash-alt"/>  
-               &thinsp; Delete Note </li>
+                </li>
+              
+                <li> 
+                <i className="fas fa-brain" style={{color: this.props.theme ? '#8B8B8B' : '#3d3d3d'}}/> &nbsp;&thinsp;
+                    <Switch
+                        checked={this.state.checkedMg}
+                        onChange={this.handleMgChange}
+                        onColor="#86d3ff"
+                        onHandleColor="#2693e6"
+                        handleDiameter={14}
+                        uncheckedIcon={false}
+                        checkedIcon={false}
+                        boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
+                        activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
+                        height={10}
+                        width={24}
+              
+                        className="react-switch-memory"
+                        id="material-switch"
+                      />
+                  </li> 
+
+              
             </div>
         </div>
 
        }
        </Motion>
 
-            <div className='menu'>
-            <i className="fas fa-ellipsis-h"
-            onClick={() => this.setState({openNoteMenu: !this.state.openNoteMenu, openMenu: false})}
-            />
-            </div>
-
+        
             
             <img className='profilepic' alt="profilepic" src={image}
            

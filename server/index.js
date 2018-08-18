@@ -55,6 +55,8 @@ app.put('/api/addpomodoro', controller.addpomodoro)
 
 app.put('/api/pomodorotoggle', controller.pomodorotoggle)
 
+app.put('/api/memorygradient', controller.memorygradient)
+
 //-------------------//
 
 app.get('/auth/callback', async (req, res) => {
