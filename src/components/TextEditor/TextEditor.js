@@ -8,6 +8,7 @@ import {Motion, spring} from 'react-motion';
 import {convertFromHTML, ContentState, EditorState} from 'draft-js';
 import Switch from 'react-switch';
 import Pomodoro from '../Pomodoro/Pomodoro';
+import DeleteModal from '../DeleteModal/DeleteModal';
 
 import {Editor,createEditorState} from 'medium-draft'
 import 'medium-draft/lib/index.css'
@@ -251,17 +252,20 @@ class TextEditor extends Component {
     const { editorState } = this.state;
   
     return (
+     
       <div className = 'frame'>
+      
       <Motion style={{x: spring(this.state.open ? -20 : 0),
       y: spring(this.state.open ? 95 : 75), z: spring(this.state.open ? 90 : 65)}}>
 
        {({x, y, z}) => 
       
-
+     
       <div className='editorFrame' style={{marginLeft: x + 'vw', backgroundColor: this.props.theme ? 'black' : 'white', color: this.props.theme ? 'white' : 'black'}}>
+
         {displayPomodoro}
         <Sidebar/>
-
+        <DeleteModal/>
          <div className='editor'>
         
              <input type="text" 
@@ -303,7 +307,7 @@ class TextEditor extends Component {
                       />
                   </li> 
 
-                  
+                 
                 <li onClick={() => this.logout()}> 
                   <Link to ='/'> 
                   <i className="fas fa-sign-out-alt"/> &nbsp; Logout </Link></li> 
