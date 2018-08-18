@@ -238,7 +238,7 @@ class TextEditor extends Component {
 
   handleThemeChange = (checked) => {
     this.setState({ checked })
-    // this.props.updateUser({theme: checked})
+    this.props.updateUser({theme: checked})
     axios.put('/api/memorygradient', {checkedMg: this.state.checkedMg}).then(res => {
       console.log(res)
     })
