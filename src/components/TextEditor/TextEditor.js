@@ -11,13 +11,13 @@ import Pomodoro from '../Pomodoro/Pomodoro';
 
 import {Editor,createEditorState} from 'medium-draft'
 import 'medium-draft/lib/index.css'
+import 'medium-draft/lib/basic.css';
 import {stateToHTML} from 'draft-js-export-html';
 import {stateFromHTML} from 'draft-js-import-html';
-
 import { convertToRaw } from 'draft-js';
 import mediumDraftExporter from 'medium-draft/lib/exporter';
 import mediumDraftImporter from 'medium-draft/lib/importer';
-import 'medium-draft/lib/basic.css';
+
 
 import {updateUser, logoutUser, updateDisplay} from '../../ducks/reducer';
 
@@ -50,6 +50,7 @@ class TextEditor extends Component {
       
     };
 
+    document.body.addEventListener('click', this.clickBody)
     this.clickBody = () => {
       this.setState({openNoteMenu: false, openMenu: false })
     }
@@ -62,10 +63,6 @@ class TextEditor extends Component {
   if (e.target.innerHTML){
     
       if (e.keyCode === 13){
-        
-        
-        // var html = stateToHTML(this.state.editorState.getCurrentContent())
-        // this.setState({content: html})
 
         var html = mediumDraftExporter(this.state.editorState.getCurrentContent());
        
@@ -132,8 +129,6 @@ class TextEditor extends Component {
              
             this.props.updateUser({notes: notes.data, displayNote: notes.data[0], theme: notes.data[0].theme, pomodoroToggle: notes.data[0].pomodoro})
            
-      
-            // this.props.updateDisplay({displayName: notes.data[0]})
             this.setState({
               title: this.props.notes[0].title,
               theme: this.props.theme,
@@ -152,26 +147,14 @@ class TextEditor extends Component {
                  checked: this.props.theme,
                  checkedPomodoro: this.props.pomodoroToggle,
                  checkedMg: this.props.displayNote.memorygradient
-               })
-              }
-      
-              })
-
-
-            
-          }
-        })
-      
-     
-      
-     
-   } 
-
-   
-
-  })
-  
-    // this.refs.editor.focus();
+                       })
+                     }
+                  })   
+                }
+            })
+        } 
+     })
+        // this.refs.editor.focus();
   }
   
   logout(){
@@ -266,14 +249,7 @@ class TextEditor extends Component {
   render() {
     
     const { editorState } = this.state;
-    let image = this.props.picture
-    if (this.props.user){
-      image = this.props.picture
-    }
-
- 
-    
-
+  
     return (
       <div className = 'frame'>
       <Motion style={{x: spring(this.state.open ? -20 : 0),
@@ -366,18 +342,11 @@ class TextEditor extends Component {
        }
        </Motion>
 
-        
+            <img className='profilepic' alt="profilepic" src={this.props.picture}
+            onClick={() => this.setState({openMenu: !this.state.openMenu, openNoteMenu: false})}/>
             
-            <img className='profilepic' alt="profilepic" src={image}
-           
-            onClick={() => this.setState({openMenu: !this.state.openMenu, openNoteMenu: false})}
-            />
-            
-            <Editor
-              ref="editor"
-              editorState={editorState}
-              onChange={this.onChange} />
-         
+            <Editor ref="editor" editorState={editorState} onChange={this.onChange} />
+      
          </div>
          
       </div> }

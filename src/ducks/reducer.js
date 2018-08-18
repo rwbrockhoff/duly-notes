@@ -1,6 +1,8 @@
+import defaultUserIcon from '../assets/user.svg';
+
 const initialState = {
     name: '',
-    picture: "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png",
+    picture: defaultUserIcon,
     displayNote: {title: 'Title'}, 
     theme: false,
     pomodoroToggle: false,
