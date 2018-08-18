@@ -350,7 +350,7 @@ class TextEditor extends Component {
        </Motion>
 
             <img className='profilepic' alt="profilepic" src={this.props.picture}
-            onClick={() => this.setState({openMenu: !this.state.openMenu, openNoteMenu: false})}/>
+            onClick={() => this.setState({openMenu: !this.state.openMenu})}/>
             
             <Editor ref="editor" editorState={editorState} onChange={this.onChange} />
     
