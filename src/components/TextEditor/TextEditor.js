@@ -250,22 +250,22 @@ class TextEditor extends Component {
     }
 
     return (
-     
-      <div className = 'frame'>
       
+      <div className = 'frame'>
+      {renderDelete()}
       <Motion style={{x: spring(this.state.open ? -20 : 0),
       y: spring(this.state.open ? 95 : 75), z: spring(this.state.open ? 90 : 65)}}>
 
        {({x, y, z}) => 
       
      
-      <div className='editorFrame' style={{marginLeft: x + 'vw', backgroundColor: this.props.theme ? 'black' : 'white', color: this.props.theme ? 'white' : 'black'}}>
+      <div className='editorFrame' style={{marginLeft: x + 'vw', backgroundColor: this.props.theme ? 'black' : 'white', color: this.props.theme ? 'white' : 'black', filter: this.props.deleteToggle ? 'blur(3px)' : 'blur(0px)'}}>
 
 
         <Sidebar/>
 
         
-        {renderDelete()}
+       
        
         
 
@@ -353,12 +353,15 @@ class TextEditor extends Component {
             onClick={() => this.setState({openMenu: !this.state.openMenu, openNoteMenu: false})}/>
             
             <Editor ref="editor" editorState={editorState} onChange={this.onChange} />
-      
+    
          </div>
          
       </div> }
+      
      </Motion>
+
     </div>
+    
     )
   }
 }
