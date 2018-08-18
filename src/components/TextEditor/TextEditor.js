@@ -8,7 +8,7 @@ import {Motion, spring} from 'react-motion';
 import {convertFromHTML, ContentState, EditorState} from 'draft-js';
 import Switch from 'react-switch';
 import Pomodoro from '../Pomodoro/Pomodoro';
-import DeleteModal from '../DeleteModal/DeleteModal';
+import DeleteMod from '../DeleteMod/DeleteMod';
 
 import {Editor,createEditorState} from 'medium-draft'
 import 'medium-draft/lib/index.css'
@@ -24,7 +24,7 @@ import {updateUser, logoutUser, updateDisplay} from '../../ducks/reducer';
 
 let note;
 var change = false;
-var displayPomodoro;
+
 
 
 class TextEditor extends Component {
@@ -35,8 +35,8 @@ class TextEditor extends Component {
       content: '',
       open: false,
       openMenu: false,
-      openNoteMenu: false,
       editorState: createEditorState(),
+
       theme: this.props.theme, 
       checked: this.props.theme,
       checkedPomodoro: this.props.pomodoroToggle,
@@ -48,7 +48,7 @@ class TextEditor extends Component {
       
      var html = mediumDraftExporter(editorState.getCurrentContent());
      this.setState({content: html})
-      
+  
     };
 
     document.body.addEventListener('click', this.clickBody)
@@ -164,20 +164,7 @@ class TextEditor extends Component {
     })
   }
 
-  deleteNote(){
-
-    let id = this.props.displayNote.note_id
-    axios.delete(`/api/note/${id}`).then( res => {
-      
-      this.props.updateUser({notes: res.data})
-      if (res.data[0]){
-        this.props.updateUser({displayNote: res.data[0]})
-      this.setState({title: this.props.notes[0].title,
-            content: this.props.notes[0].content })
-      }
-      
-    })
-  }
+ 
   
   componentDidUpdate = (prevProps) => {
     if (prevProps.displayNote.note_id !== this.props.displayNote.note_id){
@@ -246,6 +233,8 @@ class TextEditor extends Component {
     })
   }
 
+  
+
  
   render() {
     
@@ -263,9 +252,10 @@ class TextEditor extends Component {
      
       <div className='editorFrame' style={{marginLeft: x + 'vw', backgroundColor: this.props.theme ? 'black' : 'white', color: this.props.theme ? 'white' : 'black'}}>
 
-        {displayPomodoro}
         <Sidebar/>
-        <DeleteModal/>
+       
+        <DeleteMod/>
+
          <div className='editor'>
         
              <input type="text" 
