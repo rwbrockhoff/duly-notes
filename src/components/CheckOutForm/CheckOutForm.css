@@ -1,0 +1,53 @@
+div.checkoutformcontainer {
+    width: 100%;
+    height: 100vh;
+    background-color: #f7f5f5;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+
+form.checkout {
+    width: 50vw;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 30px 30px;
+    margin-bottom: 40vh; 
+}
+
+form.checkout button {
+    width: 15vw;
+    height: 5vh;
+    background-color: #2658FF;
+    color: white;
+    border-radius: 5vh;
+    font-size: 1em;
+}
+
+form.checkout button:hover {
+    background-color: #4D76FF;
+    color: white;
+}
+
+div.successmodal {
+    width: 30vw;
+    height: 20vh;
+    background-color: #f7f5f5;
+    color: black;
+   
+   
+
+}
+
+div.innermodal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+}
+
+div.innermodal i {
+    color: #23CE6B;
+}

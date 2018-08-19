@@ -80,7 +80,65 @@ let receiveUser = await axios.get(`https://${process.env.REACT_APP_AUTH0_DOMAIN}
 req.session.user = receiveUser.data;
 req.session.user.id = sessionId;
 sessionId++
-res.redirect('/#/texteditor')
+
+
+
+
+//redirect based on user's subscription status
+
+const {sub, name, email} = req.session.user
+const dbInstance = req.app.get('db')
+
+    dbInstance.check_user(sub).then(response => {
+        var firstNote = {
+            title: 'Your First Note',
+            content: '	<h1 class="md-block-header-one">Willkommen! </h1><h2 class="md-block-header-two">This is your very <em class="md-inline-italic">first</em> note. </h2><p class="md-block-unstyled">I just wanted to point out some features. </p><ul class="md-block-unordered-list-item"><li>- + space creates a bullet point. </li></ul><ol class="md-block-ordered-list-item"><li> 1 + space creates a numbered list. </li></ol><p class="md-block-unstyled">And if you select the word &quot;Willkommen,&quot; you&#x27;ll see your new inline toolbar where</p><p class="md-block-unstyled">you can apply <span class="md-inline-highlight">highlights,</span> add a <a class="md-inline-link" href="http://www.dulynotes.com" target="_blank" rel="noopener noreferrer">link</a>, or even</p><blockquote class="md-block-blockquote">create a blockquote.</blockquote><p class="md-block-unstyled">Hitting the control key will toggle your notes sidebar on and off screen. </p><p class="md-block-unstyled">Hitting the up and down arrows will toggle your pomodoro on and off screen. </p><p class="md-block-unstyled"><br/></p>',
+            author_id: sub
+          }
+
+
+        if (!response[0]){
+           dbInstance.create_user([sub, name, email]).then( () => {
+
+            dbInstance.insertfirstnote([firstNote.title, firstNote.content, firstNote.author_id])
+
+            
+           })
+
+           res.redirect('/#/signup')
+
+        //    res.status(200).send('noaccount')
+
+        }
+        
+    })
+
+    //Grab Stripe ID using Google Sub
+
+    dbInstance.get_stripe(sub).then(customer => {
+
+        if (customer[0].customer_id){
+
+            const {customer_id} = customer[0]
+        stripe.customers.retrieve(customer_id).then(customer => {
+          
+            const {total_count} = customer.subscriptions
+
+            if (total_count === 1){
+                res.redirect('/#/texteditor')
+            }
+            else {
+                res.redirect('/#/signup')
+                          }
+                    })
+                 }
+          else {
+            res.redirect('/#/signup')
+                } 
+             })
+
+
+
 
 
 })
@@ -112,8 +170,7 @@ const {email, name, sub} = req.session.user
     //Create Customer on Stripe
     const customer = stripe.customers.create({
         description: name, 
-        email: email
-       
+        email: email  
     })
     .then( (res) => {
     const dbInstance = req.app.get('db')
@@ -133,15 +190,27 @@ const {email, name, sub} = req.session.user
                         plan: process.env.PLAN_ID,
                       },
                     ]
-                  }
-                  );
-            
+                  }).catch(error => {
+                      console.log('sub-error: ', error)
+                  })
+
+                    
+                    res.sendStatus(200);
+                      
+                  
+                 
+                  
                  })
-            }) 
+                 
+            }).catch(error => {
+                console.log('addstripeid-error: ', error)
+            })
+            
         })
-
-
+       
+        res.status(200).send('processed')
 })
+
 
 app.put('/api/updatecard', (req, res) => {
    
@@ -198,7 +267,6 @@ app.get('/api/verify', (req, res) => {
     
     if (req.session.user){
             const {sub, name, email} = req.session.user
-
             const dbInstance = req.app.get('db')
 
 
@@ -210,7 +278,7 @@ app.get('/api/verify', (req, res) => {
             author_id: sub
           }
 
-
+          
         if (!response[0]){
            dbInstance.create_user([sub, name, email]).then( () => {
 
@@ -220,7 +288,7 @@ app.get('/api/verify', (req, res) => {
 
            
 
-           res.status(200).send('noaccount')
+        
 
         }
         
@@ -229,14 +297,14 @@ app.get('/api/verify', (req, res) => {
     //Grab Stripe ID using Google Sub
 
     dbInstance.get_stripe(sub).then(customer => {
-
+       
         if (customer[0].customer_id){
 
             const {customer_id} = customer[0]
         stripe.customers.retrieve(customer_id).then(customer => {
           
             const {total_count} = customer.subscriptions
-
+           
             if (total_count === 1){
                 res.status(200).send('active')
             }

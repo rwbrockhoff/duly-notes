@@ -19,7 +19,6 @@ import { convertToRaw } from 'draft-js';
 import mediumDraftExporter from 'medium-draft/lib/exporter';
 import mediumDraftImporter from 'medium-draft/lib/importer';
 
-
 import {updateUser, logoutUser, updateDisplay} from '../../ducks/reducer';
 
 let note;
@@ -125,7 +124,7 @@ class TextEditor extends Component {
             this.props.updateUser(user)
 
             axios.get('/api/notes').then( notes => {
-              console.log('getnotesnotes', notes)
+              
             if (notes.data[0]){
              
             this.props.updateUser({notes: notes.data, displayNote: notes.data[0], theme: notes.data[0].theme, pomodoroToggle: notes.data[0].pomodoro})

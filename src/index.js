@@ -9,18 +9,22 @@ import store from './ducks/store';
 import TextEditor from './components/TextEditor/TextEditor';
 import Contact from './components/Contact/Contact';
 import Plan from './components/Plan/Plan';
+import SignUp from './components/SignUp/SignUp';
 import Subscription from './components/Subscription/Subscription';
 import LandingFeatures from './components/LandingFeatures/LandingFeatures';
+import {render} from 'react-dom';
+import {StripeProvider} from 'react-stripe-elements';
+
 
 ReactDOM.render(
+    <StripeProvider apiKey='pk_test_92vESunEMIIKO29KNPtIwoPD'> 
 <Provider store={store}>
     <Router>
         <Switch>
             <Route exact path="/" render={() => (
                <div>
-                <App/>
-                <LandingFeatures/>
-               
+                    <App/>
+                    <LandingFeatures/>
                 </div>
             )
             }/>
@@ -32,6 +36,12 @@ ReactDOM.render(
                 </div>
            )
            }/>
+
+           <Route path="/signup" render={(props) => (
+        
+               <SignUp {...props}/>
+        
+           )}/>
 
             <Route path="/texteditor" component={TextEditor} />
             <Route path="/plan" render={(props) => (
@@ -50,5 +60,7 @@ ReactDOM.render(
        </Switch>
     </Router>
 </Provider>
+</StripeProvider>
+
 , document.getElementById('root'));
 unregister()
