@@ -256,17 +256,10 @@ class TextEditor extends Component {
       y: spring(this.state.open ? 95 : 75), z: spring(this.state.open ? 90 : 65)}}>
 
        {({x, y, z}) => 
-      
-     
+         
       <div className='editorFrame' style={{marginLeft: x + 'vw', backgroundColor: this.props.theme ? 'black' : 'white', color: this.props.theme ? 'white' : 'black', filter: this.props.deleteToggle ? 'blur(3px)' : 'blur(0px)'}}>
 
-
         <Sidebar/>
-
-        
-       
-       
-        
 
          <div className='editor'>
         
