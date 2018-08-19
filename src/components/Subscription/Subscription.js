@@ -4,6 +4,10 @@ import axios from 'axios';
 import {withRouter} from 'react-router-dom';
 import StripeCheckout from 'react-stripe-checkout';
 
+import {Elements} from 'react-stripe-elements';
+import InjectedUpdateCard from '../UpdateCard/UpdateCard';
+
+
 var displayStatus;
 var cancelDisplay;
 
@@ -19,16 +23,18 @@ constructor(){
         last4: '', 
         canceled_at: '',
         cancelToggle: false,
-        periodEnd: ''
+        periodEnd: '',
+        updateCard: false
 
     }
+    this.updateCardDisplay = this.updateCardDisplay.bind(this)
 }
 componentDidMount(){
      //do we have a new user, or already a created account
      axios.get('/api/verify').then(res => {
         
         if (res.data === 'noaccount'){
-             this.props.history.push("/plan");
+             this.props.history.push("/");
         } 
 
     axios.get('/api/customerid').then( res => {
@@ -72,13 +78,18 @@ componentDidMount(){
       })
 }
 
-onToken = (token) => {
-    console.log('token', token)
-    axios.put('/api/updatecard', {token} ).then( res => {
-        const {brand, last4} = token.card
-        this.setState({brand: brand, last4: last4})
-    })
-  }
+// onToken = (token) => {
+//     console.log('token', token)
+//     axios.put('/api/updatecard', {token} ).then( res => {
+//         const {brand, last4} = token.card
+//         this.setState({brand: brand, last4: last4})
+//     })
+//   }
+
+updateCardDisplay = (card) => {
+        const {brand, last4} = card.token.card
+        this.setState({brand: brand, last4: last4, updateCard: false})  
+}
 
 handleCancel = () => {
     axios.put('/api/cancelsub').then(res => {
@@ -95,7 +106,7 @@ handleCancel = () => {
     const {REACT_APP_STRIPE_PUB_KEY} = process.env;
 
     if (this.state.status === 'active'){
-        displayStatus = 'Account Status: Active 🎉 '
+        displayStatus = `Account Status: Active 🎉 `
     }
     else if (this.state.status === 'canceled'){
         displayStatus = 'Account Status: Canceled 🚧'
@@ -122,7 +133,10 @@ handleCancel = () => {
                     <div className ='card'>
                         <h3> {this.state.brand} ending in ****{this.state.last4} </h3>
 
-                        
+                        <button className='updatecard' onClick={() => this.setState({updateCard: !this.state.updateCard})}>
+                        Update Card
+                        </button>
+                        <button className='cancel' style={cancelDisplay} onClick={this.handleCancel}> Cancel Subscription </button>
                         {/* <StripeCheckout
                             name="Note Co."
                             description="www.note.com"
@@ -130,13 +144,19 @@ handleCancel = () => {
                             stripeKey={REACT_APP_STRIPE_PUB_KEY}
                             token={this.onToken}
                             /> */}
-                       
-                       
+                    </div>
+                     
+                    <div className='signup'>
+                        <Elements>
+                <InjectedUpdateCard card={this.state.updateCard} updateCard={this.updateCardDisplay}/>
+                        </Elements>
+                    </div>
+                
+                    <div className='status'>
+                        <h3> {displayStatus} </h3> &nbsp; &nbsp;
+                        <h3> {this.state.paymentInfo} </h3>
                     </div>
 
-                        <h2> {displayStatus} </h2>
-                        <h2> {this.state.paymentInfo} </h2>
-                        <button className='cancel' style={cancelDisplay} onClick={this.handleCancel}> cancel </button>
                      </div>
             </div>
       </div>
