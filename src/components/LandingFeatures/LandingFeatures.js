@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './LandingFeatures.css';
-import'medium-editor/dist/css/medium-editor.css';
-import'medium-editor/dist/css/themes/default.css';
+
 
 
 
