@@ -111,7 +111,7 @@ handleCancel = () => {
             <div className='welcomebar'>
                 <h1> {this.state.name}. </h1>
                 <h3> {this.state.startDate} </h3>
-                {/* <h3> We've been together since <b>{this.state.startDate}</b>. Can you believe it? That's true love, baby. </h3> */}
+                
             </div>
 
             <div className='userinfo'>
@@ -121,13 +121,15 @@ handleCancel = () => {
 
                     <div className ='card'>
                         <h3> {this.state.brand} ending in ****{this.state.last4} </h3>
-                        <StripeCheckout
+
+                        
+                        {/* <StripeCheckout
                             name="Note Co."
                             description="www.note.com"
                             panelLabel="Update Payment Method"
                             stripeKey={REACT_APP_STRIPE_PUB_KEY}
                             token={this.onToken}
-                            />
+                            /> */}
                        
                        
                     </div>

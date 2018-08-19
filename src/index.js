@@ -8,7 +8,6 @@ import {Provider} from 'react-redux';
 import store from './ducks/store';
 import TextEditor from './components/TextEditor/TextEditor';
 import Contact from './components/Contact/Contact';
-import Plan from './components/Plan/Plan';
 import SignUp from './components/SignUp/SignUp';
 import Subscription from './components/Subscription/Subscription';
 import LandingFeatures from './components/LandingFeatures/LandingFeatures';
@@ -44,12 +43,7 @@ ReactDOM.render(
            )}/>
 
             <Route path="/texteditor" component={TextEditor} />
-            <Route path="/plan" render={(props) => (
-                <div>
-                    <App/>
-                        <Plan {...props}/>
-                </div>
-            )}/>
+            
 
             <Route path="/subscription" render={(props) => (
                 <div>

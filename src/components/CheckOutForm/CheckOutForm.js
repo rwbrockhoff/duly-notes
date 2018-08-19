@@ -41,7 +41,7 @@ class CheckOutForm extends Component {
     return (
         <div className='checkoutformcontainer'>
         
-        <Motion style={{m: spring(this.state.success ? -50 : 20) }}>
+        <Motion style={{m: spring(this.state.success ? -40 : 20) }}>
 
             {({m}) =>     
 
