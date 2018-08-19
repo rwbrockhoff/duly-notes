@@ -2,11 +2,9 @@ import React, { Component } from 'react'
 import "./Subscription.css";
 import axios from 'axios';
 import {withRouter} from 'react-router-dom';
-import StripeCheckout from 'react-stripe-checkout';
 
 import {Elements} from 'react-stripe-elements';
 import InjectedUpdateCard from '../UpdateCard/UpdateCard';
-
 
 var displayStatus;
 var cancelDisplay;
@@ -78,14 +76,6 @@ componentDidMount(){
       })
 }
 
-// onToken = (token) => {
-//     console.log('token', token)
-//     axios.put('/api/updatecard', {token} ).then( res => {
-//         const {brand, last4} = token.card
-//         this.setState({brand: brand, last4: last4})
-//     })
-//   }
-
 updateCardDisplay = (card) => {
         const {brand, last4} = card.token.card
         this.setState({brand: brand, last4: last4, updateCard: false})  
@@ -97,7 +87,6 @@ handleCancel = () => {
         var cancelDate = 'Access until: ' + new Date(canceled_at*1000).toDateString();
 
         this.setState({paymentInfo: cancelDate, status: 'canceled', cancelToggle: true})
-        console.log('state', this.state)
     })
 }
 
@@ -137,23 +126,18 @@ handleCancel = () => {
                         Update Card
                         </button>
                         <button className='cancel' style={cancelDisplay} onClick={this.handleCancel}> Cancel Subscription </button>
-                        {/* <StripeCheckout
-                            name="Note Co."
-                            description="www.note.com"
-                            panelLabel="Update Payment Method"
-                            stripeKey={REACT_APP_STRIPE_PUB_KEY}
-                            token={this.onToken}
-                            /> */}
+                        
                     </div>
                      
                     <div className='signup'>
                         <Elements>
-                <InjectedUpdateCard card={this.state.updateCard} updateCard={this.updateCardDisplay}/>
+                            <InjectedUpdateCard card={this.state.updateCard} 
+                            updateCard={this.updateCardDisplay}/>
                         </Elements>
                     </div>
                 
                     <div className='status'>
-                        <h3> {displayStatus} </h3> &nbsp; &nbsp;
+                        <h3> {displayStatus} </h3> &nbsp; &nbsp; &nbsp;
                         <h3> {this.state.paymentInfo} </h3>
                     </div>
 
