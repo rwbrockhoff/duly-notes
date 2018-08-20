@@ -328,6 +328,7 @@ app.get('/api/customerid', (req, res) => {
         const dbInstance = req.app.get('db');
 
         dbInstance.get_stripe(sub).then(customer => {
+            console.log('custa custa', customer)
         const {customer_id} = customer[0]
 
         //retrieve a Customer
@@ -354,20 +355,22 @@ app.put('/api/renewsubscription', (req, res, next) => {
     const {customer} = req.body;
     const {id} = customer.stripecust.subscriptions.data[0]
 
-    stripe.subscriptions.retrieve(id).then(res => {
+    stripe.subscriptions.retrieve(id).then(response => {
 
         stripe.subscriptions.update(id, {
             cancel_at_period_end: false,
             items: [{
-              id: res.items.data[0].id,
+              id: response.items.data[0].id,
               plan: process.env.PLAN_ID,
             }]
+          }).then(customer => {
+              res.status(200).send(customer)
           })
 
         
     })
     
-    res.sendStatus(200)
+    
 })
 
         

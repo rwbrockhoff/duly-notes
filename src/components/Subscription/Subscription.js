@@ -114,8 +114,19 @@ handleCancel = () => {
 handleRenew = () => {
     axios.get('/api/customerid').then( res => {
         const {stripecust} = res.data
-        axios.put('/api/renewsubscription', {customer: res.data}).then( () => {
-            this.retrieveCustomer()
+        axios.put('/api/renewsubscription', {customer: res.data}).then( (res) => {
+            
+        const {status, current_period_end} = res.data
+
+        var start = res.data.created
+        var startDate = new Date(start*1000).toDateString();
+        
+        var paymentInfo = 'Next Payment: ' + new Date(current_period_end*1000).toDateString();
+        var memoriesTogether = "We've been together since " + startDate + "." + " That's true love, baby."
+        var welcomeName = "Welcome back, " + this.props.given_name + '.'
+        
+        this.setState({startDate: memoriesTogether, status: status, paymentInfo: paymentInfo, name: welcomeName, subscriptionStatus: 'active'})
+
         })
     })
 }
