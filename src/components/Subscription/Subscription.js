@@ -14,7 +14,7 @@ class Subscription extends Component {
 constructor(){
     super()
     this.state = {
-        name: '',
+        name: 'Loading...',
         startDate: '',
         status: '', 
         paymentInfo: '',
