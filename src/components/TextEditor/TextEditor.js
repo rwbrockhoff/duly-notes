@@ -333,8 +333,6 @@ class TextEditor extends Component {
                         id="material-switch"
                       />
                   </li> 
-
-              
             </div>
         </div>
 
