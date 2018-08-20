@@ -149,13 +149,8 @@ class TextEditor extends Component {
     })
   }
 
- 
-  
   componentDidUpdate = (prevProps) => {
     if (prevProps.displayNote.note_id !== this.props.displayNote.note_id){
-       
-    // const blocksFromHTML = convertFromHTML(String(nextProps.displayNote.content))
-    // const contentState = ContentState.createFromBlockArray(blocksFromHTML)
     
     const html = this.props.displayNote.content
     const editorState = createEditorState(convertToRaw(mediumDraftImporter(html)))

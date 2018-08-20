@@ -61,6 +61,12 @@ div.infobox button {
     justify-content: center;
     align-items: center;
 }
+div.infobox div.renderbuttons {
+    width: 20vw;
+    display: flex;
+    justify-content: space-around;
+    
+}
 
 div.infobox button.cancel {
     color: #FF5964;
@@ -94,7 +100,7 @@ div.card {
     flex-direction: row;
 }
 
-div.card button {
+div.card div.button {
     margin-top: 0;
     margin-left: 3vw;
 }

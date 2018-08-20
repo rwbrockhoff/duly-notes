@@ -10,6 +10,7 @@ import DeleteMod from '../DeleteMod/DeleteMod';
 var displayStatus;
 var cancelDisplay;
 
+
 class Subscription extends Component {
 constructor(){
     super()
@@ -24,7 +25,8 @@ constructor(){
         cancelToggle: false,
         cancelButtonClick: false,
         periodEnd: '',
-        updateCard: false
+        updateCard: false,
+        subscriptionStatus: ''
 
     }
     this.updateCardDisplay = this.updateCardDisplay.bind(this)
@@ -39,6 +41,14 @@ componentDidMount(){
              this.props.history.push("/");
         } 
 
+        else {
+            this.retrieveCustomer()
+        }
+     
+      })
+}
+
+retrieveCustomer = () => {
     axios.get('/api/customerid').then( res => {
 
         console.log(res.data.stripecust)
@@ -50,14 +60,14 @@ componentDidMount(){
         const {cancel_at_period_end, canceled_at} = stripecust.subscriptions.data[0]
 
         if (cancel_at_period_end === false){
-
+            
         const {status, current_period_end} = res.data.stripecust.subscriptions.data[0]
         const {stripecust} = res.data
         var paymentInfo = 'Next Payment: ' + new Date(current_period_end*1000).toDateString();
         var memoriesTogether = "We've been together since " + startDate + "." + " That's true love, baby."
         var welcomeName = "Welcome back, " + res.data.name.given_name + '.'
         
-        this.setState({startDate: memoriesTogether, status: status, paymentInfo: paymentInfo, name: welcomeName})
+        this.setState({startDate: memoriesTogether, status: status, paymentInfo: paymentInfo, name: welcomeName, subscriptionStatus: 'active'})
 
         }
 
@@ -66,7 +76,7 @@ componentDidMount(){
         var cancelDate = 'Access until: ' + new Date(canceled_at*1000).toDateString();
         var onlyUntil = "Ever has it been that love knows not its own depth until the hour of separation. -Kahlil Gibran"
         var missYouName = "I'll miss you, " + res.data.name.given_name
-        this.setState({startDate: onlyUntil, paymentInfo: cancelDate, status: 'canceled', cancelToggle: true, name: missYouName})
+        this.setState({startDate: onlyUntil, paymentInfo: cancelDate, status: 'canceled', cancelToggle: true, name: missYouName, subscriptionStatus: 'notactive'})
         }
             
             
@@ -76,8 +86,6 @@ componentDidMount(){
             this.setState({brand: brand, last4: Number.parseInt(last4)})
         })
     })
-     
-      })
 }
 
 updateCardDisplay = (card) => {
@@ -99,7 +107,16 @@ handleCancel = () => {
 
         var missYou = "I'll miss you, " + this.props.given_name
         var onlyQuote = "Ever has it been that love knows not its own depth until the hour of separation. -Kahlil Gibran"
-        this.setState({paymentInfo: cancelDate, status: 'canceled', cancelToggle: true, cancelButtonClick: false, name: missYou, startDate: onlyQuote})
+        this.setState({paymentInfo: cancelDate, status: 'canceled', cancelToggle: true, cancelButtonClick: false, name: missYou, startDate: onlyQuote, subscriptionStatus: "notactive"})
+    })
+}
+
+handleRenew = () => {
+    axios.get('/api/customerid').then( res => {
+        const {stripecust} = res.data
+        axios.put('/api/renewsubscription', {customer: res.data}).then( () => {
+            this.retrieveCustomer()
+        })
     })
 }
 
@@ -115,7 +132,7 @@ handleCancel = () => {
     }
     else if (this.state.status === 'canceled'){
         displayStatus = 'Account Status: Canceled 🚧'
-        cancelDisplay = {display: 'none'}
+        // cancelDisplay = {display: 'none'}
     }
     else {
         displayStatus = 'Account Status: Not Active 📡'
@@ -129,6 +146,32 @@ handleCancel = () => {
         }
         
       }
+    
+    var renderSubscriptionButtons = () => {
+        if (this.state.subscriptionStatus==='active'){
+            return (
+                <div className='renderbuttons'>
+                <button className='updatecard' onClick={() => this.setState({updateCard: !this.state.updateCard})}>Update Card</button>
+
+                <button className='cancel' style={cancelDisplay} onClick={this.verifyCancel}> Cancel Subscription </button>
+
+                </div>
+            )
+        }
+        else {
+            return (
+                <div className='renderbuttons'>
+
+                <button className='updatecard' onClick={() => this.setState({updateCard: !this.state.updateCard})}>Update Card</button>
+
+                <button className='renew'
+                onClick={() => this.handleRenew()}
+                >Renew</button>
+
+                </div>
+            )
+        }
+    }
 
     return (
     <div className='subframe'>
@@ -149,10 +192,7 @@ handleCancel = () => {
                     <div className ='card'>
                         <h3> {this.state.brand} ending in ****{this.state.last4} </h3>
 
-                        <button className='updatecard' onClick={() => this.setState({updateCard: !this.state.updateCard})}>
-                        Update Card
-                        </button>
-                        <button className='cancel' style={cancelDisplay} onClick={this.verifyCancel}> Cancel Subscription </button>
+                        {renderSubscriptionButtons()}
                         
                     </div>
                      

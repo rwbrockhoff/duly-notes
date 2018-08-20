@@ -330,7 +330,7 @@ app.get('/api/customerid', (req, res) => {
         dbInstance.get_stripe(sub).then(customer => {
         const {customer_id} = customer[0]
 
-        //retrie a Customer
+        //retrieve a Customer
         stripe.customers.retrieve(customer_id).then(stripecust => {
             
             res.status(200).send({stripecust: stripecust, name: req.session.user})
@@ -348,6 +348,26 @@ app.post('/api/customersub', (req, res) => {
             const {brand, last4} = card
             res.status(200).send({brand: brand, last4: last4})
         })
+}),
+
+app.put('/api/renewsubscription', (req, res, next) => {
+    const {customer} = req.body;
+    const {id} = customer.stripecust.subscriptions.data[0]
+
+    stripe.subscriptions.retrieve(id).then(res => {
+
+        stripe.subscriptions.update(id, {
+            cancel_at_period_end: false,
+            items: [{
+              id: res.items.data[0].id,
+              plan: process.env.PLAN_ID,
+            }]
+          })
+
+        
+    })
+    
+    res.sendStatus(200)
 })
 
         
