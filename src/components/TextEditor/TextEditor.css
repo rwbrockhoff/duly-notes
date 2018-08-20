@@ -92,8 +92,7 @@ input.titlebox {
     margin-bottom: 1vh;
     border: none;
     outline: none;
-    /* border-bottom: 1px solid #E2E2E2; */
-
+    
     font-family: 'Nunito Sans';
     font-size: 1.5em;
     font-weight: 700;
@@ -215,15 +214,6 @@ div.usermenu li:hover {
     display: none !important;
 }
 
-.md-editor-toolbar--isopen {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.md-editor-toolbar:hover {
-    color: red !important;
-}
 
 div.modalpopup {
     width: 100%;
@@ -235,6 +225,4 @@ div.modalpopup {
     align-items: center;
 }
 
-
-/* pointer-events: none; */
 
