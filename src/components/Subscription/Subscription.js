@@ -2,14 +2,15 @@ import React, { Component } from 'react'
 import "./Subscription.css";
 import axios from 'axios';
 import {withRouter} from 'react-router-dom';
-
+import {connect} from 'react-redux';
 import {Elements} from 'react-stripe-elements';
 import InjectedUpdateCard from '../UpdateCard/UpdateCard';
+import DeleteMod from '../DeleteMod/DeleteMod';
 
 var displayStatus;
 var cancelDisplay;
 
-export default class Subscription extends Component {
+class Subscription extends Component {
 constructor(){
     super()
     this.state = {
@@ -21,11 +22,14 @@ constructor(){
         last4: '', 
         canceled_at: '',
         cancelToggle: false,
+        cancelButtonClick: false,
         periodEnd: '',
         updateCard: false
 
     }
     this.updateCardDisplay = this.updateCardDisplay.bind(this)
+    this.handleCancel = this.handleCancel.bind(this)
+    this.verifyCancel = this.verifyCancel.bind(this)
 }
 componentDidMount(){
      //do we have a new user, or already a created account
@@ -51,7 +55,7 @@ componentDidMount(){
         const {stripecust} = res.data
         var paymentInfo = 'Next Payment: ' + new Date(current_period_end*1000).toDateString();
         var memoriesTogether = "We've been together since " + startDate + "." + " That's true love, baby."
-        var welcomeName = "Welcome back, " + res.data.name.given_name
+        var welcomeName = "Welcome back, " + res.data.name.given_name + '.'
         
         this.setState({startDate: memoriesTogether, status: status, paymentInfo: paymentInfo, name: welcomeName})
 
@@ -81,17 +85,27 @@ updateCardDisplay = (card) => {
         this.setState({brand: brand, last4: last4, updateCard: false})  
 }
 
+verifyCancel = () => {
+    this.setState({cancelButtonClick: !this.state.cancelButtonClick})
+}
+
+
 handleCancel = () => {
+    
     axios.put('/api/cancelsub').then(res => {
+       
         const {canceled_at, cancel_at_period_end} = res.data;
         var cancelDate = 'Access until: ' + new Date(canceled_at*1000).toDateString();
 
-        this.setState({paymentInfo: cancelDate, status: 'canceled', cancelToggle: true})
+        var missYou = "I'll miss you, " + this.props.given_name
+        var onlyQuote = "Ever has it been that love knows not its own depth until the hour of separation. -Kahlil Gibran"
+        this.setState({paymentInfo: cancelDate, status: 'canceled', cancelToggle: true, cancelButtonClick: false, name: missYou, startDate: onlyQuote})
     })
 }
 
 
   render() {
+      
     const {REACT_APP_STRIPE_PUB_KEY} = process.env;
 
     if (this.state.status === 'active'){
@@ -105,11 +119,22 @@ handleCancel = () => {
         displayStatus = 'Account Status: Not Active 📡'
     }
 
-    return (
-      <div className='subcontainer'>
+    var renderDelete = () => {
+        if(this.state.cancelButtonClick){
+          return (
+            <DeleteMod {...this.props} cancelSub={this.handleCancel} close={this.verifyCancel}/>
+          )
+        }
+        
+      }
 
+    return (
+    <div className='subframe'>
+        {renderDelete()}
+      <div className='subcontainer' style={{filter: this.state.cancelButtonClick ? 'blur(2px)' : 'blur(0px)'}}>
+        
             <div className='welcomebar'>
-                <h1> {this.state.name}. </h1>
+                <h1> {this.state.name} </h1>
                 <h3> {this.state.startDate} </h3>
                 
             </div>
@@ -125,7 +150,7 @@ handleCancel = () => {
                         <button className='updatecard' onClick={() => this.setState({updateCard: !this.state.updateCard})}>
                         Update Card
                         </button>
-                        <button className='cancel' style={cancelDisplay} onClick={this.handleCancel}> Cancel Subscription </button>
+                        <button className='cancel' style={cancelDisplay} onClick={this.verifyCancel}> Cancel Subscription </button>
                         
                     </div>
                      
@@ -144,6 +169,13 @@ handleCancel = () => {
                      </div>
             </div>
       </div>
+    </div>
     )
   }
 }
+function mapStateToProps(state){
+    return {
+        ...this.props, ...state
+    }
+}
+export default connect(mapStateToProps)(Subscription)

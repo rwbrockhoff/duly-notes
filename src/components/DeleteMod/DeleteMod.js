@@ -29,8 +29,23 @@ class DeleteMod extends Component {
         this.props.updateUser({deleteToggle: false})
     }
 
-  render() {
     
+
+  render() {
+    var deleteOrCancelMod = () => {
+        if(this.props.location.pathname === '/subscription'){
+        return (
+            <div className='deletecheckframe'>
+        <div className='cancelonsub'><i className="fas fa-times-circle" onClick={() => this.props.close()}/></div>
+            <div className='cancelcheck'>
+              <h2> Are you sure you want to cancel? </h2>
+              <p style={{marginTop: '-1vh'}}> You'll still have access until the next billing cycle. You're welcome back anytime. No hard feelings. </p>
+              <button style={{marginTop: '1vh'}}onClick={() => this.props.cancelSub() }> Cancel Subscription </button>
+            </div>
+        </div>
+        )
+    }
+    else {
     return (
         <div className='deletecheckframe'>
         <div className='cancel'><i className="fas fa-times-circle" onClick={this.handleClose}/></div>
@@ -40,7 +55,16 @@ class DeleteMod extends Component {
             </div>
         </div>
     )
+}
+   
   }
+  return (
+      <div>
+      {deleteOrCancelMod()}
+      </div>
+  )
+
+}
 }
 
 function mapStateToProps(state){

@@ -242,7 +242,7 @@ class TextEditor extends Component {
     var renderDelete = () => {
       if(this.props.deleteToggle){
         return (
-          <DeleteMod/>
+          <DeleteMod {...this.props}/>
         )
       }
       
