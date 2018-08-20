@@ -56,7 +56,7 @@ componentDidMount(){
         this.setState({sessionTimer: timer})
     }, 2000)
 
-    setInterval( () => {
+    var myStopper = setInterval( () => {
         if (this.state.sessionTimer === 0){
             this.setState({sessionCount: this.state.sessionCount + 1, sessionTimer: 8, start: true})
             clearInterval(myVisualTimer)

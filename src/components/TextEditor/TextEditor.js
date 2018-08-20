@@ -43,6 +43,7 @@ class TextEditor extends Component {
     }
 
     this.saveNote = this.saveNote.bind(this)
+    
 
     this.onChange = (editorState) => {
       this.setState({ editorState: editorState });
@@ -69,10 +70,10 @@ class TextEditor extends Component {
       }
       
         else if(e.keyCode === 40){
-          this.props.updateUser({pomodoroToggle: true})
+          this.props.updateUser({pomodoroToggle: !this.props.pomodoroToggle})
         }
         else if (e.keyCode === 38){
-          this.props.updateUser({pomodoroToggle: false})
+          this.props.updateUser({pomodoroToggle: !this.props.pomodoroToggle})
         }
       
     
@@ -150,6 +151,11 @@ class TextEditor extends Component {
   }
 
   componentDidUpdate = (prevProps) => {
+    if (prevProps.pomodoroToggle !== this.props.pomodoroToggle){
+      var change = this.props.pomodoroToggle
+       axios.put('/api/pomodorotoggle', {change})
+    }
+
     if (prevProps.displayNote.note_id !== this.props.displayNote.note_id){
     
     const html = this.props.displayNote.content
@@ -162,6 +168,8 @@ class TextEditor extends Component {
     })
     var html2 = mediumDraftExporter(editorState.getCurrentContent());
     }
+
+    
   }
 
   handleChangeTitle = (e) => {
@@ -190,19 +198,11 @@ class TextEditor extends Component {
   handleThemeChange = (checked) => {
     this.setState({ checked })
     this.props.updateUser({theme: checked})
-    axios.put('/api/memorygradient', {checkedMg: this.state.checkedMg}).then(res => {
-      console.log('theme response: ', res)
+    axios.put('/api/theme', {theme: this.state.checked}).then(res => {
+      console.log(res)
     })
   }
-
-  handlePomodoroChange = (checkedPomodoro) => {
-    
-    this.setState({checkedPomodoro})
-    this.props.updateUser({pomodoroToggle: checkedPomodoro})
-    axios.put('/api/pomodorotoggle', {pomodoroToggle: checkedPomodoro}).then( res => {
-      console.log('pomodoro response: ', res)
-    })
-  }
+  
 
   handleMgChange = (checkedMg) => {
     
