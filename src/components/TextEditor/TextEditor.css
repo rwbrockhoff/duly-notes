@@ -216,7 +216,6 @@ div.usermenu li:hover {
 }
 
 .md-editor-toolbar--isopen {
-    width: 27% !important;
     display: flex;
     justify-content: center;
     align-items: center;
