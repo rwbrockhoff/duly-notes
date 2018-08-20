@@ -50,8 +50,8 @@ div.infobox {
 
 div.infobox button {
     height: 4vh;
-    padding: 1% 2%;
-    padding-bottom: 4%;
+    padding: 1% 5%;
+    padding-bottom: 1%;
     background-color: white;
     border: none;
     border-radius: 1vh;
@@ -60,11 +60,13 @@ div.infobox button {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0vh 1vw;
+
 }
 div.infobox div.renderbuttons {
-    width: 20vw;
+    width: 30vw;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
     
 }
 
@@ -79,12 +81,20 @@ div.infobox button.cancel:hover {
 
 div.infobox button.updatecard {
     color: #2658FF; 
-    margin-right: -2vw;
 }   
 
 div.infobox button.updatecard:hover {
     background-color: #2658FF;
     color: white;
+ }
+
+ div.renderbuttons button.renew {
+     color: #23CE6B;
+ }
+
+ div.renderbuttons button.renew:hover {
+     background-color: #23CE6B;
+     color: white;
  }
 
 div.card {
