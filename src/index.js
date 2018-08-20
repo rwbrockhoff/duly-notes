@@ -16,7 +16,7 @@ import {StripeProvider} from 'react-stripe-elements';
 
 
 ReactDOM.render(
-    <StripeProvider apiKey='pk_test_92vESunEMIIKO29KNPtIwoPD'> 
+    <StripeProvider apiKey={process.env.REACT_APP_STRIPE_PUB_KEY}> 
 <Provider store={store}>
     <Router>
         <Switch>
