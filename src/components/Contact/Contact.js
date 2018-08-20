@@ -10,7 +10,7 @@ class Contact extends Component {
     this.state = {
       name: '',
       email: '',
-      message: ''
+      message: 'Message'
     }
   }
 
@@ -25,7 +25,7 @@ class Contact extends Component {
     const {name, email, message} = this.state
     axios.post('/api/sendemail', {name: name, email: email, message: message}).then( (res) => {
      window.alert('We have lift off 🚀. Message sent.')
-     this.setState({name: '', email: '', message: '' })
+     this.setState({name: '', email: '', message: 'Message' })
     })
   }
 
@@ -53,7 +53,7 @@ class Contact extends Component {
         <input type={"email"} value={this.state.email || "name@company.com"}
         onChange={e => this.setState({email: e.target.value})}/>
       
-        <textarea placeholder={"Message"} onChange={e => this.setState({message: e.target.value})}/>
+        <textarea value={this.state.message} onChange={e => this.setState({message: e.target.value})}/>
 
         <button onClick={this.sendEmail}>submit</button>
 
