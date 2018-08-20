@@ -25,11 +25,11 @@ form.updatecardform button {
     background-color: #2658FF;
     color: white;
     font-size: 1em;
-    margin-top: 2vh;
+    margin-top: 3vh;
 
     height: 4vh;
     padding: 2% 4%;
-    padding-bottom: 9%;
+    padding-bottom: 7%;
    
     border: none;
     border-radius: 1vh;
@@ -38,6 +38,10 @@ form.updatecardform button {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+form.updatecardform {
+    width: 30vw;
 }
 
 form.updatecardform button:hover {

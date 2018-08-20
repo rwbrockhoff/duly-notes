@@ -106,6 +106,8 @@ handleCancel = () => {
 
   render() {
       
+    const fonts = [{ cssSrc: "https://fonts.googleapis.com/css?family=Nunito+Sans" }]
+      
     const {REACT_APP_STRIPE_PUB_KEY} = process.env;
 
     if (this.state.status === 'active'){
@@ -155,7 +157,7 @@ handleCancel = () => {
                     </div>
                      
                     <div className='signup'>
-                        <Elements>
+                        <Elements fonts={fonts}>
                             <InjectedUpdateCard card={this.state.updateCard} 
                             updateCard={this.updateCardDisplay}/>
                         </Elements>

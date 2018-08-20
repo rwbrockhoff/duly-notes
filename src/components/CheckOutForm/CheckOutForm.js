@@ -41,18 +41,18 @@ class CheckOutForm extends Component {
     return (
         <div className='checkoutformcontainer'>
         
-        <Motion style={{m: spring(this.state.success ? -40 : 20) }}>
+        <Motion style={{m: spring(this.state.success ? -50 : 20) }}>
 
             {({m}) =>     
 
             <div className='checkoutbox' style={{marginTop: this.state.success ? m + 'vh' : m + 'vh'}}>
 
-        <center><h1>Life is about to get a lot more 🧘</h1></center>
+        <center><h1>Life is about to get a lot more zen.</h1></center>
         
         <form className='checkout' onSubmit={this.handleSubmit}>
-        <center><h2> $5 a month. Cancel at anytime.</h2></center>
+        <center><h2 style={{marginBottom: '5vh'}}> $5 a month. Cancel at anytime.</h2></center>
         <CardSection />
-        <center><button>Sign Up</button></center>
+        <center><button style={{marginTop: '5vh'}}>Sign Up</button></center>
       </form>
             </div> }
         </Motion>

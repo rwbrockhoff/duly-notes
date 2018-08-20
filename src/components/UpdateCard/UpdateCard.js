@@ -35,7 +35,7 @@ class UpdateCard extends Component {
         <div className='updatecardcontainer' style={{display: this.props.card ? '' : 'none'}}>
             <form className='updatecardform' onSubmit={this.handleSubmit}>
             <center><h2> Let's update those digits.</h2></center>
-            <CardSection />
+            <CardSection/>
             <center><button onClick={(ev) => this.updateCard}>Update Card</button></center>
             </form>
        </div>
