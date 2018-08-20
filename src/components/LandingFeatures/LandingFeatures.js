@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './LandingFeatures.css';
-
+import HeaderImage from '../../assets/Header.png'
 
 
 
@@ -22,6 +22,7 @@ export default class LandingFeatures extends Component {
       <div className ='LandingFeatures'>
 
         <div className='intro'>
+        <img src={HeaderImage} alt='computerdemo'/>
         <h1> du more with duly</h1>
         <h5>productive notes for productive people </h5>
         <button onClick={this.register}>sign up </button>
@@ -29,7 +30,6 @@ export default class LandingFeatures extends Component {
 
         <div className='features'>
             <h1> Features </h1>
-
             <div className='grid'>
            <div className='gridItem'>
            <i className="fas fa-outdent"/>
@@ -44,9 +44,9 @@ export default class LandingFeatures extends Component {
             </div>
 
              <div className='gridItem'>
-             <i className="far fa-list-alt"/>
-            <h2>Minimalist Design</h2>
-            <p>80% of the screen is what you're working on. </p>
+             <i className="fas fa-stopwatch"/>
+            <h2>Pomodoro</h2>
+            <p>One click away from starting  a pomodoro. Stay on task. </p>
             </div>
 
              <div className='gridItem'>
