@@ -82,8 +82,17 @@ class Sidebar extends Component {
                 <div className='pomodoro'>
                   <i className="fas fa-stopwatch" onClick={() => this.props.updateUser({pomodoroToggle: !this.props.pomodoroToggle})}/>
                 </div>
+
+                <div className='sync'>
+                <i className="fas fa-sync"
+                onClick={() => this.props.saveNote()}/>
+                </div>
+
             </div>
 
+            
+
+            
             <div className="noteContainer" backgroundcolor='blue'>
              {listOutNotes}
             </div>

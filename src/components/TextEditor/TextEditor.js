@@ -42,6 +42,8 @@ class TextEditor extends Component {
       checkedMg: this.props.checkedMg
     }
 
+    this.saveNote = this.saveNote.bind(this)
+
     this.onChange = (editorState) => {
       this.setState({ editorState: editorState });
       
@@ -63,23 +65,7 @@ class TextEditor extends Component {
   if (e.target.innerHTML){
     
       if (e.keyCode === 13){
-
-        var html = mediumDraftExporter(this.state.editorState.getCurrentContent());
-       
-     this.setState({content: html})
-         
-         const {title, content} = this.state
-       
-         axios.put('/api/note', {title: title, content: content, note_id: this.props.displayNote.note_id})
-         .then(res => {
-           
-          axios.get('/api/notes').then( notes => {
-           
-            if (notes.data[0]){
-              
-            this.props.updateUser({notes: notes.data})}})
-
-         })
+        this.saveNote()
       }
       
         else if(e.keyCode === 40){
@@ -232,6 +218,25 @@ class TextEditor extends Component {
     })
   }
 
+  saveNote = () => {
+    var html = mediumDraftExporter(this.state.editorState.getCurrentContent());
+       
+     this.setState({content: html})
+         
+         const {title, content} = this.state
+       
+         axios.put('/api/note', {title: title, content: content, note_id: this.props.displayNote.note_id})
+         .then(res => {
+           
+          axios.get('/api/notes').then( notes => {
+           
+            if (notes.data[0]){
+              
+            this.props.updateUser({notes: notes.data})}})
+
+         })
+  }
+
   
 
  
@@ -259,7 +264,7 @@ class TextEditor extends Component {
          
       <div className='editorFrame' style={{marginLeft: x + 'vw', backgroundColor: this.props.theme ? 'black' : 'white', color: this.props.theme ? 'white' : 'black', filter: this.props.deleteToggle ? 'blur(3px)' : 'blur(0px)'}}>
 
-        <Sidebar/>
+        <Sidebar saveNote={this.saveNote}/>
 
          <div className='editor'>
         

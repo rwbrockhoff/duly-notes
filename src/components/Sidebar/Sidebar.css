@@ -17,8 +17,13 @@ div.iconbar {
     display: flex;
     justify-content: space-evenly;
     align-content: center;
+    align-items: center;
     background-color: #4D76FF;
     color: white;
+}
+
+div.iconbar i {
+    font-size: 1.1em;
 }
 
 div.iconbar i:hover {
@@ -34,18 +39,7 @@ div.noteContainer {
    display: none;
 }
 
-div.addnote {
-    display: flex;
-    align-self: center;
-    font-size: .4em;
-}
 
-div.pomodoro {
-    display: flex;
-    align-self: center;
-    font-size: .4em;
-    
-}
 
 
 
