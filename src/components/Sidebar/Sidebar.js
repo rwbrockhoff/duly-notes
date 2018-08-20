@@ -15,7 +15,8 @@ class Sidebar extends Component {
   constructor(){
     super()
     this.state = {
-      open: true
+      open: true,
+      syncToggle: false
     }
 
     
@@ -26,6 +27,12 @@ class Sidebar extends Component {
       this.props.updateUser({notes: res.data})
 
     })
+  }
+
+  localSave(){
+    this.setState({syncToggle: !this.state.syncToggle})
+    this.props.saveNote()
+    this.setState({syncToggle: !this.state.syncToggle})
   }
 
   render() {
@@ -83,11 +90,18 @@ class Sidebar extends Component {
                   <i className="fas fa-stopwatch" onClick={() => this.props.updateUser({pomodoroToggle: !this.props.pomodoroToggle})}/>
                 </div>
 
+
+<Motion style={{team: spring(this.state.syncToggle ? 360 : 0, {damping: 100})}}>
+           {({team}) => 
+                
                 <div className='sync'>
                 <i className="fas fa-sync"
-                onClick={() => this.props.saveNote()}/>
+                style={{transform: `rotate(${team}deg)`
+                }}
+                onClick={() => this.localSave()}/>
                 </div>
-
+           }
+           </Motion>
             </div>
 
             
