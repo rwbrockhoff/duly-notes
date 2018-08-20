@@ -5,11 +5,7 @@ import {updateUser} from '../../ducks/reducer';
 import axios from 'axios';
 
 class DeleteMod extends Component {
-    constructor(){
-        super()
-
-    }
-
+    
     deleteNote = () => {
       
         var id = this.props.displayNote.note_id

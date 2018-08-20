@@ -65,10 +65,10 @@ module.exports = {
 
     deleteNote: (req, res, next) => {
         const dbInstance = req.app.get('db');
-
+        
         const {id} = req.params
         const {sub} = req.session.user;
-        console.log(sub, id)
+       
         dbInstance.delete_note([sub, id]).then( notes => {
             res.status(200).send(notes)
         })

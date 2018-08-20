@@ -191,7 +191,7 @@ class TextEditor extends Component {
     this.setState({ checked })
     this.props.updateUser({theme: checked})
     axios.put('/api/memorygradient', {checkedMg: this.state.checkedMg}).then(res => {
-      console.log(res)
+      console.log('theme response: ', res)
     })
   }
 
@@ -200,7 +200,7 @@ class TextEditor extends Component {
     this.setState({checkedPomodoro})
     this.props.updateUser({pomodoroToggle: checkedPomodoro})
     axios.put('/api/pomodorotoggle', {pomodoroToggle: checkedPomodoro}).then( res => {
-      console.log('response: ', res)
+      console.log('pomodoro response: ', res)
     })
   }
 

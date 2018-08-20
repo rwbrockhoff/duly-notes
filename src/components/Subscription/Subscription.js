@@ -50,8 +50,6 @@ componentDidMount(){
 
 retrieveCustomer = () => {
     axios.get('/api/customerid').then( res => {
-
-        console.log(res.data.stripecust)
         const {stripecust} = res.data;
         var start = res.data.stripecust.created
         var startDate = new Date(start*1000).toDateString();
@@ -62,7 +60,7 @@ retrieveCustomer = () => {
         if (cancel_at_period_end === false){
             
         const {status, current_period_end} = res.data.stripecust.subscriptions.data[0]
-        const {stripecust} = res.data
+        
         var paymentInfo = 'Next Payment: ' + new Date(current_period_end*1000).toDateString();
         var memoriesTogether = "We've been together since " + startDate + "." + " That's true love, baby."
         var welcomeName = "Welcome back, " + res.data.name.given_name + '.'
@@ -102,7 +100,7 @@ handleCancel = () => {
     
     axios.put('/api/cancelsub').then(res => {
        
-        const {canceled_at, cancel_at_period_end} = res.data;
+        const {canceled_at} = res.data;
         var cancelDate = 'Access until: ' + new Date(canceled_at*1000).toDateString();
 
         var missYou = "I'll miss you, " + this.props.given_name
@@ -113,7 +111,7 @@ handleCancel = () => {
 
 handleRenew = () => {
     axios.get('/api/customerid').then( res => {
-        const {stripecust} = res.data
+        
         axios.put('/api/renewsubscription', {customer: res.data}).then( (res) => {
             
         const {status, current_period_end} = res.data
@@ -136,8 +134,6 @@ handleRenew = () => {
       
     const fonts = [{ cssSrc: "https://fonts.googleapis.com/css?family=Nunito+Sans" }]
       
-    const {REACT_APP_STRIPE_PUB_KEY} = process.env;
-
     if (this.state.status === 'active'){
         displayStatus = `Account Status: Active 🎉 `
     }

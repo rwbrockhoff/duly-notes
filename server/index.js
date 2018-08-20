@@ -328,7 +328,7 @@ app.get('/api/customerid', (req, res) => {
         const dbInstance = req.app.get('db');
 
         dbInstance.get_stripe(sub).then(customer => {
-            console.log('custa custa', customer)
+            
         const {customer_id} = customer[0]
 
         //retrieve a Customer

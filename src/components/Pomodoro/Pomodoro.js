@@ -56,7 +56,7 @@ componentDidMount(){
         this.setState({sessionTimer: timer})
     }, 2000)
 
-    var myStopper = setInterval( () => {
+    setInterval( () => {
         if (this.state.sessionTimer === 0){
             this.setState({sessionCount: this.state.sessionCount + 1, sessionTimer: 8, start: true})
             clearInterval(myVisualTimer)
@@ -86,7 +86,6 @@ componentDidMount(){
   handleClick = () => {
       
     this.setState({start: !this.state.start})
-      console.log('start1st', this.state.start)
         this.state.start ? this.startPomodoro() : this.stopPomodoro()
     this.setState({start: !this.state.start})
   }
