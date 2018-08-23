@@ -28,6 +28,7 @@ class DeleteMod extends Component {
     
 
   render() {
+     
     var deleteOrCancelMod = () => {
         if(this.props.location.pathname === '/subscription'){
         return (

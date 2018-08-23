@@ -17,7 +17,8 @@ class Pomodoro extends Component {
             start: true,
             sessioncomplete: false,
             sessionCount: 0,
-            sessionTimer: 8,
+            sessionMinutes: 20,
+            sessionTimer: 1200,
             break: false,
             breakTimer: 0
         }
@@ -47,20 +48,26 @@ componentDidMount(){
 }
 
   startPomodoro = () => {
-    var timer = 8;
-    this.setState({sessionTimer: 8})
-	
-
+    var timer = 1200;
+    this.setState({start: false})
+    
     myVisualTimer = setInterval( () => {
-        timer -= 2; 
-        this.setState({sessionTimer: timer})
-    }, 2000)
+        timer -= 1; 
+
+        if (timer%60===0){
+            this.setState({
+                sessionMinutes: Math.floor(timer/60),
+                sessionTimer: timer
+            })
+        }
+        
+    }, 1000)
 
     var myStopper = setInterval( () => {
         if (this.state.sessionTimer === 0){
-            this.setState({sessionCount: this.state.sessionCount + 1, sessionTimer: 8, start: true})
+            this.setState({sessionCount: this.state.sessionCount + 1, sessionTimer: 1200, sessionMinutes: 20, start: true})
             clearInterval(myVisualTimer)
-
+           
     axios.put('/api/addpomodoro', {sessionCount: 1}).then( () => {
 
         axios.get('/api/getpomodoro').then(usersPomodoros => {
@@ -71,15 +78,18 @@ componentDidMount(){
             totalWeek += 1
             
             this.props.updateUser({pomodoro: {today: totalToday, week: totalWeek, total: total}})
+
+            alert("Pomodoro Complete! 💪🏽")
         })
             
         })
-    }}, 2000)
+
+    }}, 1000)
 
   }
   
   stopPomodoro = () => {
-    this.setState({sessioncomplete: false, start: true, sessionTimer: 8})
+    this.setState({sessioncomplete: false, start: true, sessionTimer: 1200, sessionMinutes: 20})
     clearInterval(myVisualTimer)
   }
 
@@ -95,9 +105,9 @@ componentDidMount(){
     return (
       <div className='pomodoroframe' style={{marginTop: this.props.style.marginTop}}>
 
-        <div className='timer' onClick={() => this.handleClick()}>
-        <i className="fas fa-stopwatch"/> &nbsp; &nbsp;
-        <p> {this.state.sessionTimer}  seconds </p>
+        <div className='timer' style={{color: this.state.start ? '' : '#23CE6B'}}onClick={() => this.handleClick()}>
+        <i className="fas fa-stopwatch" /> &nbsp; &nbsp;
+        <p> {this.state.sessionMinutes} min</p>
         </div>
         
         <div className='stats'>
