@@ -11,7 +11,7 @@ import Contact from './components/Contact/Contact';
 import SignUp from './components/SignUp/SignUp';
 import Subscription from './components/Subscription/Subscription';
 import LandingFeatures from './components/LandingFeatures/LandingFeatures';
-import {render} from 'react-dom';
+
 import {StripeProvider} from 'react-stripe-elements';
 
 
@@ -28,9 +28,9 @@ ReactDOM.render(
             )
             }/>
             
-           <Route path="/contact" render={() => (
+           <Route path="/contact" render={(props) => (
                <div>
-                  <App/>
+                  <App {...props}/>
                     <Contact/>
                 </div>
            )

@@ -1,0 +1,38 @@
+div.usermenu {
+    position: absolute;
+    top: 5vh;
+    right: 3vw;
+    width: 12vw;
+    height: 22vh;
+    background-color: #4D76FF;
+    color: white;
+    list-style: none;
+    border-radius: 1vw 0vw 1vw 1vw;
+    box-shadow: 0px 0px 50px -20px rgba(0,0,0,0.75);
+    z-index: 2;
+    line-height: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 1vw;
+    padding-bottom: 1vh;
+    padding-top: 1vh;
+    flex-direction: column;
+    margin-top: 1vh;
+    
+    font-weight: 500;  
+}
+
+div.usermenu li {
+    z-index: 2;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+div.usermenu Link {
+    z-index: 2;
+}
+
+div.usermenu a {
+    color: white;
+}

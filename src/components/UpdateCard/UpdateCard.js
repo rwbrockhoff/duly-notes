@@ -4,8 +4,8 @@ import {injectStripe} from 'react-stripe-elements';
 import CardSection from '../CardSection/CardSection';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
-import {Motion, spring} from 'react-motion';
+
+
 
 
 class UpdateCard extends Component {

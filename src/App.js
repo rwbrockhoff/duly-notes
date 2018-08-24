@@ -3,10 +3,10 @@ import './App.css';
 import Landing from './components/Landing/Landing';
 
 class App extends Component {
-  render() {
+  render(props) {
     return (
       <div className="App">
-        <Landing/>
+        <Landing {...props}/>
       </div>
     );
   }
