@@ -43,5 +43,8 @@
     "/auth/callback": {
       "target": "http://localhost:3040"
     }
+  },
+  "devDependencies": {
+    "electron": "^2.0.8"
   }
 }
