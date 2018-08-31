@@ -27,7 +27,7 @@ class Landing extends Component {
       <div className='landing'>
         
         <div className='headerbar'>
-            <div className='logo'><Link to="/"> duly </Link></div>
+            <div className='logo'><Link to="/"> duly notes </Link></div>
             <nav>
                 <Link to="/contact"><li className="landinglinks">mindset</li></Link>
                 <Link to="/contact"><li className="landinglinks">contact</li></Link>
