@@ -1,5 +1,5 @@
 # Duly Notes
-[Live-Site](https://www.dulynotes.com)
+[Live-Site](https://www.dulynotes.com) | [Initial Plan](https://www.dropbox.com/s/3nhr75ugi24romc/DulyNotes_Plan.pdf?dl=0)
 
 The goal of this project was to create something production worthy, while fortifying my understanding of React and full stack web development. Duly Notes includes features and customizations such as an inline toolbar, markdown, light/dark theme, a sidebar that toggles, and a built in pomodoro. 
 
