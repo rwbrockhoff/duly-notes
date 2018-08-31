@@ -15,7 +15,7 @@ The purpose of Duly Notes is to create an intuitive environment for users to tak
 
 ## Technologies
 
-* React * Redux * Express * Postgres * Stripe * Express-Session * Massive * Sendgrid * Medium-Draft
+React | Redux | Express | Postgres | Stripe | Express-Session | Massive | Sendgrid | Medium-Draft
 
 ## Authors
 
