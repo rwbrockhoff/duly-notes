@@ -21,7 +21,6 @@ class Landing extends Component {
     <UserIcon {...props}/>
     : 
     <li className='login' onClick={this.login}>login</li>
-    console.log('otter heaven', this.props)
    
     return (
       <div className='landing'>
