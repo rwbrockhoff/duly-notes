@@ -32,9 +32,9 @@ class DeleteMod extends Component {
     var deleteOrCancelMod = () => {
         if(this.props.location.pathname === '/subscription'){
         return (
-            <div className='deletecheckframe'>
+            <div className='delete-check-frame center'>
         <div className='cancelonsub'><i className="fas fa-times-circle" onClick={() => this.props.close()}/></div>
-            <div className='cancelcheck'>
+            <div className='cancel-check center column'>
               <h2> Are you sure you want to cancel? </h2>
               <p style={{marginTop: '-1vh'}}> You'll still have access until the next billing cycle. You're welcome back anytime. No hard feelings. </p>
               <button style={{marginTop: '1vh'}}onClick={() => this.props.cancelSub() }> Cancel Subscription </button>
@@ -44,9 +44,9 @@ class DeleteMod extends Component {
     }
     else {
     return (
-        <div className='deletecheckframe'>
+        <div className='delete-check-frame center'>
         <div className='cancel'><i className="fas fa-times-circle" onClick={this.handleClose}/></div>
-            <div className='deletecheck'>
+            <div className='delete-check center column'>
               <h2> Are you sure? </h2>
               <button onClick={this.deleteNote}> <i className="far fa-trash-alt"/> &thinsp; Delete </button>
             </div>

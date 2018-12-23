@@ -4,10 +4,6 @@ body {
     font-family: 'Nunito Sans';
 }
 
-div.welcomebar h3 {
-    margin-top: 0;
-    font-weight: 100;
-}
 div.subcontainer {
     height: 90vh;
     background-color: #e2e2e2;
@@ -16,36 +12,27 @@ div.subcontainer {
     flex-direction: column;
 }
 
-div.welcomebar {
+div.welcome-bar {
     background-color: #2658FF;
     color: white;
     width: 100%;
     height: 20vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
 }
 
-div.userinfo {
+div.welcome-bar h3 {
+    margin-top: 0;
+    font-weight: 100;
+}
+
+div.user-info {
     background-color:#f7f5f5;
     width: 100%;
     height: 70vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
     padding-bottom: 8vh;
-    
 }
 
 div.infobox {
     width: 60vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    
 }
 
 div.infobox button {
@@ -102,9 +89,6 @@ div.card {
     width: 50vw;
     color: black;
     border-radius: 1vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: row;
 }
 
@@ -114,9 +98,6 @@ div.card div.button {
 }
 
 div.status {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 45vw;
     margin-top: 2vh;
 }

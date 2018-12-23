@@ -30,15 +30,13 @@ class Contact extends Component {
   }
 
   render() {
-// document.body.onkeydown = function typedown(e) {
-  
-// }
+
     return (
       <div className="contact-container">
 
       <div className="textinfo">
       <h1>Questions? Comments? ...Opinion on the 5th season of Friends?</h1>
-      <div className='response'>
+      <div className="flex">
       <h2>Fill out this form. We'll read it over <span role="img" > ☕ </span> in the next 1-2 business days.</h2>
       
       </div>

@@ -185,18 +185,18 @@ handleRenew = () => {
         {renderDelete()}
       <div className='subcontainer' style={{filter: this.state.cancelButtonClick ? 'blur(2px)' : 'blur(0px)'}}>
         
-            <div className='welcomebar'>
+            <div className='welcome-bar center column'>
                 <h1> {this.state.name} </h1>
                 <h3> {this.state.startDate} </h3>
                 
             </div>
 
-            <div className='userinfo'>
+            <div className='user-info center column'>
                 <h1> Subscription Info: </h1>
 
-                    <div className='infobox'>
+                    <div className='info-box center column'>
 
-                    <div className ='card'>
+                    <div className ='card center'>
                         <h3> {this.state.brand} ending in ****{this.state.last4} </h3>
 
                         {renderSubscriptionButtons()}
@@ -210,7 +210,7 @@ handleRenew = () => {
                         </Elements>
                     </div>
                 
-                    <div className='status'>
+                    <div className='status center'>
                         <h3> {displayStatus} </h3> &nbsp; &nbsp; &nbsp;
                         <h3> {this.state.paymentInfo} </h3>
                     </div>

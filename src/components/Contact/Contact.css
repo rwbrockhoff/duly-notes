@@ -35,16 +35,8 @@ div.textinfo {
 div.form {
     width: 50%;
     background-color: #2658FF;
-}
-
-div.response {
-    display: flex;
-}
-
-div.form {
     padding-top: 26vh;
     padding-left: 10vw;
-
 }
 
 div.form input {
@@ -59,8 +51,6 @@ div.form input {
     font-size: 1.5em;
     font-weight: 700;
     font-family: 'Nunito Sans';
-
-    
 }
 
 
