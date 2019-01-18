@@ -1,11 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700,800');
-
 div.delete-check-frame {
     width: 100%;
     height: 100vh;
     position: fixed;
     z-index: 5;
-    font-family: 'Nunito Sans';
 }
 
 div.delete-check {
@@ -39,7 +36,6 @@ div.delete-check-frame button {
     border-radius: 5vh;
     padding: 0% 4%;
     font-size: 1.1em;
-    font-family: 'Nunito Sans';
 }
 
 div.delete-check-frame button:hover {

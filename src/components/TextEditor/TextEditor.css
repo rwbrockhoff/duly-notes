@@ -1,12 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700,800');
-
-
 div.editorFrame {
     display: flex;
     height: 100vh;
     margin: 0 auto;
 }
-
 
 div.editor {
     width: 100vw;
@@ -15,9 +11,8 @@ div.editor {
     padding-top: 1.5vh;
     padding-bottom: 2vh !important;
     flex-direction: column;
-    font-family: 'Times New Roman', Times, serif !important;
-    
 }
+
 :focus {outline:0;}
 
 
@@ -26,16 +21,11 @@ div.editor {
     padding-left: 0vw !important;
     font-size: 1.3em;
     background-color: transparent !important;
-    
-    
 }
 
 .public-DraftEditor-content {
     overflow-y: scroll;
-    max-height: 82vh;
-    
-   
-    
+    max-height: 82vh;  
 }
 
 
@@ -51,7 +41,6 @@ div.editor {
 .md-RichEditor-controls {
     font-family: 'Nunito Sans' !important;
     font-weight: 700;
-    
 }
 
 
@@ -71,10 +60,6 @@ div.editor {
 .md-side-toolbar {
     display: none;
 }
-
-
-
-
 
 blockquote {
     font-size: 1em !important;
