@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './LandingFeatures.css';
-import HeaderImage from '../../assets/Header.png'
-
+import headerImage from '../../assets/takingNotes.svg'
+import swoop from '../../assets/swoop.svg'
 
 export default class LandingFeatures extends Component {
   register() {
@@ -19,16 +19,15 @@ export default class LandingFeatures extends Component {
 
     return (
       <React.Fragment>
-
+        <img src={swoop} className="swoop" />
         <div className='intro flex-center column'>
-          <img src={HeaderImage} alt='computerdemo' />
+          <img src={headerImage} alt='computerdemo' />
           <h1> du more with duly</h1>
           <h5>productive notes for productive people </h5>
           <button onClick={this.register}>sign up </button>
         </div>
 
         <div className='features flex column'>
-          <h1> Features </h1>
           <div className='grid'>
             <div className='grid-item flex-center column'>
               <i className="fas fa-outdent" />
